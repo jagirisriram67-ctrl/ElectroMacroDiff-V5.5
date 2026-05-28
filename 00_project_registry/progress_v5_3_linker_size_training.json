@@ -1,0 +1,8 @@
+{
+  "best_epoch": 150,
+  "stage": "V5_3_linker_size_training",
+  "status": "completed",
+  "test_within_one_accuracy": 0.476868,
+  "updated_at": "2026-05-09T10:07:30Z",
+  "val_within_one_accuracy": 0.479263
+}

@@ -1,0 +1,79 @@
+{
+  "project": "ElectroMacroDiff V5.2 Hybrid",
+  "base": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid",
+  "status": "pass",
+  "counts": {
+    "generated_candidates": 6774,
+    "prepared_sdf": 148,
+    "prepared_pdbqt": 148,
+    "vina_manifest_rows": 148,
+    "docking_score_rows": 148,
+    "docking_numeric_scores": 148,
+    "ranked_candidates": 6774,
+    "final_candidates": 5,
+    "pose_sanity_rows": 10,
+    "validation_passed": 54,
+    "validation_failed": 0
+  },
+  "final_candidate_ids": [
+    "CAND_baa376c0dd",
+    "CAND_ab5598f4f0",
+    "CAND_cc70ad3aa7",
+    "CAND_daf82c369e",
+    "CAND_3d3d2ca880"
+  ],
+  "top_final_candidates": [
+    {
+      "rank": 1,
+      "diverse_rank": 1,
+      "candidate_id": "CAND_baa376c0dd",
+      "source_generator": "selfies",
+      "docking_score": -9.186,
+      "final_weighted_score": 0.922314,
+      "pose_decision": "pass",
+      "main_risk": "no_major_descriptor_risk"
+    },
+    {
+      "rank": 2,
+      "diverse_rank": 2,
+      "candidate_id": "CAND_ab5598f4f0",
+      "source_generator": "selfies",
+      "docking_score": -8.01,
+      "final_weighted_score": 0.855059,
+      "pose_decision": "pass",
+      "main_risk": "no_major_descriptor_risk"
+    },
+    {
+      "rank": 3,
+      "diverse_rank": 3,
+      "candidate_id": "CAND_cc70ad3aa7",
+      "source_generator": "selfies",
+      "docking_score": -7.648,
+      "final_weighted_score": 0.836428,
+      "pose_decision": "pass",
+      "main_risk": "no_major_descriptor_risk"
+    },
+    {
+      "rank": 4,
+      "diverse_rank": 4,
+      "candidate_id": "CAND_daf82c369e",
+      "source_generator": "selfies",
+      "docking_score": -7.584,
+      "final_weighted_score": 0.822479,
+      "pose_decision": "pass",
+      "main_risk": "no_major_descriptor_risk"
+    },
+    {
+      "rank": 5,
+      "diverse_rank": 5,
+      "candidate_id": "CAND_3d3d2ca880",
+      "source_generator": "selfies",
+      "docking_score": -7.396,
+      "final_weighted_score": 0.82203,
+      "pose_decision": "pass",
+      "main_risk": "no_major_descriptor_risk"
+    }
+  ],
+  "failures": [],
+  "warnings": []
+}

@@ -1,0 +1,24 @@
+{
+  "status": "completed",
+  "generation_type": "v5_5_pocket_guided",
+  "smoke_test": true,
+  "device": "cpu",
+  "total_attempts": 2,
+  "valid_candidates": 0,
+  "raw_attempt_validity_percent": 0.0,
+  "attempt_status_counts": {
+    "insufficient_anchors": 2
+  },
+  "reward_threshold": 0.3,
+  "linker_novelty_enforced": true,
+  "allow_fallback_models": false,
+  "models": {
+    "anchor_checkpoint": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\v5_5_pocket_anchor_gnn\\pocket_anchor_gnn_best.pt",
+    "linker_checkpoint": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\v5_5_pocket_linker_policy\\pocket_linker_policy_best.pt",
+    "reward_checkpoint": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\v5_5_validity_reward\\validity_reward_best.pt"
+  },
+  "output_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\v5_5_pocket_guided_smoke\\generated_v5_5_pocket_guided.csv",
+  "attempt_log_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\v5_5_pocket_guided_smoke\\v5_5_pocket_guided_attempt_log.csv",
+  "metrics_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\v5_5_pocket_guided_smoke\\generated_v5_5_pocket_guided_metrics.csv",
+  "total_time_seconds": 1.3
+}

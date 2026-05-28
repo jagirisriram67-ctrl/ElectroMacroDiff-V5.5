@@ -1,0 +1,3 @@
+epoch,train_loss,val_size_exact_accuracy,val_size_within_one_accuracy,val_chemo_accuracy,val_combined
+1,3.469123,0.144279,0.421642,0.170398,0.321144
+2,3.360396,0.144279,0.322139,0.334577,0.327114

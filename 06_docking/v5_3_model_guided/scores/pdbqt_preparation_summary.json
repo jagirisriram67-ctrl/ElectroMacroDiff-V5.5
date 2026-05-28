@@ -1,0 +1,10 @@
+{
+  "ligands": {
+    "executable": "C:\\Users\\srira\\AppData\\Roaming\\Python\\Python314\\Scripts\\mk_prepare_ligand.exe",
+    "prepared": 114,
+    "failed": 0,
+    "skipped": 0,
+    "total": 114,
+    "manifest": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\v5_3_model_guided\\ligands_pdbqt\\ligand_pdbqt_manifest.csv"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "run_id": "v5_5_pocket_anchor_gnn",
+  "smoke_test": true,
+  "model_type": "pocket_anchor_gnn",
+  "device": "cpu",
+  "anchor_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\03_features\\v5_3_anchor_atom_training.csv",
+  "fragment_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\02_curated_data\\v5_3_macrocycle_fragment_linker_pairs.csv",
+  "epochs_trained": 2,
+  "best_epoch": 1,
+  "best_val_f1": 0.206897,
+  "test_metrics": {
+    "threshold": 0.5,
+    "f1": 0.166667,
+    "precision": 0.090909,
+    "recall": 1.0,
+    "accuracy": 0.285714,
+    "tp": 2,
+    "fp": 20,
+    "fn": 0,
+    "tn": 6
+  },
+  "num_graphs": 6,
+  "train_graphs": 4,
+  "val_graphs": 1,
+  "test_graphs": 1,
+  "total_time_seconds": 0.1,
+  "device_type": "cpu",
+  "torch_version": "2.11.0+cpu"
+}

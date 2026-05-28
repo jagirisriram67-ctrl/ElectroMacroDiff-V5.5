@@ -1,0 +1,40 @@
+{
+  "status": "completed",
+  "device": "cuda",
+  "input_csv": "/content/EMD_V5_2_Hybrid/03_features/v5_3_pretrain_anchor_atom_training.csv",
+  "model_path": "/content/EMD_V5_2_Hybrid/04_models_checkpoints/v5_3_anchor_pretrain/anchor_site_model.pt",
+  "training_log": "/content/EMD_V5_2_Hybrid/04_models_checkpoints/v5_3_anchor_pretrain/anchor_training_log.csv",
+  "epochs": 1000,
+  "hidden_dim": 192,
+  "learning_rate": 0.0005,
+  "init_checkpoint": "",
+  "num_rows": 2642513,
+  "num_train_rows": 1985544,
+  "num_val_rows": 389995,
+  "num_test_rows": 266974,
+  "positive_fraction": 0.039558,
+  "best_epoch": 117,
+  "selected_threshold": 0.7,
+  "best_val_metrics": {
+    "threshold": 0.7,
+    "accuracy": 0.730466,
+    "precision": 0.099249,
+    "recall": 0.711526,
+    "f1": 0.174199,
+    "tp": 11087,
+    "tn": 273791,
+    "fp": 100622,
+    "fn": 4495
+  },
+  "test_metrics": {
+    "threshold": 0.7,
+    "accuracy": 0.736914,
+    "precision": 0.096797,
+    "recall": 0.687057,
+    "f1": 0.169687,
+    "tp": 7177,
+    "tn": 189560,
+    "fp": 66968,
+    "fn": 3269
+  }
+}

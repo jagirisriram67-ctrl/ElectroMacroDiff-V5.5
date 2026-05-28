@@ -1,0 +1,15 @@
+{
+  "branch": "v5_5_pocket_guided",
+  "docked_rows": 1036,
+  "parsed_scores": 1036,
+  "best_vina_gpu_score": -12.7,
+  "median_vina_gpu_score": -8.4,
+  "pocket_scored_top_n": 200,
+  "best_pocket_electronic_fit_score": 0.84838,
+  "median_pocket_electronic_fit_score": 0.783945,
+  "top_ranked_candidate": "CAND_3688f8acdc",
+  "top_ranked_vina_score": -12.7,
+  "top_ranked_pocket_fit": 0.810776,
+  "top_ranked_final_score": 0.874199,
+  "top_pocket_fit_candidate": "CAND_74f579f214"
+}

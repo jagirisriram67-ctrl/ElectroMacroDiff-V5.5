@@ -1,0 +1,1 @@
+candidate_id,source_generator,parent_mol_id,canonical_smiles,inchikey,valid_rdkit,unique_flag,novel_flag,mw,logp,tpsa,hbd,hba,rotatable_bonds,qed,sa_score,murcko_scaffold,max_ring_size,has_macrocycle_12_20,has_constrained_ring_8_11,passes_basic_filters,generation_notes

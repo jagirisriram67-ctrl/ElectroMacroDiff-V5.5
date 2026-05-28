@@ -1,0 +1,11 @@
+{
+  "num_manifest_ligands": 148,
+  "num_scored": 148,
+  "num_missing_or_pending": 0,
+  "best_score_min": -9.186,
+  "best_score_median": -6.452999999999999,
+  "best_score_max": -3.526,
+  "top_candidate_id": "CAND_baa376c0dd",
+  "top_candidate_score": -9.186,
+  "notes": "Vina scores are docking proxies and require pose inspection plus experimental validation."
+}

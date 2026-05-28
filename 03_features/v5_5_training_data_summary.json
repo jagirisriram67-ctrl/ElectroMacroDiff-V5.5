@@ -1,0 +1,13 @@
+{
+  "pocket_profile": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\v5_3_model_guided\\scores\\jak2_pocket_electronic_profile.json",
+  "pocket_feature_dim": 32,
+  "smoke_test": false,
+  "max_rows": null,
+  "write_expanded_csvs": false,
+  "outputs": {
+    "anchor": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\03_features\\v5_5_pocket_anchor_training.csv",
+    "anchor_pretrain": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\03_features\\v5_5_pocket_anchor_pretrain.csv",
+    "linker": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\03_features\\v5_5_pocket_linker_training.csv",
+    "reward": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\03_features\\v5_5_validity_reward_training.csv"
+  }
+}

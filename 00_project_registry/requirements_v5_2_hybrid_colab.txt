@@ -1,0 +1,52 @@
+# ElectroMacroDiff V5.2 Hybrid - Colab requirements
+# Install after mounting Google Drive. Some docking tools may need fallback installs.
+
+numpy
+pandas
+scipy
+scikit-learn
+pyarrow
+tqdm
+pyyaml
+joblib
+requests
+beautifulsoup4
+
+# Chemistry
+rdkit
+selfies
+chembl_webresource_client
+biopython
+networkx
+
+# Deep learning
+torch
+torchvision
+torchaudio
+einops
+e3nn
+torchdiffeq
+accelerate
+safetensors
+
+# Visualization/reporting
+matplotlib
+seaborn
+plotly
+py3Dmol
+Pillow
+openpyxl
+xlsxwriter
+python-docx
+weasyprint
+
+# Docking helpers - may need special handling in Colab
+vina
+meeko
+gemmi
+
+# Optional/stretch:
+# torch-geometric
+# gnina is usually downloaded as a binary release, not pip-installed.
+# diffdock should be installed from GitHub if used.
+# aizynthfinder can be too heavy for the sprint.

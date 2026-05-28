@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "generation_type": "v5_5_pocket_guided",
+  "smoke_test": false,
+  "device": "cuda",
+  "total_attempts": 87287,
+  "valid_candidates": 1113,
+  "raw_attempt_validity_percent": 1.2751,
+  "attempt_status_counts": {
+    "duplicate_or_invalid_record": 357,
+    "filtered_non_macrocycle_or_basic_filters": 2108,
+    "insufficient_anchors": 1,
+    "rejected_by_reward_model": 78257,
+    "rejected_known_linker": 5230,
+    "ring_closure_failed": 221,
+    "valid_output": 1113
+  },
+  "reward_threshold": 0.3,
+  "linker_novelty_enforced": true,
+  "allow_fallback_models": false,
+  "models": {
+    "anchor_checkpoint": "/kaggle/working/EMD_V5_2_Hybrid/04_models_checkpoints/v5_5_pocket_anchor_gnn/pocket_anchor_gnn_best.pt",
+    "linker_checkpoint": "/kaggle/working/EMD_V5_2_Hybrid/04_models_checkpoints/v5_5_pocket_linker_policy/pocket_linker_policy_best.pt",
+    "reward_checkpoint": "/kaggle/working/EMD_V5_2_Hybrid/04_models_checkpoints/v5_5_validity_reward/validity_reward_best.pt"
+  },
+  "output_csv": "/kaggle/working/EMD_V5_2_Hybrid/05_generated_candidates/v5_5_pocket_guided/generated_v5_5_pocket_guided.csv",
+  "attempt_log_csv": "/kaggle/working/EMD_V5_2_Hybrid/05_generated_candidates/v5_5_pocket_guided/v5_5_pocket_guided_attempt_log.csv",
+  "metrics_csv": "/kaggle/working/EMD_V5_2_Hybrid/05_generated_candidates/v5_5_pocket_guided/generated_v5_5_pocket_guided_metrics.csv",
+  "total_time_seconds": 419.2
+}

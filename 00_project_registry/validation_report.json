@@ -1,0 +1,280 @@
+{
+  "summary": {
+    "total": 54,
+    "passed": 54,
+    "failed": 0,
+    "failures": []
+  },
+  "results": [
+    {
+      "name": "dir:00_project_registry",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:01_raw_data/chembl",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:01_raw_data/bindingdb",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:01_raw_data/pubchem",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:01_raw_data/pdb",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:01_raw_data/literature",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:02_curated_data",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:03_features/ligand_graphs",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:03_features/conformers",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:03_features/splits",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:04_models_checkpoints/se3_flow",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:04_models_checkpoints/se3_flow_pretrain",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:04_models_checkpoints/baseline_models",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:04_models_checkpoints/v5_3_anchor",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:04_models_checkpoints/v5_3_anchor_pretrain",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:04_models_checkpoints/v5_3_linker_size",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:04_models_checkpoints/v5_3_linker_size_pretrain",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:05_generated_candidates/se3",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:05_generated_candidates/selfies",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:05_generated_candidates/rdkit",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:05_generated_candidates/macrocycle_linker",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:05_generated_candidates/merged",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:06_docking/receptor",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:06_docking/ligands_sdf",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:06_docking/ligands_pdbqt",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:06_docking/poses",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:06_docking/scores",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:06_docking/images",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:07_admet_synthesis",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:07_admet_synthesis/aizynth_routes",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:08_final_ranking",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:09_reports",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:10_notebooks",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "dir:11_logs",
+      "passed": true,
+      "message": "exists"
+    },
+    {
+      "name": "schema:jak2_curated_ligands.csv",
+      "passed": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "schema:ligand_features.csv",
+      "passed": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "schema:generated_merged_filtered.csv",
+      "passed": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "schema:docking_scores.csv",
+      "passed": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "schema:final_ranked_candidates.csv",
+      "passed": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "gate:m0_environment",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\00_project_registry\\environment_versions.txt"
+    },
+    {
+      "name": "gate:m1_curated_ligands",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\02_curated_data\\jak2_curated_ligands.csv"
+    },
+    {
+      "name": "gate:m1_receptor_pdb",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\01_raw_data\\pdb\\5AEP.pdb"
+    },
+    {
+      "name": "gate:m2_graph_tensors",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\03_features\\ligand_graphs\\se3_graphs.pt"
+    },
+    {
+      "name": "gate:m3_debug_checkpoint",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\se3_flow\\se3_latest_checkpoint.pt"
+    },
+    {
+      "name": "gate:m3_debug_json",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\se3_flow\\se3_dataloader_test_passed.json"
+    },
+    {
+      "name": "gate:m4_candidates",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\merged\\generated_merged_filtered.csv"
+    },
+    {
+      "name": "gate:m5_docking_grid",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\docking_grid_5AEP_QUP.json"
+    },
+    {
+      "name": "gate:m5_ligand_sdf",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\ligands_sdf\\candidates_for_docking.sdf"
+    },
+    {
+      "name": "gate:m5_receptor_pdbqt",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\jak2_prepared.pdbqt"
+    },
+    {
+      "name": "gate:m5_ligand_pdbqt_manifest",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\ligands_pdbqt\\ligand_pdbqt_manifest.csv"
+    },
+    {
+      "name": "gate:m5_vina_manifest",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\scores\\vina_command_manifest.csv"
+    },
+    {
+      "name": "gate:m5_docking_scores",
+      "passed": true,
+      "message": "148 numeric docking scores parsed"
+    },
+    {
+      "name": "gate:m6_admet",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\07_admet_synthesis\\admet_scores.csv"
+    },
+    {
+      "name": "gate:m7_ranking",
+      "passed": true,
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\08_final_ranking\\final_ranked_candidates.csv"
+    }
+  ]
+}

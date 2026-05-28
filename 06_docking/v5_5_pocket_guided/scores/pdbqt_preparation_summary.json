@@ -1,0 +1,20 @@
+{
+  "receptor": {
+    "executable": "C:\\Users\\srira\\AppData\\Roaming\\Python\\Python314\\Scripts\\mk_prepare_receptor.exe",
+    "status": "prepared",
+    "returncode": 0,
+    "pdbqt": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\jak2_prepared.pdbqt",
+    "cleaned_pdb": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\5AEP_receptor_clean.pdb",
+    "vina_box": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\vina_box_5AEP_QUP.txt",
+    "log_path": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\mk_prepare_receptor.log"
+  },
+  "ligands": {
+    "executable": "C:\\Users\\srira\\AppData\\Roaming\\Python\\Python314\\Scripts\\mk_prepare_ligand.exe",
+    "prepared": 1036,
+    "failed": 0,
+    "skipped": 0,
+    "total": 1036,
+    "manifest": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\v5_5_pocket_guided\\ligands_pdbqt\\ligand_pdbqt_manifest.csv",
+    "workers": 8
+  }
+}

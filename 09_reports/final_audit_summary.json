@@ -1,0 +1,81 @@
+{
+  "project": "ElectroMacroDiff V5.2 Hybrid",
+  "artifact_counts": {
+    "curated_ligands": 1135,
+    "ligand_features": 1135,
+    "generated_candidates": 6774,
+    "docking_rows": 148,
+    "docking_numeric_scores": 148,
+    "final_ranked_candidates": 6774
+  },
+  "docking_summary": {
+    "num_manifest_ligands": 148,
+    "num_scored": 148,
+    "num_missing_or_pending": 0,
+    "best_score_min": -9.186,
+    "best_score_median": -6.452999999999999,
+    "best_score_max": -3.526,
+    "top_candidate_id": "CAND_baa376c0dd",
+    "top_candidate_score": -9.186,
+    "notes": "Vina scores are docking proxies and require pose inspection plus experimental validation."
+  },
+  "validation_summary": {
+    "total": 50,
+    "passed": 50,
+    "failed": 0,
+    "failures": []
+  },
+  "top5_diversity_selected": [
+    {
+      "rank": 1,
+      "candidate_id": "CAND_baa376c0dd",
+      "source_generator": "selfies",
+      "docking_score": -9.186,
+      "final_weighted_score": 0.922314,
+      "decision": "primary_candidate",
+      "selection_tier": "final_candidate",
+      "main_risk": "no_major_descriptor_risk"
+    },
+    {
+      "rank": 2,
+      "candidate_id": "CAND_ab5598f4f0",
+      "source_generator": "selfies",
+      "docking_score": -8.01,
+      "final_weighted_score": 0.855059,
+      "decision": "primary_candidate",
+      "selection_tier": "final_candidate",
+      "main_risk": "no_major_descriptor_risk"
+    },
+    {
+      "rank": 3,
+      "candidate_id": "CAND_cc70ad3aa7",
+      "source_generator": "selfies",
+      "docking_score": -7.648,
+      "final_weighted_score": 0.836428,
+      "decision": "primary_candidate",
+      "selection_tier": "final_candidate",
+      "main_risk": "no_major_descriptor_risk"
+    },
+    {
+      "rank": 4,
+      "candidate_id": "CAND_daf82c369e",
+      "source_generator": "selfies",
+      "docking_score": -7.584,
+      "final_weighted_score": 0.822479,
+      "decision": "primary_candidate",
+      "selection_tier": "final_candidate",
+      "main_risk": "no_major_descriptor_risk"
+    },
+    {
+      "rank": 5,
+      "candidate_id": "CAND_3d3d2ca880",
+      "source_generator": "selfies",
+      "docking_score": -7.396,
+      "final_weighted_score": 0.82203,
+      "decision": "primary_candidate",
+      "selection_tier": "final_candidate",
+      "main_risk": "no_major_descriptor_risk"
+    }
+  ],
+  "scientific_boundary": "All candidates are computational hypotheses. Vina scores, ADMET proxies, and SA proxies are prioritization signals, not experimental proof of potency, selectivity, safety, or synthesis."
+}

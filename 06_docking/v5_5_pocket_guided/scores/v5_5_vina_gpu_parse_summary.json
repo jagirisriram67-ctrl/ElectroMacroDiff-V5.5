@@ -1,0 +1,13 @@
+{
+  "stage": "V5_5_vina_gpu_parse",
+  "status": "completed",
+  "branch": "v5_5_pocket_guided",
+  "raw_pose_dir": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\v5_5_pocket_guided\\poses_gpu_raw",
+  "pose_dir": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\v5_5_pocket_guided\\poses",
+  "output_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\v5_5_pocket_guided\\scores\\docking_scores_full_vina_gpu_2_1.csv",
+  "raw_pose_files": 1036,
+  "parsed_scores": 1036,
+  "best_score": -12.7,
+  "median_score": -8.4,
+  "note": "Parsed Vina-GPU 2.1 raw pose PDBQT outputs from Kaggle GPU-only docking."
+}

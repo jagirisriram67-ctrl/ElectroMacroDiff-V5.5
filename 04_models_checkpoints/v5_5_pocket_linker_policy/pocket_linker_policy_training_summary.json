@@ -1,0 +1,22 @@
+{
+  "status": "completed",
+  "run_id": "v5_5_pocket_linker_policy",
+  "smoke_test": false,
+  "model_type": "pocket_linker_policy",
+  "device": "cuda",
+  "input_csv": "/kaggle/working/EMD_V5_2_Hybrid/02_curated_data/v5_3_macrocycle_fragment_linker_pairs.csv",
+  "epochs_trained": 1112,
+  "best_epoch": 862,
+  "best_val_combined": 0.79227,
+  "test_metrics": {
+    "size_exact_accuracy": 0.592811,
+    "size_within_one_accuracy": 0.818065,
+    "size_mae": 0.846267,
+    "chemo_accuracy": 0.755023
+  },
+  "total_samples": 55208,
+  "total_time_seconds": 2474.4,
+  "device_type": "cuda",
+  "torch_version": "2.10.0+cu128",
+  "cuda_device_name": "Tesla T4"
+}

@@ -1,0 +1,113 @@
+{
+  "pocket_atom_count": 235,
+  "pocket_net_charge_proxy": -0.011,
+  "hydrophobic_atom_count": 45,
+  "hbond_donor_atom_count": 60,
+  "hbond_acceptor_atom_count": 75,
+  "aromatic_atom_count": 15,
+  "top_contact_residues": [
+    {
+      "residue": "ARG:A:980",
+      "atom_contacts": 16
+    },
+    {
+      "residue": "ARG:A:938",
+      "atom_contacts": 15
+    },
+    {
+      "residue": "TYR:A:931",
+      "atom_contacts": 14
+    },
+    {
+      "residue": "ASN:A:981",
+      "atom_contacts": 11
+    },
+    {
+      "residue": "ASP:A:939",
+      "atom_contacts": 9
+    },
+    {
+      "residue": "ASP:A:994",
+      "atom_contacts": 9
+    },
+    {
+      "residue": "LEU:A:855",
+      "atom_contacts": 9
+    },
+    {
+      "residue": "LEU:A:932",
+      "atom_contacts": 9
+    },
+    {
+      "residue": "SER:A:936",
+      "atom_contacts": 8
+    },
+    {
+      "residue": "VAL:A:863",
+      "atom_contacts": 8
+    },
+    {
+      "residue": "LYS:A:882",
+      "atom_contacts": 7
+    },
+    {
+      "residue": "LYS:A:943",
+      "atom_contacts": 7
+    },
+    {
+      "residue": "MET:A:929",
+      "atom_contacts": 7
+    },
+    {
+      "residue": "ALA:A:880",
+      "atom_contacts": 6
+    },
+    {
+      "residue": "ASN:A:859",
+      "atom_contacts": 6
+    },
+    {
+      "residue": "GLN:A:853",
+      "atom_contacts": 6
+    },
+    {
+      "residue": "LYS:A:857",
+      "atom_contacts": 6
+    },
+    {
+      "residue": "SER:A:862",
+      "atom_contacts": 6
+    },
+    {
+      "residue": "TYR:A:934",
+      "atom_contacts": 6
+    },
+    {
+      "residue": "GLU:A:930",
+      "atom_contacts": 5
+    },
+    {
+      "residue": "GLY:A:856",
+      "atom_contacts": 5
+    },
+    {
+      "residue": "GLY:A:858",
+      "atom_contacts": 5
+    },
+    {
+      "residue": "GLY:A:861",
+      "atom_contacts": 5
+    },
+    {
+      "residue": "GLY:A:935",
+      "atom_contacts": 5
+    },
+    {
+      "residue": "GLY:A:993",
+      "atom_contacts": 5
+    }
+  ],
+  "receptor_file": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\jak2_prepared.pdbqt",
+  "example_pose": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\v5_3_model_guided\\poses\\CAND_5152217faa_vina_out.pdbqt",
+  "note": "Proxy pocket electronic profile from PDBQT partial charges and residue/atom classes; not a quantum electron-density map."
+}

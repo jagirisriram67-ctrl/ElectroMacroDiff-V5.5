@@ -1,0 +1,28 @@
+{
+  "status": "completed",
+  "run_id": "v5_5_validity_reward",
+  "smoke_test": false,
+  "model_type": "pocket_validity_reward",
+  "device": "cuda",
+  "epochs_trained": 331,
+  "best_epoch": 31,
+  "best_val_roc_auc": 0.963598,
+  "test_metrics": {
+    "roc_auc": 0.86049,
+    "f1": 0.275862,
+    "precision": 0.166667,
+    "recall": 0.8,
+    "accuracy": 0.822535,
+    "tp": 12,
+    "fp": 60,
+    "fn": 3,
+    "tn": 280
+  },
+  "total_samples": 2845,
+  "positive_samples": 182,
+  "negative_samples": 2663,
+  "total_time_seconds": 18.1,
+  "device_type": "cuda",
+  "torch_version": "2.10.0+cu128",
+  "cuda_device_name": "Tesla T4"
+}

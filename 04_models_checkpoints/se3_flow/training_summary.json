@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "device": "cuda",
+  "num_graphs_total": 1135,
+  "num_train_graphs": 794,
+  "num_val_graphs": 170,
+  "num_test_graphs_held_out": 171,
+  "epochs": 50,
+  "batch_size": 8,
+  "hidden_dim": 128,
+  "num_layers": 4,
+  "learning_rate": 0.0002,
+  "best_checkpoint": "/content/drive/MyDrive/EMD_V5_2_Hybrid/04_models_checkpoints/se3_flow/se3_best_checkpoint.pt",
+  "latest_checkpoint": "/content/drive/MyDrive/EMD_V5_2_Hybrid/04_models_checkpoints/se3_flow/se3_latest_checkpoint.pt",
+  "training_log": "/content/drive/MyDrive/EMD_V5_2_Hybrid/04_models_checkpoints/se3_flow/training_log.csv",
+  "training_curve": "/content/drive/MyDrive/EMD_V5_2_Hybrid/04_models_checkpoints/se3_flow/training_curve.png",
+  "training_curve_status": "created",
+  "best_val_loss": 9.062095295299184,
+  "final_train_loss": 9.651727333068848,
+  "final_val_loss": 9.87616729736328
+}

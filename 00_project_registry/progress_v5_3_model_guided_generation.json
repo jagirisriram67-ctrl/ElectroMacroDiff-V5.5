@@ -1,0 +1,32 @@
+{
+  "anchor_checkpoint": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\v5_3_anchor\\anchor_site_model.pt",
+  "anchor_hidden_dim": 192,
+  "device": "cpu",
+  "generated_candidates": 114,
+  "generated_macrocycles_12_20": 114,
+  "linker_checkpoint": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\v5_3_linker_size\\linker_size_model.pt",
+  "linker_hidden_dim": 192,
+  "linker_labels": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "max_products_per_seed": 12,
+  "merged_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\merged\\generated_merged_with_v5_3_model_guided.csv",
+  "merged_metrics_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\merged\\generation_comparison_metrics_with_v5_3_model_guided.csv",
+  "metrics_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\model_guided_macrocycle\\v5_3_model_guided_generation_metrics.csv",
+  "min_anchor_probability": 0.05,
+  "output_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\model_guided_macrocycle\\generated_v5_3_model_guided_macrocycles.csv",
+  "seed_count": 250,
+  "stage": "V5_3_model_guided_macrocycle_generation",
+  "status": "completed",
+  "top_anchor_atoms": 10,
+  "updated_at": "2026-05-11T11:46:09Z"
+}

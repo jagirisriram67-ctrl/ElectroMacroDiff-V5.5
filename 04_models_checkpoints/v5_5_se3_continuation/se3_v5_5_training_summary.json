@@ -1,0 +1,17 @@
+{
+  "status": "completed",
+  "run_id": "v5_5_se3_continuation",
+  "smoke_test": false,
+  "model_type": "se3_flow_continuation",
+  "device": "cuda",
+  "init_epoch": 39,
+  "init_val_loss": 9.062095295299184,
+  "final_epoch": 477,
+  "best_epoch": 377,
+  "best_val_loss": 7.432842,
+  "test_loss": 8.823802,
+  "total_time_seconds": 1216.7,
+  "device_type": "cuda",
+  "torch_version": "2.10.0+cu128",
+  "cuda_device_name": "Tesla T4"
+}

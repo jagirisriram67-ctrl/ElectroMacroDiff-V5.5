@@ -1,0 +1,4 @@
+branch,pose_rows,pose_pass_rows,pose_pass_percent
+v5_2_macrocycle_campaign,10,10,100.0
+kaggle_v5_5_pocket_guided,20,20,100.0
+v5_3_model_guided_vina_gpu_2_1,10,10,100.0

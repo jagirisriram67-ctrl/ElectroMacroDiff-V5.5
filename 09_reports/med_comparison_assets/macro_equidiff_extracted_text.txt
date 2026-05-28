@@ -1,0 +1,810 @@
+
+
+--- PAGE 1 ---
+Macro-Equi-Diff (MED): De Novo Macrocycles Generation Using Equivariant Diffusion 
+Sai Shobit Kambampati 1,3#, Siri Anumandla 2,3#, Sai Lahari Guttula 1,3#, Varshith Reddy Kavadi 
+1,3#, Sanjana Gogte3, Vani Kondaparthi3,4*  
+1Department of Computer Science and Engineering, Keshav Memorial Institute of Technology, 
+Narayanaguda, Hyderabad, Telangana, India-500029. 
+2Department of Information Technology, Keshav Memorial Institute of Technology, 
+Naryanaguda, Hyderabad, Telangana, India-500029.  
+3Drugparadigm Research Lab, Uppal, Hyderabad, Telangana, India-500088. 
+4Department of Chemistry, Keshav Memorial Engineering College, Uppal, Hyderabad, Telangana, 
+India-500088. 
+# These authors contributed equally to this work. 
+*Correspondence: vani@drugparadigm.in 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 2 ---
+Abstract: 
+Macrocyclic compounds are essential in drug discovery as they can modulate protein–protein 
+interactions and enhance selectivity. Their structural complexity enables access to molecular 
+diversity beyond traditional small molecules; however, designing feasible macrocycles remains a 
+challenging task. Current computational methods often fail to generate macrocycles with proper 
+drug-like properties. Here, we present Macro-Equi-Diff (MED), a deep learning framework that 
+combines transformer-based site identification with an E(3)-equivariant Diffusion Model (EDM) 
+for linker creation, and a fragment-linker attachment module followed by pharmacokinetic 
+validation module. MED transforms acyclic molecules into structurally consistent macrocycles. 
+MED was tested on the ZINC dataset, achieving high validity (93.92%), uniqueness (99.94%), 
+macrocyclization (99.92%), and linker novelty (82.81%). MED improves upon previous methods 
+that lack a macrocyclic geometry context. As a case study, MED was used to macrocyclize four 
+acyclic drugs targeting the JAK2 protein. The resulting macrocycles showed strong binding, 
+highlighting MED’s reliability in expanding macrocyclic chemical space. 
+Keywords: Equivariant Diffusion, Transformer, Macrocycles, Equivariant Graph Neural 
+Network, Diffusion, Pharmacokinetic properties, Deep Learning, JAK2. 
+1. Introduction 
+Macrocycles, defined as cyclic molecules with rings of 11 or more atoms, occupy a distinctive 
+space between small molecules and large biologics1. Their large ring size imparts conformational 
+flexibility, enabling diverse three-dimensional shapes that can engage binding surfaces 
+inaccessible to traditional small molecules2. This makes them particularly effective for targeting 
+complex protein-protein interactions (PPIs)3, where small molecules lack sufficient affinity and 
+biologics are often too large. 
+In drug discovery, macrocycles combine high affinity and selectivity with favorable 
+pharmacological properties4. Their pre-organized conformations reduce the entropic penalty of 
+binding. At the same time, their ability to shield polar groups is often described as the “chameleon 
+effect,” which enhances permeability and oral bioavailability, even beyond the traditional Rule of 
+Five (bRo5)5,6. Although many approved macrocycles are natural products, advances in synthesis 
+are expanding this chemical space, enabling the design of novel scaffolds for next-generation 
+therapeutics7. 
+
+--- PAGE 3 ---
+Computational methods were employed to expedite the discovery of macrocyclic compounds. 
+Classical approaches, such as rule-based algorithms and library-guided linker scans, ensured 
+chemical validity but were compromised by a deficiency in structural diversity8. The application 
+of artificial intelligence, specifically deep learning, has shown immense potential in various stages 
+of the drug discovery pipeline9, including de novo molecular design, scaffold hopping, structural 
+optimization, and activity prediction. Subsequent machine-learning strategies, such as sequence-
+to-sequence models, have attempted to "translate" acyclic structures into their corresponding 
+macrocyclic forms by adding linkers10. However, because the process is handled only as a 
+sequence translation task rather than as a chemically informed generative approach, these methods 
+frequently fail in providing sufficient chemical context during training, which restricts the model's 
+capacity to capture underlying molecular interactions. They also struggle to learn proper 
+SMILES11,12 syntax due to a lack of chemical context. 
+The transformer-based Macformer10 often lacks an explicit chemical context and treats linker 
+generation as a straightforward translation task. Additionally, unlike diffusion models, which can 
+produce diverse outputs from the same input through stochastic sampling, MacFormer is 
+deterministic and always yields identical results for the same inputs. Database-driven strategies, 
+such as MacLS13, ensure validity but are constrained by the library content, which limits chemical 
+diversity. 
+The MED framework is developed to address the above challenges. Unlike 2D SMILE sequence-
+to-sequence models, MED employs an EDM14 for the end-to-end design of linkers in 3D space, 
+thereby enforcing both geometric and chemical plausibility. Instead of tapping predefined libraries, 
+it generates brand-new linkers de novo15, thereby maximizing structural diversity. 
+Pharmacokinetic validation further ensures chemical feasibility and synthetic accessibility. This 
+enables MED to produce unique, stable, drug-like macrocycles, thereby extending computational 
+means for targeting previously untreatable proteins.  
+A case analysis of clinically effective kinase inhibitors, including Fedratinib16, Ruxolitinib17, 
+Sunitinib18,19, and Lenvatinib20,21, was conducted. Macrocycle analogues generated by the MED 
+framework for these inhibitors displayed favorable docking scores against the JAK2 protein22 
+compared to their corresponding acyclic structures, indicating that their binding interactions could 
+
+--- PAGE 4 ---
+be enhanced through macrocyclization. These findings highlight the potential of MED in developing drug-like macrocycles with therapeutic promise. 2. Methodology The macrocyclization framework is structured as a three-step computational pipeline for producing and predicting novel macrocycles, as shown in Fig. 1. 1. Transformer-based site identification for appropriate linker attachment points on acyclic SMILES. 2. EDM-based linker synthesis - a conditional generator model - creates linkers in an attempt to complete the macrocycle. 3. Prospective macrocycles are formed by connecting fragments and linkers, then evaluated and scored by their pharmacokinetic properties.  Figure 1. An overview of the MED macrocyclization framework. Figure 1 presents the process beginning with the transformer-based site identification, where two chemically valid attachment points are predicted on an acyclic molecule (highlighted in pink). These serve as anchor sites for macrocyclization (as represented in the linker). In the second stage, an EDM with an EGNN generates linkers conditionally on the acyclic molecule (described in the figure as u), ensuring geometric consistency and invariance to rotations/translations. The linker is then attached to the predicted anchor sites, yielding the final macrocycle. This three-stage pipeline enables scaffold-conditioned macrocycle design in a symmetry-preserving manner. 2.1 Dataset and Training Setup 
+
+
+--- PAGE 5 ---
+2.1.1 Transformer Model Dataset The dataset was preprocessed using the ChEMBL database23 and filtered to get valid macrocyclic structures. Each macrocycle was fragmented using a fragmentation script that breaks two single bonds in the largest ring to generate an acyclic fragment and its linker. The linker is constrained to 3–9 structural atoms, with no large rings (≥7 atoms), and ≤25% of the macrocycle’s structural atoms. Canonicalized SMILES of the acyclic fragments were used to build the dataset for the Transformer model. The input is in acyclic SMILES format without cyclization points, and the output includes dummy atoms (represented by *) that mark true cyclization sites. Since the acyclic structures are fragments of prevailing macrocycles, the model learns chemically valid and optimal placement of cyclization sites. 2.1.2 Diffusion Model Dataset  For training the diffusion model, the dataset hosted at Zenodo (https://zenodo.org/records/7121278) is used. This is derived from the Geometric Ensemble Of Molecules (GEOM) dataset24. The fragment-linker pair dataset was divided into 282,602 pairs for training and 1,251 pairs for validation. EDM was then tested on 5,551 pairs from the ZINC dataset (https://github.com/yydiao1025/Macformer/tree/main/data/ZINC).  2.2 Transformer-Based Attachment Point Prediction: A Transformer Encoder–Decoder architecture is used to accept SMILES of acyclic molecules and predict two chemically valid macrocyclization anchor points, which are marked with an asterisk (*). Fig. 2 shows the overall model architecture and the transformer-based prediction of attachment sites.   
+
+
+--- PAGE 6 ---
+Figure 2. Transformer-based prediction of attachment sites and model architecture overview. a. 
+Transformer-based attachment site prediction. b. Transformer architecture - A scaled-dot attention 
+mechanism is given inputs in the form of three matrices: matrix Q containing a collection of 
+queries, matrix K containing the keys, and matrix V containing the values, as explained in Figure 
+2. 
+Transformer Model Architecture  
+The Transformer consists of an autoregressive encoder and decoder. Both input and output 
+SMILES sequences are tokenized and transformed into a learnable embedding matrix, where a 
+256-dimensional vector represents each token. To encode sequence order, sine and cosine 
+functions serve as positional encodings, with "pos" indicating the token's position and "i" as the 
+iterator from 0 to demb/2 as shown in equation 1. The positional encodings are then added to the 
+token embeddings, enabling the model to incorporate both positional information and semantic 
+meaning. 
+PE(୮୭ୱ,ଶ୧) = sinቌ ୮୭ୱ
+ଵ଴଴଴଴
+൬ మ౟
+demb൰ቍ, PE(୮୭ୱ,ଶ୧ାଵ) = cosቌ ୮୭ୱ
+ଵ଴଴଴଴
+൬ మ౟
+demb൰ቍ    (1)  
+Transformer Encoder and Decoder:  
+The encoder processes the input SMILES sequence, extracting contextual information across 
+tokens. Simultaneously, the decoder generates the target sequence by attending to both the 
+encoder’s outputs and previously generated tokens. To preserve the autoregressive property, the 
+decoder employs masked self-attention25. The architecture consists of four encoder layers, four 
+decoder layers, four attention heads, a feedforward network size of 512, and a dropout rate of 0.1.  
+The multi-head attention mechanism26 enables the encoder and decoder to simultaneously focus 
+on multiple tokens, allowing the Transformer to manage long-range dependencies efficiently. Each 
+multi-head attention unit consists of 8 parallel scaled dot-product attention layers, which are 
+concatenated and linearly projected to produce the final output. Each scaled dot-product attention 
+layer receives three matrices as input: Q (queries), K (keys), and V (values). The attention is then 
+computed as shown in Equation 2. 
+   Attention(Q,K,V) = softmax ൬୕୏ ౐
+ඥ ୢౡ
+൰V     (2) 
+
+--- PAGE 7 ---
+where d୩ is a scaling factor based on the size of the weight matrices. 
+Finally, the Transformer’s output is passed through a fully connected layer that projects it onto the 
+target vocabulary space, enabling token-level predictions. 
+Training, Optimization, and Evaluation: The transformer is trained by minimizing cross-
+entropy loss27 , using the Adam optimizer28 with a learning rate of 1 × 10⁻⁴. Training runs up to 40 
+epochs with mini-batches of size 32, on an NVIDIA A100-SXM4-80GB GPU.  
+During inference, the model predicts one token at a time until the end-of-sequence token is 
+generated or the maximum sequence length is reached. For evaluation, the transformer was later 
+tested on the Zinc database 9, achieving a validity of 99.3175%, a uniqueness score of 99.9595%, 
+and a novelty of 96.7684%. This shows that transformer outputs are chemically valid. The average 
+Tanimoto similarity is 0.9119, indicating a high level of structural similarity between predicted 
+and input molecules. 
+2.3 Diffusion-Based Linker Generation using EGNN 
+The core of the macrocyclization framework is a diffusion generative model29 built with 
+Equivariant Graph Neural Networks (EGNNs)30,31. The input to this module is the molecular graph 
+of the acyclic molecule, along with optional constraints on the number of atoms in the linker.  
+2.3.1 Diffusion Models Overview 
+Diffusion models are generative models32 that consist of two key processes: 
+Noising: A gradual noising of a data point x into a noise vector zt over time steps t = 0, ..., T as 
+presented in a of Fig. 3. The equation is illustrated in Equation 3. 
+q(z୲|z୲ିଵ)=  N൫z୲; α୲ି z୲ିଵ , σ୲ି మ
+I൯,  q(z୲|x) =  N(z୲|α୲x, σ୲ଶ I)  (3) 
+Here, α୲ഥ  ∈  ℝ⁺ determines the extent of signal preservation, while σₜഥ ∈ ℝ⁺ controls the amount of 
+noise introduced. By hypothesis, the transition model follows the Markov property, as expressed 
+in the equation 4. 
+q(z₀, z₁, … , zₜ | x) = q(z₀ | x) ∏ₜ₌₁ᵀ q(zₜ | zₜ₋₁)    (4) 
+
+--- PAGE 8 ---
+Denoising: A learned neural process that approximates the inversion of noise to reconstruct valid data from zt as depicted in b of Fig. 3, is expressed in Equation 5. q(z୲ିଵ|x, z୲)= N(z୲ିଵ; μₜ(x, zₜ), ςₜଶI)   (5) where,    μₜ(x, zₜ) = ( ஑౪ష஢౪షభమ஢౪మ)z୲ + (஑౪షభ ஢౪షమ஢౪మ) x, and ςₜ= ஢౪ష஢౪షభ஢౪ The second component of a diffusion model is the generative denoising process, which is trained to reverse the noising process when a data point x is not obtained. The generative transition distribution is formulated in Equation 6.. p( z୲ିଵ | zₜ) = q( z୲ିଵ | x̂, zₜ)     (6) The data point x represents a molecular linker in coordinate space, and the model learns to reverse the noisy trajectory conditioned on the acyclic core molecule. Since the true x is unknown during generation, a neural network φ predicts the added noise ϵො୲, reconstructing x as:   xො=  ቀଵ஢ₜቁzₜ −ቀ஢ₜ஑ₜቁεොₜ. The network minimizes mean squared error, L(t) = ‖ε − εොₜ‖ଶ with timesteps uniformly sampled.  Figure 3: Applying the diffusion process to a molecular graph. a. Noising: The clean molecule z଴ undergoes progressive noising through a Markov chain, where Gaussian perturbations are added at each step. As the time step t increases, both atomic positions and bond connectivity become increasingly corrupted, transforming the ordered structure into a highly noisy representation z୲. 
+
+
+--- PAGE 9 ---
+Colored nodes denote atoms, and edges denote chemical bonds. b. Denoising: Starting from 
+random noise, the diffusion model iteratively removes noise and reconstructs structural 
+information by gaining context from the conditional input (u). This gradually recovers atomic 
+positions and bond connectivity. The process ultimately yields a chemically valid molecular graph 
+from the coordinate space. 
+2.3.2 E(3)-Equivariant Graph Neural Network for Denoising 
+The learnable function φ, which models the dynamics of the reverse diffusion process, is 
+implemented as a modified EGNN 24. A conditional distribution p(x∣y) is E(3)-equivariant if p(Rx 
++ t ∣ Ry + t) = p(x∣y) where R  O(3) denotes a rotation or reflection and t  R3 a translation. 
+Similarly, for functions f: R3→R3, O(3)-equivariance requires f(Rx) = Rf(x), while O(3)- 
+invariance of conditional distributions requires p(Rx ∣ Ry) = p(x∣y), where R denotes rotations or 
+reflections and t translations. Translation invariance further requires that f(x + t) = f(x). As 
+illustrated in Fig. 4, the network preserves equivariance under rotations and reflections (O(3) 
+equivariance), enabling consistent reverse diffusion to generate chemically valid linker 
+structures33. 
+The network explicitly incorporates the Center-of-Mass (COM) information from the context point 
+u. For each input fragment, the COM of the anchors is computed and used to center the coordinates 
+before applying φ, ensuring translation invariance. To achieve this, following Hoogeboom 
+et al. (2022), the initial coordinates are subtracted from the predicted coordinate noise as depicted 
+in Equation 7. 
+ϵ̂ = [ϵ̂ r , ϵ̂ h] =  φ(zt,u,t) = EGNN(zt,u,t) − [ztr,0]   (7) 
+This ensures that the predicted noise is computed relative to the COM, effectively removing any 
+dependence on the absolute positions of the molecule or its fragments. 
+These two components are merged into a single fully connected molecular graph: 
+● Nodes are represented by their coordinates ri∈R3 and feature vectors hi that encode atom 
+type, time step t, and fragment flags. 
+
+--- PAGE 10 ---
+● The network predicts a noise vector ϵ̂ = [ϵ̂ r,ϵ̂ h] with both coordinate and feature components.  Figure 4: Illustration of O(3)-equivariance in the diffusion-based linker generation process. Top row: The same input scaffold in its original, rotated 90°, and reflected forms. Bottom row: The equivariant diffusion model denoises noisy inputs. While sampling is stochastic, outputs remain consistent up to the same rigid transformation. Figure 4 illustrates the O(3) component of equivariance, showing that rotations and reflections of inputs yield correspondingly transformed outputs, preserving geometric consistency. The final output is a linker structure ready to be connected to the scaffold, yielding a complete macrocyclic molecule. As diffusion sampling is stochastic, individual outputs may differ in atomic arrangement, but their distributions remain related by the same geometric transforms applied to the inputs. 2.3.3 EGNN Layer Formulation The EGNN is composed of Equivariant Graph Convolutional Layers (EGCLs)34, each of which updates coordinates and features jointly, as formulated in Equation 8. m୧୨ =  ϕୣ൫h୧୪, h୨୪, d୧୨ଶ൯, h୧୪ାଵ= ϕ୦൫h୧୪,∑୨ஷ୧m୧୨൯, r୧୪ାଵ= r୧୪+ ϕ୴ୣ୪൫r୪, h୪, i൯  (8) Where, d୧୨  =  |r୧୪  −  r୨୪| is the interatomic distance, ϕe  and ϕh  are learnable functions (MLPs) operating on invariant features, ϕvel  updates coordinates in an equivariant manner. Equivariance is preserved by construction: ● ϕe and ϕh depend only on E(3)-invariant quantities (node features, pairwise distances). 
+
+
+--- PAGE 11 ---
+● ϕvel  depends linearly on coordinate differences (ri − rj), ensuring E(3)-equivariance. 
+After applying a sequence of EGCLs, the network produces updated coordinates and features, 
+ h෠ =ൣuො୦ , zො୲୦൧, r ො=[u୰, zො୲୰] 
+The context-related outputs, and only [ zො୲୦, zො୲୰ ] are retained as the EGNN’s final output. 
+2.4 GNN-Based Linker Size Prediction 
+In cases where the linker size is not a specified parameter, a GNN-based model predicts the optimal 
+linker length35. The GNN model predicts linker sizes in molecular or graph structures by learning 
+from the relationships between nodes and edges. First, the model transforms the node features into 
+a higher-dimensional space, making them easier to analyze. It then applies a series of Graph 
+Convolutional Layers (GCLs), where each layer updates the node's representation by combining 
+information from its neighbors. This process enables the model to identify and capture structural 
+patterns across the graph. Finally, a linear layer uses the learned representations to predict the 
+linker size. 
+2.5 Fragment-Linker Attachment  
+The connection of a linker to an acyclic molecule is the final step in the MED framework for 
+generating macrocycles. The acyclic molecule, symbolized by two cyclization sites marked by 
+dummy atoms predicted in the transformer module, is connected with a linker derived from the 
+EDM module. 
+2.5.1 Attachment point validation and bond formation 
+The linking process begins with an acyclic molecule and the linker, each containing the required 
+cyclization points, and converts them into molecular structures. If the input is invalid, it is 
+discarded. To verify chemical plausibility, dummy atom positions are evaluated to ensure they are 
+connected to atoms with available valence. They acquire it only when a designated attachment 
+point is created (e.g., by replacing a hydrogen with a dummy atom). When a dummy atom is bound 
+to an atom whose valence is already satisfied (e.g., oxygen), it is reassigned to an atom that has 
+free bonding capacity, as shown in Fig. 5. This adjustment, combined with checks for chemical 
+correctness, ensures attachment points allow new bonding without violating valence requirements. 
+
+--- PAGE 12 ---
+Both molecules contain dummy atoms, which must appear exactly twice each. Once these criteria 
+are satisfied, the input molecules are merged into a single, disconnected structure within the 
+molecular graph. If this condition is not fulfilled, the linking procedure is halted to ensure structural 
+consistency and preserve the integrity of the molecular graph. The new single bond connections 
+are then formed between the respective acyclic and the linkers’ dummy atoms that close the 
+macrocyclic ring. After each bond is formed, dummy atoms are replaced and atomic indices are 
+reset to ensure that anchors are correctly connected. The molecule is then checked to confirm 
+proper valence, connectivity, and to detect any chemical faults. If the molecule fails these checks 
+due to valence problems or invalid connectivity, it is rejected, and only valid macrocycles advance. 
+Finally, the molecule is converted into a canonical SMILES string. 
+ 
+Figure 5: Reallocation of cyclization points. The illustration in Figure 5 shows how dummy 
+atom (*) attachment points are moved from atoms with no bonding capacity left, such as from 
+oxygen that has exceeded its valence, to a neighboring atom with available valence. This change 
+is reflected in the image, ensuring the molecular structure stays chemically valid. 
+2.5.2. Macrocycle filtering and ADMET-based prioritization. 
+To ensure that generated structures are macrocycles, each SMILES is filtered to have at least one 
+ring that has a minimum of eleven atoms, and any non-macrocyclic structures that may result from 
+invalid linking are eliminated. Multiple linkers that are generated for each acyclic fragment are 
+evaluated in fragment–linker pairs, enabling the exploration of diverse combinations. Duplicate 
+macrocycles are eliminated by using unique SMILES and preserving them for scoring, which 
+allows the model to become more precise and ensures that only chemically plausible macrocycles 
+are generated. This attachment approach strikes a balance between flexibility and accuracy, 
+yielding a predictable collection of macrocycles suitable for drug discovery7. 
+For screening macrocycles, ADMET properties36 are predicted from physicochemical 
+descriptors37,38. These include molecular weight, lipophilicity (LogP)39, hydrogen bond acceptors 
+
+
+--- PAGE 13 ---
+(HBA), hydrogen bond donors (HBD), polar surface area (PSA), rotatable bonds, and synthetic accessibility (SA)40,41. Rule-based predictions look at permeability (LogP > 2.5 and polar surface area < 250 Å²)42, hERG liability43 (LogP ≤ 3 or acceptors ≤ 3), CYP inhibition (molecular weight < 800 and acceptors < 10), metabolic stability (fewer than 10 heteroatoms), and the occurrence of undesirable structural alerts. Lipinski rule violations and Quantitative Estimates of Drug-likeness (QED) scores are predicted. A drug-likeness score is computed by assigning points for favorable property ranges, allowing for the ranking of macrocycles. Pharmacokinetic properties-based evaluation:  1. Physicochemical score() = 10 · 1 (MW < 600) + 20 · 1 (0.5 ≤ LogP ≤ 5) + 20 · 1 (HBD ≤ 5) + 20 · 1 (HBA ≤ 10) + 20 · 1 (PSA < 140) + 10 · 1 (RotatableBonds < 10) + 30 · 1 (1 ≤ SA ≤ 3) 2. ADMET score() = 10 · 1 (Permeability = High) + 15 · 1 (hERG Risk = Low) + 10 · 1 (CYP Inhibition = Low) + 10 · 1 (Metabolic Stability = High) + 20 · 1 (PAINS Alert = No) + 10 · 1 (QED > 0.5) 3. Pharmacokinetic properties-based ranking = Physiochemical score + ADMET score The best macrocycles, along with their related properties and linker information, are ranked as lead candidates with favorable pharmacokinetic properties for optimization. A summary of the whole pipeline is depicted in Fig. 6.   Figure 6: Computational pipeline for macrocyclization. In Phase 1, transformer-based prediction identifies cyclization sites on the acyclic structure. Phase 2 employs an E(3)-equivariant diffusion 
+
+
+--- PAGE 14 ---
+model to generate chemically consistent linkers, and in Phase 3, linkers are attached to form 
+diverse macrocycles. Representative macrocycles are illustrated with ADMET profiling results, 
+with additional properties also predicted beyond those shown, facilitating the prioritization of 
+candidates with favorable pharmacokinetic properties. 
+2.6. Docking, Screening, and Visualization of Protein–Ligand Complexes 
+As a case study, macrocyclic derivatives of the Janus Kinase-2 (JAK2) inhibitors19,21,44 Fedratinib, 
+Ruxolitinib (Direct inhibitors), Sunitinib, and Lenvatinib (Indirect inhibitors) were designed and 
+docked against the AlphaFold45-predicted JAK2 structure (Uniprot ID: O60674) having an amino 
+acid length of 1132. The JAK2 structure selected has per-residue confidence scores (average 
+pLDDT46: 87.22), ensuring structural reliability for binding site analysis. Standard protein 
+preparation protocols were followed, including removal of non-essential molecules, addition of 
+hydrogens, charge assignment, and energy minimization. Docking simulations were performed on 
+macrocyclic structures generated for acyclic JAK2 inhibitors using PyRx47 with the AutoDock 
+Vina algorithm, employing grid boxes centered on the ATP-binding pocket to explore potential 
+binding orientations. The best-scoring ligands were subsequently analyzed in Biovia Discovery 
+Studio 202548 to map key non-covalent interactions, including hydrogen bonding, hydrophobic 
+contacts, and π–π stacking49, with JAK2 residues. Conformational analyses assessed macrocycle 
+stability and binding site adaptability, providing insights into binding behavior.  
+Results and Discussion  
+Ablation Study: To evaluate the impact of transformer-based site identification, macrocycle 
+generation was first tested using only the EDM module. In this setup, a simple algorithm was used 
+to select two cyclization points based on the valencies of atoms. Under these conditions, the model 
+generated valid macrocycles in only 35% of the test samples, indicating that the linker generator 
+alone is not sufficient. Incorporating the transformer module to predict cyclization points 
+significantly improves the accuracy and reliability of macrocycle formation. 
+By contrast, the full three-stage MED pipeline overcame these limitations: the fragment–linker 
+attachment and pharmacokinetic screening module proved essential for chemically valid closures 
+and for retaining drug-like macrocycles.  
+ 
+
+--- PAGE 15 ---
+Table 1. Comparison of metrics with various models. 
+Table 1 summarizes the comparative performance of Macformer, MacLS, and MED on 
+macrocyclization tasks, evaluated on 5,551 samples of the ZINC dataset. Metrics include validity, 
+uniqueness (among valid molecules), macrocyclization success (among valid and unique 
+molecules), and novelty of predicted linkers, reflecting structural accuracy and chemical 
+plausibility. 
+Model evaluation metrics:  
+Validity: The percentage of generated chemically valid molecules.  
+Uniqueness: The percentage of unique molecules in the generated valid molecules.  
+Novelty of linker: The percentage of novel linkers that are not present in the training set, in the 
+generated valid and unique molecules.  
+Macrocyclization percentage: The percentage of macrocycles in the generated valid and unique 
+molecules. 
+Docking, screening, and visualization studies with the JAK2 protein. 
+The macrocycles filtered based on pharmacokinetic properties met widely accepted thresholds for 
+molecular weight (<600 Da), lipophilicity (LogP), and polar surface area (PSA), parameters 
+related to oral bioavailability and cell permeability. Docking studies against the high-confidence 
+AlphaFold-predicted JAK2 structure identified multiple macrocyclic derivatives (F1, S1, R1, and 
+L1), especially the top structures with good pharmacokinetic properties derived from Fedratinib 
+(F), Ruxolitinib (R), Sunitinib (S), and Lenvatinib (L). These derivatives showed predicted binding 
+Metrics MED Macformer MacLS 
+Validity 93.82±1.02% 72.91±2.05% 89.67±0.07% 
+Uniqueness 99.94±0.02% 47.74±8.98% 95.04±0.14% 
+Macrocyclization % 99.92±0.05% 96.39±0.71% 100±0.00% 
+Novelty of the linker 82.81±2.12% 44.24±2.05% 0.00±0.00% 
+
+--- PAGE 16 ---
+affinities in the highly favorable range (-7.8 to -10.6 kcal · mol⁻¹), specifically binding to the ATP 
+binding pocket (Lys882), the proton acceptor site (Asp976), and the region from Leu855 to 
+Val863. Improved binding within the generated grid (center in Å: X: 28.09, Y: 9.50, Z: -33.37; 
+dimensions in Å: X: 32.29, Y: 16.74, Z: 19.69) was consistently linked to optimized hydrogen 
+bonding to hinge residues, increased hydrophobic interactions within the ATP-binding pocket, and 
+conformational preorganization that reduced entropic penalties upon binding. Structural 
+visualization using Biovia Discovery Studio 2025 confirmed better binding pocket occupancy for 
+several macrocyclic analogues compared with acyclic precursors, indicating potential for enhanced 
+potency and selectivity. 
+Table 2. Binding interactions of JAK2 interacting amino acid residues with the ligands. 
+S. 
+No
+. 
+Ligand 
+Name 
+Binding interactions of JAK2 with 
+ligands 
+2D structure of ligand 
+interactions with the interacting 
+amino acid residues of the 
+protein 
+1 
+ 
+J_F 
+  
+
+
+--- PAGE 17 ---
+J_F1 
+  
+2 J_S 
+  
+J_S1 
+  
+
+
+--- PAGE 18 ---
+3 J_R 
+  
+J_R1 
+  
+4 J_L 
+ 
+ 
+
+
+--- PAGE 19 ---
+J_L1 
+  
+5 J_P(DB) 
+  
+6 J_P(MF) 
+  
+Table 2 presents the 2D and 3D interactions between JAK2 interacting amino acid residues with 
+the structures generated and visualized by Biovia Discovery Studio 2025. Where J_F: 
+JAK2_Fedratinib complex; J_F1: JAK2_Macrocyclic Fedratinib complex; J_S: JAK2_Sunitinib 
+complex; J_S1: JAK2_Macrocyclic Sunitinib complex; J_R: JAK2_Ruxolitinib complex; J_R1: 
+
+
+--- PAGE 20 ---
+JAK2_Macrocyclic Ruxolitinib complex; J_L: JAK2_Lenvatinib complex; J_L1: 
+JAK2_Macrocyclic Lenvatinib complex; J_P(DB): JAK2_Pacritinib (PMID: 35983661) (PMID: 
+35993369) (Drugbank) complex; J_P(MF): JAK2_Pacritinib (MacFormer) complex.  
+Table 3. Interactions between ligands and the JAK2 protein. 
+S.N
+o 
+Ligand 
+Name 
+Binding 
+Affinity 
+Ligand Structure Interactions between Ligand and 
+JAK2 with bond distance in Å 
+1 
+ 
+F -8.3 
+ 
+F:H3 - A:ASP994:OD1 2.90  
+F: A: LYS882:NZ 3.62  
+F: A: PHE860 5.48  
+F: A: LEU855 4.57  
+F: A: LEU983 4.29  
+F: A: ALA880  4.73  
+F: A: VAL863 5.23  
+F:C1: A: PHE860 5.20  
+ 
+F1 -9.9 
+ 
+F1:H7 - A:ASP976:OD2 3.24  
+F1:N7 - A:ASP994:OD2 4.01  
+F1:N32 - A:ASP994:OD2 5.15  
+F1:O16 : A:HN -PHE860 2.19  
+F1:O16: A:HN -GLY861 2.23  
+F1:O21: A:HZ3 -LYS882 2.76  
+F1: A:OD2 -ASP994 3.50  
+F1: A:OD2 -ASP994 3.56  
+F1: A:PHE860 5.88  
+F1: A:VAL863 4.25  
+F1: A:ALA880 4.95  
+F1: A:LEU983 4.55  
+F1: A:VAL863 5.31  
+ 
+
+
+--- PAGE 21 ---
+2 S -7.9 
+ 
+S:H7 - A: ASP994:OD2 2.33  
+S: A:OD2-ASP994: 3.48  
+S: A:LEU855  5.23  
+S: A:VAL863 4.45  
+S: A:ALA880  4.90  
+S: A: LEU983  4.46  
+S:C15: A:VAL863 4.57  
+S:C15: A:LYS882 4.86  
+S: A:LEU983 4.50  
+ 
+S1 -10.6 
+ 
+S1:F23: A:HN-LEU932 2.49  
+S1:H31: A:OD1-ASN981 2.31  
+S1:H18: A:O-LEU855 2.72  
+S1:O17: A:CA-GLY856 3.57  
+S1:C33: A:OD2-ASP976 3.51  
+S1: A:CD1-LEU855 3.83  
+S1: A:VAL863 4.73  
+S1: A:LEU855 4.49  
+S1: A:VAL863 5.07  
+S1: A:LEU983 4.71  
+ 
+3 R -7.8 
+ 
+R:H13: A:O-LEU932 2.51  
+R:H16: A:O-LEU932 2.80  
+R: A:CD1-LEU855 3.68  
+R: A:CD1-LEU983 3.92  
+R: A:LEU983 4.94  
+R: A:ALA880 4.23  
+ 
+R1 -9.2 
+ 
+R1:N12: A:OD2-ASP994 5.16  
+R1:H9: A:O-ARG980 2.37  
+R1:C11: A:O-ARG980 3.59  
+R1: A:LEU855 3.88  
+R1:C1: A:ALA880  3.63  
+R1: A:LEU983 5.15  
+
+
+--- PAGE 22 ---
+R1:C1 - A:LEU983 4.40  
+ 
+4 L -8.3 
+ 
+L:O24: A:HZ3-LYS882 3.10  
+L:C1 - A:O-GLU930 3.42  
+L: A:CG1-VAL863 3.87  
+L: A:CD1-LEU983 3.78  
+L: A:LEU855 4.59  
+L: A:VAL863 5.08  
+L:C1: A:ALA880 4.02  
+L: A:LEU983 5.17  
+L:C1: A:VAL911 3.74  
+L:C1 - A:MET929 3.64  
+L:C1 - A:LEU983 4.97  
+L:CL29 - A:VAL863 4.81  
+L: A:PHE860  5.38  
+L: A:LEU855 5.45  
+L: A:ALA880 4.94  
+ 
+L1 -9.4 L1:O18: A:HZ1-LYS882  3.01  
+L1:O34: A:CA-GLY858 3.69  
+L1:C1: A:O-GLU1015 3.58  
+L1:CL31: A:O -ARG980 3.24  
+L1: A:OD2-ASP994 4.33  
+L1: A:OD2-ASP994 4.13  
+L1: A:VAL863  4.64  
+L1: A:ALA880 4.83  
+L1: A:LEU855 4.50  
+L1: A:LEU983 4.69  
+L1:C1: A:LEU997 4.11  
+ 
+
+
+--- PAGE 23 ---
+5 P(DB) -9.2 
+ 
+P:N24 - A:OD2-ASP976 4.25  
+P:N24 - A:OD2-ASP994 5.50  
+P:C23 - A:O-LEU855 3.73  
+P: A:OD2-ASP976 3.41  
+P: A:OD1-ASP994 4.78  
+P: A:VAL863 4.68  
+P: A:LEU997 5.32  
+ 
+6 P(MF) -8.6 
+ 
+P1:N33: A:OD2-ASP994 5.06  
+P1:O25: A:HZ1-LYS882 2.51  
+P1:H7: A:O-ARG980 2.39  
+P1:C17:  A:O-GLY861 3.31  
+P1: A:OD2-ASP994 3.26  
+P1: A:OD2-ASP994 4.05  
+P1: A:CD-ARG980 3.88  
+P1:C1 - A:ARG980 4.06  
+P1:C17 - A:VAL863 4.82  
+P1: A:ARG980 4.48  
+ 
+Table 3 summarizes the binding affinity scores (obtained from PyRx), the structures of ligands, 
+and the interactions between the JAK2 protein and ligands in angstroms (Å). Where F: Fedratinib, 
+F1: Macrocyclic Fedratinib, S: Sunitinib, S1: Macrocyclic Sunitinib, R: Ruxolitinib, R1: 
+Macrocyclic Ruxolitinib, L: Lenvatinib, L1: Macrocyclic Lenvatinib, P(DB): Pacritinib from 
+Drugbank, P(MF): Pacritinib generated through Macformer. Structures and interactions are 
+generated by Biovia Discovery Studio 2025. 
+Table 4: Pharmacokinetic Properties of the generated Macrocyclic structures and acyclic drugs.  
+Ligand 
+Name MW nH
+A 
+nH
+D TPSA logP caco2 BBB QED logS logD 
+S1 452.26 6 3 77.2 3.4 -5.3 0.9 0.5 -4.1 3.1 
+L1 504.16 8 4 115.5 2.9 -5.3 0.5 0.4 -4.7 2.9 
+F1 444.23 8 3 91.4 3.0 -5.1 0.09 0.5 -3.9 2.9 
+
+
+--- PAGE 24 ---
+R1 315.15 5 1 55.1 2.2 -4.8 0.2 0.8 -3.4 2.4 
+P(MF) 458.24 8 2 82.6 3.2 -5.2 0 0.6 -3.8 3.0 
+P(DB) 472.25 7 1 68.7 3.1 -4.7 0.2 0.5 -4.0 3.0 
+S 398.21 6 3 77.2 3.0 -5.6 0.04 0.6 -4.1 2.8 
+L 426.11 8 4 115.5 2.8 -5.3 0 0.5 -4.5 2.8 
+F 389.22 6 2 62.3 4.0 -4.9 0 0.5 -4.9 3.4 
+R 276.12 5 0 57.7 2.3 -4.7 0.8 0.8 -3.1 2.3 
+Table 4 summarizes the pharmacokinetic properties of the generated structures and the cyclic drugs 
+produced by ADMETlab 2.0 (PMID: 38572755). The valid ranges for these properties are as 
+follows: MW (Molecular weight in grams per mole): less than 750; nHA (number of Hydrogen 
+bond Acceptors): ≤10; nHD (number of Hydrogen bond Donors): ≤5; TPSA (Total Polar Surface 
+Area in Å²): 7 to 200; logP: ≤5.0; caco2 (cell permeability in gut-blood barrier): 5 to less than -5.0 
+cm/sec; BBB (Blood Brain Barrier): -3.0 to 1.2; QED (Quantitative Estimate of Drug-likeness): 0 
+to 1; logS (aqueous solubility): -6.5 to 0.5; logD (distribution coefficient): 1 to 3 (hydrophilic), 3 
+to 5 (lipophilic). 
+Fedratinib uniquely inhibits the thiamine transporter SLC19A350 by structurally mimicking 
+thiamine. Its 2,4-diaminopyrimidine core, sulfonamide branch, terminal pyrrolidine, and 
+hydrophobic tert-butyl group collectively align with thiamine’s binding determinants, allowing it 
+to occupy the transporter pocket competitively. This off-target interaction explains the observed 
+reduction in thiamine uptake and the associated risk of Wernicke’s encephalopathy51 in patients 
+treated with this drug. In contrast, the macrocyclic structures of Ruxolitinib (R1), Sunitinib (S1), 
+and Lenvatinib (L1) are based on chemically distinct scaffolds and lack the pharmacophoric 
+elements needed to mimic thiamine. Consistent with their structures, these predicted macrocyclic 
+structures do not significantly inhibit SLC19A3, making them more selective for their intended 
+kinase targets. Therefore, in the context of JAK2 inhibition, alternative options with macrocyclic 
+structures (S1, R1, and L1) may be preferred over Fedratinib to lower the risk of transporter-
+mediated thiamine deficiency. Overall, these findings demonstrate that model-guided 
+macrocyclization, combined with structure-based design, enables the rapid creation of 
+synthetically accessible scaffolds with enhanced binding properties. The improved binding 
+
+--- PAGE 25 ---
+observed, driven by preorganization and optimized interaction networks, offers strong support for 
+applying this strategy to other therapeutic targets. This proof-of-concept workflow demonstrates 
+the potential of AI-driven molecular design to accelerate the discovery of next-generation 
+macrocyclic inhibitors.  
+4. Conclusion  
+In this work, we present Macro-Equi-Diff (MED), a hybrid transformer-diffusion framework for 
+macrocyclization of drug-like molecules from their acyclic precursors. MED integrates a 
+transformer-based module for predicting cyclization sites, an EDM for linker generation, and a 
+fragment–linker attachment module, followed by pharmacokinetic validation. This guarantees that 
+the generated macrocyclic structures are chemically valid and geometrically consistent. Our results 
+demonstrate that MED surpasses existing methods in terms of validity, uniqueness, novelty, and 
+macrocyclization, while also generating macrocycles with enhanced drug-like properties. 
+A case study on the JAK2 protein demonstrated how MED can generate macrocycles, yielding 
+diverse analogs with favorable docking results and improved predicted ADMET profiles compared 
+to their acyclic counterparts. Importantly, MED’s primary goal is to generate valid macrocycles; 
+further research will be necessary to assess the therapeutic potential of these macrocycles fully. 
+Overall, MED provides chemists with a structured approach to explore macrocyclic chemical 
+space, starting with acyclic scaffolds and progressing towards synthetically accessible 
+macrocycles. With geometric insight and diffusion-based modeling enhancing the process, MED 
+provides an adaptable framework that could speed up the discovery of next-generation macrocyclic 
+molecules. 
+Abbreviations 
+1. ADMET - Absorption, Distribution, Metabolism, Excretion, and Toxicity 
+2. ATP - Adenosine Triphosphate 
+3. COM - Center of Mass 
+4. CYP - Cytochrome P4504 
+5. DS2025 - Biovia Discover Studio 2025 
+
+--- PAGE 26 ---
+6. E(3) - Euclidean Group in 3 Dimensions (translations, rotations, reflections) 
+7. EGCL - Equivariant Graph Convolutional Layer 
+8. EGNN - Equivariant Graph Neural Network 
+9. GNN - Graph Neural Network 
+10. HBA - Hydrogen Bond Acceptor 
+11. HBD - Hydrogen Bond Donor 
+12. hREG - Human Ether-à-go-go-Related Gene 
+13. JAK2 - Janus kinase 2 
+14. MacLS - Macrocycle Library Screening 
+15. MED - Macro Equi Diff 
+16. MLP - Multi-Layer Perceptron 
+17. MW - Molecular Weight 
+18. O(3) - Orthogonal group in three dimensions, representing 3D rotations and reflections. 
+19. PDBQT - Protein Data Bank, Quaternion, Torsion 
+20. pLDDT - predicted Local Distance Difference Test 
+21. PSA - Polar Surface Area 
+22. PyRx - Python Prescription 
+23. QED - Quantitative Estimate of Drug-likeness 
+24. Ro5 - Rule of 5 (drug-likeness guideline in medicinal chemistry) 
+25. SA - Synthetic Accessibility 
+26. SDF - Structure Data File 
+27. SMILES - Simplified Molecular Input Line Entry System 
+ACKNOWLEDGEMENTS 
+We authors, S.S.K, S.A, S.L.G, V.R.K, S.G, and V.K, express our sincere gratitude to the 
+Drugparadigm Research Lab for providing the necessary facilities and infrastructure that enabled 
+the successful completion of this work.” 
+AUTHOR CONTRIBUTIONS 
+S.S.K., S.A., S.L.G., and V.R.K. contribute equally to the work. S.S.K. and V.R.K. performed 
+investigation, validation, methodology, visualization, writing—original draft, and formal analysis; 
+S.A. and S.L.G. conducted data curation, formal analysis, methodology, validation, and 
+visualization; S.G. worked on conceptualization, methodology, validation, visualization, formal 
+
+--- PAGE 27 ---
+analysis, data curation, software, supervision, writing—review, and editing; V.K. analyzed the in 
+silico studies methodology, including writing review, editing, and supervision; all the authors 
+edited and approved the manuscript. 
+COMPETING INTERESTS 
+The authors declare no competing interests. 
+MATERIALS AND CORRESPONDENCE 
+Correspondence and material requests should be addressed to Vani Kondaparthi. 
+AVAILABILITY OF DATA 
+All the reported data are available in the links and references provided in the manuscript.   
+CODE AVAILABILITY 
+The code is available at https://github.com/drugparadigm/Macro-EquiDiff 
+REFERENCES 
+1 Viarengo-Baker, L. A., Brown, L. E., Rzepiela, A. A. & Whitty, A. Defining and 
+navigating macrocycle chemical space. Chem Sci 12, 4309-4328, 
+doi:10.1039/d0sc05788f (2021). 
+2 Zhang, C., Liu, F., Zhang, Y. & Song, C. Macrocycles and macrocyclization in 
+anticancer drug discovery: Important pieces of the puzzle. Eur J Med Chem 268, 
+116234, doi:10.1016/j.ejmech.2024.116234 (2024). 
+3 Buyanova, M. & Pei, D. Targeting intracellular protein-protein interactions with 
+macrocyclic peptides. Trends Pharmacol Sci  43, 234-248, 
+doi:10.1016/j.tips.2021.11.008 (2022). 
+4 Li, Z., Zhang, Z. & Yu, B. Unraveling the therapeutic landscape of approved non-
+peptide macrocycles. Acta Pharm Sin B  15, 3436-3459, 
+doi:10.1016/j.apsb.2025.04.021 (2025). 
+5 Tyagi, M., Begnini, F., Poongavanam, V., Doak, B. C. & Kihlberg, J. Drug 
+Syntheses Beyond the Rule of 5. Chemistry 26, 49-88, 
+doi:10.1002/chem.201902716 (2020). 
+6 Doak, B. C., Over, B., Giordanetto, F. & Kihlberg, J. Oral druggable space beyond 
+the rule of 5: insights from drugs and clinical candidates. Chem Biol 21, 1115-1142, 
+doi:10.1016/j.chembiol.2014.08.013 (2014). 
+7 Garcia Jimenez, D., Poongavanam, V. & Kihlberg, J. Macrocycles in Drug 
+Discovery horizontal line Learning from the Past for the Future. J Med Chem 66, 
+5377-5396, doi:10.1021/acs.jmedchem.3c00134 (2023). 
+
+--- PAGE 28 ---
+8 Kim, T., Baek, E. & Kim, J. Exploring Macrocyclic Chemical Space: Strategies and 
+Technologies for Drug Discovery. Pharmaceuticals (Basel) 18, 
+doi:10.3390/ph18050617 (2025). 
+9 Gangwal, A.  et al. Generative artificial intelligence in drug discovery: basic 
+framework, recent advances, challenges, and opportunities. Front Pharmacol 15, 
+1331062, doi:10.3389/fphar.2024.1331062 (2024). 
+10 Diao, Y. et al. Macrocyclization of linear molecules by deep learning to facilitate 
+macrocyclic drug candidates discovery. Nat Commun 14, 4552, 
+doi:10.1038/s41467-023-40219-8 (2023). 
+11 Clark, T. & Hicks, M. G. Models of necessity. Beilstein J Org Chem 16, 1649-1661, 
+doi:10.3762/bjoc.16.137 (2020). 
+12 Ucak, U. V., Ashyrmamatov, I. & Lee, J. Improving the quality of chemical language 
+model outcomes with atom-in-SMILES tokenization. J Cheminform 15, 55, 
+doi:10.1186/s13321-023-00725-9 (2023). 
+13 Sindhikara, D. et al.  Automated Design of Macrocycles for Therapeutic 
+Applications: From Small Molecules to Peptides and Proteins. J Med Chem 63, 
+12100-12115, doi:10.1021/acs.jmedchem.0c01500 (2020). 
+14 Zheng, J., Yi, H. C. & You, Z. H. Equivariant 3D-Conditional Diffusion Model for De 
+Novo Drug Design. IEEE J Biomed Health Inform 29, 1805-1816, 
+doi:10.1109/JBHI.2024.3491318 (2025). 
+15 Alakhdar, A., Poczos, B. & Washburn, N. Diffusion Models in De Novo Drug 
+Design. J Chem Inf Model 64, 7238-7256, doi:10.1021/acs.jcim.4c01107 (2024). 
+16 Talpaz, M. & Kiladjian, J. J. Fedratinib, a newly approved treatment for patients 
+with myeloproliferative neoplasm-associated myelofibrosis. Leukemia 35, 1-17, 
+doi:10.1038/s41375-020-0954-2 (2021). 
+17 Heiblig, M. et al. Ruxolitinib is more effective than other JAK inhibitors to treat 
+VEXAS syndrome: a retrospective multicenter study. Blood 140, 927-931, 
+doi:10.1182/blood.2022016642 (2022). 
+18 Le Tourneau, C., Raymond, E. & Faivre, S. Sunitinib: a novel tyrosine kinase 
+inhibitor. A brief review of its therapeutic potential in the treatment of renal 
+carcinoma and gastrointestinal stromal tumors (GIST). Ther Clin Risk Manag 3, 
+341-348, doi:10.2147/tcrm.2007.3.2.341 (2007). 
+19 Li, M.  et al. Sunitinib alleviates hepatic ischemia reperfusion injury by inhibiting the 
+JAK2/STAT pathway and promoting the M2 polarization of macrophages. 
+Immunopharmacol Immunotoxicol 46, 672-684, 
+doi:10.1080/08923973.2024.2390455 (2024). 
+
+--- PAGE 29 ---
+20 Chen, Y., Dai, S., Cheng, C. S. & Chen, L. Lenvatinib and immune-checkpoint 
+inhibitors in hepatocellular carcinoma: mechanistic insights, clinical efficacy, and 
+future perspectives. J Hematol Oncol 17, 130, doi:10.1186/s13045-024-01647-1 
+(2024). 
+21 Legros, L. et al. Progressive erythrocytosis under lenvatinib treatment in patients 
+with advanced hepatocellular carcinoma. Cancer Chemother Pharmacol 91, 337-
+344, doi:10.1007/s00280-023-04519-6 (2023). 
+22 Garrido-Trigo, A. & Salas, A. Molecular Structure and Function of Janus Kinases: 
+Implications for the Development of Inhibitors. J Crohns Colitis 14, S713-S724, 
+doi:10.1093/ecco-jcc/jjz206 (2020). 
+23 Zdrazil, B. et al. The ChEMBL Database in 2023: a drug discovery platform 
+spanning multiple bioactivity data types and time periods. Nucleic Acids Res 52, 
+D1180-D1192, doi:10.1093/nar/gkad1004 (2024). 
+24 Axelrod, S. & Gomez-Bombarelli, R. GEOM, energy-annotated molecular 
+conformations for property prediction and molecular generation. Sci Data 9, 185, 
+doi:10.1038/s41597-022-01288-4 (2022). 
+25 Lin, Z.  et al.  A Structured Self-attentive Sentence Embedding. ArXiv 
+abs/1703.03130 (2017). 
+26 Vaswani, A. et al. in Neural Information Processing Systems. 
+27 Bishop, C.  Vol. 16    140-155 (2006). 
+28 Kingma, D. P. & Ba, J. Adam: A Method for Stochastic Optimization. CoRR 
+abs/1412.6980 (2014). 
+29 Guo, Z. et al. Diffusion models in bioinformatics and computational biology. Nat 
+Rev Bioeng 2, 136-154, doi:10.1038/s44222-023-00114-9 (2024). 
+30 Zhang, H., Liu, Y., Liu, X., Wang, C. & Guo, M. Equivariant score-based generative 
+diffusion framework for 3D molecules. BMC Bioinformatics 25, 203, 
+doi:10.1186/s12859-024-05810-w (2024). 
+31 Nehil-Puleo, K., Quach, C. D., Craven, N. C., McCabe, C. & Cummings, P. T. E(n) 
+Equivariant Graph Neural Network for Learning Interactional Properties of 
+Molecules. J Phys Chem B 128, 1108-1117, doi:10.1021/acs.jpcb.3c07304 (2024). 
+32 Deshpande, R., Ozbey, M., Li, H., Anastasio, M. A. & Brooks, F. J. Assessing the 
+Capacity of a Denoising Diffusion Probabilistic Model to Reproduce Spatial 
+Context. IEEE Trans Med Imaging 43, 3608-3620, doi:10.1109/TMI.2024.3414931 
+(2024). 
+
+--- PAGE 30 ---
+33 Mao, Z. et al. Molecule Graph Networks with Many-Body Equivariant Interactions. 
+J Chem Theory Comput 21, 7954-7966, doi:10.1021/acs.jctc.5c00466 (2025). 
+34 Kutana, A., Shimizu, K., Watanabe, S. & Asahi, R. Representing Born effective 
+charges with equivariant graph convolutional neural networks. Sci Rep 15, 16719, 
+doi:10.1038/s41598-025-01250-5 (2025). 
+35 Igashov, I. et al. Equivariant 3D-conditional diffusion model for molecular linker 
+design. Nature Machine Intelligence 6, 417-427, doi:10.1038/s42256-024-00815-
+9 (2024). 
+36 Daoud, N. E. et al. ADMET Profiling in Drug Discovery and Development: 
+Perspectives of In Silico, In Vitro and Integrated Approaches. Curr Drug Metab 22, 
+503-522, doi:10.2174/1389200222666210705122913 (2021). 
+37 Venkataraman, M., Rao, G. C., Madavareddi, J. K. & Maddi, S. R. Leveraging 
+machine learning models in evaluating ADMET properties for drug discovery and 
+development. Admet Dmpk 13, 2772, doi:10.5599/admet.2772 (2025). 
+38 De Carlo, A., Ronchi, D., Piastra, M., Tosca, E. M. & Magni, P. Predicting ADMET 
+Properties from Molecule SMILE: A Bottom-Up Approach Using Attention-Based 
+Graph Neural Networks. Pharmaceutics 16, doi:10.3390/pharmaceutics16060776 
+(2024). 
+39 Bergazin, T. D. et al. Evaluation of log P, pK(a), and log D predictions from the 
+SAMPL7 blind challenge. J Comput Aided Mol Des 35, 771-802, 
+doi:10.1007/s10822-021-00397-3 (2021). 
+40 Skoraczynski, G., Kitlas, M., Miasojedow, B. & Gambin, A. Critical assessment of 
+synthetic accessibility scores in computer-assisted synthesis planning. J 
+Cheminform 15, 6, doi:10.1186/s13321-023-00678-z (2023). 
+41 Chen, S. & Jung, Y. Estimating the synthetic accessibility of molecules with 
+building block and reaction-aware SAScore. J Cheminform 16, 83, 
+doi:10.1186/s13321-024-00879-0 (2024). 
+42 Jafarpour, S., Asefzadeh, M. & Aboutaleb, E. The Application of Machine Learning 
+in Predicting the Permeability of Drugs Across the Blood Brain Barrier. Iran J 
+Pharm Res 23, e149367, doi:10.5812/ijpr-149367 (2024). 
+43 Garrido, A., Lepailleur, A., Mignani, S. M., Dallemagne, P. & Rochais, C. hERG 
+toxicity assessment: Useful guidelines for drug design. Eur J Med Chem 195, 
+112290, doi:10.1016/j.ejmech.2020.112290 (2020). 
+44 Davis, R. R. et al. Structural Insights into JAK2 Inhibition by Ruxolitinib, Fedratinib, 
+and Derivatives Thereof. J Med Chem  64, 2228-2241, 
+doi:10.1021/acs.jmedchem.0c01952 (2021). 
+
+--- PAGE 31 ---
+45 Varadi, M. et al. AlphaFold Protein Structure Database: massively expanding the 
+structural coverage of protein-sequence space with high-accuracy models. Nucleic 
+Acids Res 50, D439-D444, doi:10.1093/nar/gkab1061 (2022). 
+46 Zhao, C., Liu, T. & Wang, Z. Predicting residue-specific qualities of individual 
+protein models using residual neural networks and graph neural networks. Proteins 
+90, 2091-2102, doi:10.1002/prot.26400 (2022). 
+47 Dallakyan, S. & Olson, A. J. Small-molecule library screening by docking with 
+PyRx. Methods Mol Biol 1263, 243-250, doi:10.1007/978-1-4939-2269-7_19 
+(2015). 
+48 Baroroh, S. S. M. B. U., Muscifa, Z. S., Destiarani, W., Rohmatullah, F. G. & Yusuf, 
+M. Molecular interaction analysis and visualization of protein-ligand docking using 
+Biovia Discovery Studio Visualizer. Indonesian Journal of Computational Biology 
+(IJCB) 2, 22, doi:10.24198/ijcb.v2i1.46322 (2023). 
+49 Deng, J. H. et al. pi-pi stacking interactions: Non-negligible forces for stabilizing 
+porous supramolecular frameworks. Sci Adv  6, eaax9976, 
+doi:10.1126/sciadv.aax9976 (2020). 
+50 Gabriel, F. et al. Structural basis of thiamine transport and drug recognition by 
+SLC19A3. Nat Commun 15, 8542, doi:10.1038/s41467-024-52872-8 (2024). 
+51 Habas, E., Farfar, K., Errayes, N., Rayani, A. & Elzouki, A. N. Wernicke 
+Encephalopathy: An Updated Narrative Review. Saudi J Med Med Sci 11, 193-
+200, doi:10.4103/sjmms.sjmms_416_22 (2023). 
+ 
+ 

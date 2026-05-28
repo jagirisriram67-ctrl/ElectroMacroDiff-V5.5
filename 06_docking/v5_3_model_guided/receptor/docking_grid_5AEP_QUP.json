@@ -1,0 +1,17 @@
+{
+  "source_pdb": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\01_raw_data\\pdb\\5AEP.pdb",
+  "reference_ligand": "QUP:A:2000:",
+  "num_ligand_atoms": 25,
+  "center": {
+    "x": 32.53,
+    "y": 13.271,
+    "z": -3.863
+  },
+  "size": {
+    "x": 18.0,
+    "y": 18.0,
+    "z": 18.0
+  },
+  "method": "centroid_and_extent_of_largest_nonexcluded_hetatm_ligand",
+  "notes": "Verify visually before production docking."
+}

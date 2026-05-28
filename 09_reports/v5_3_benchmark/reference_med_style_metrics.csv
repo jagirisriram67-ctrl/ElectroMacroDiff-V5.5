@@ -1,0 +1,4 @@
+method,validity_percent,uniqueness_percent,macrocyclization_percent,linker_novelty_percent,source
+MED,93.82,99.94,99.92,82.81,Macro-Equi-Diff PDF Table 1; local extracted summary in 09_reports/med_comparison_assets.
+Macformer,72.91,47.74,96.39,44.24,Macro-Equi-Diff PDF Table 1; local extracted summary in 09_reports/med_comparison_assets.
+MacLS,89.67,95.04,100.0,0.0,Macro-Equi-Diff PDF Table 1; local extracted summary in 09_reports/med_comparison_assets.

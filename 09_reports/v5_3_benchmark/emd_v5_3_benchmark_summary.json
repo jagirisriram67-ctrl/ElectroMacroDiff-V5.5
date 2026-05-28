@@ -1,0 +1,240 @@
+{
+  "candidate_metrics": [
+    {
+      "branch": "selfies",
+      "benchmark_scope": "filtered_survivor",
+      "num_candidates": 2590,
+      "num_unique_inchikeys": 2590,
+      "validity_percent": 100.0,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 11.3514,
+      "novel_molecule_percent": 97.6062,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": null,
+      "median_mw": 407.4595,
+      "median_logp": 2.4584,
+      "median_qed": 0.4747,
+      "median_sa_score": 3.436,
+      "interpretation_note": "Filtered survivor metrics; not directly equivalent to MED raw generation metrics."
+    },
+    {
+      "branch": "rdkit",
+      "benchmark_scope": "filtered_survivor",
+      "num_candidates": 1250,
+      "num_unique_inchikeys": 1250,
+      "validity_percent": 100.0,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 0.8,
+      "novel_molecule_percent": 98.88,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": null,
+      "median_mw": 446.408,
+      "median_logp": 3.5401,
+      "median_qed": 0.4817,
+      "median_sa_score": 3.403,
+      "interpretation_note": "Filtered survivor metrics; not directly equivalent to MED raw generation metrics."
+    },
+    {
+      "branch": "macrocycle_linker",
+      "benchmark_scope": "filtered_survivor",
+      "num_candidates": 2935,
+      "num_unique_inchikeys": 2935,
+      "validity_percent": 100.0,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 100.0,
+      "novel_molecule_percent": 100.0,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": null,
+      "median_mw": 516.572,
+      "median_logp": 4.2853,
+      "median_qed": 0.3898,
+      "median_sa_score": 4.975,
+      "interpretation_note": "Filtered survivor metrics; not directly equivalent to MED raw generation metrics."
+    },
+    {
+      "branch": "frozen_v5_3_baseline",
+      "benchmark_scope": "filtered_survivor",
+      "num_candidates": 114,
+      "num_unique_inchikeys": 114,
+      "validity_percent": 100.0,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 100.0,
+      "novel_molecule_percent": 100.0,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": 24.5614,
+      "median_mw": 481.132,
+      "median_logp": 3.0286,
+      "median_qed": 0.4139,
+      "median_sa_score": 4.89,
+      "interpretation_note": "Includes measured linker novelty and raw-attempt validity when attempt logs are available; still not paper-equivalent unless generated from a fixed MED-style test split and sample size.",
+      "attempt_log_exists": false,
+      "raw_attempt_rows": 0,
+      "valid_output_rows": 0,
+      "attempt_status_counts": {}
+    },
+    {
+      "branch": "kaggle_logged_rerun",
+      "benchmark_scope": "raw_attempt_logged",
+      "num_candidates": 114,
+      "num_unique_inchikeys": 114,
+      "validity_percent": 18.124,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 100.0,
+      "novel_molecule_percent": 100.0,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": 26.3158,
+      "median_mw": 481.132,
+      "median_logp": 3.0185,
+      "median_qed": 0.414,
+      "median_sa_score": 4.906,
+      "interpretation_note": "Includes measured linker novelty and raw-attempt validity when attempt logs are available; still not paper-equivalent unless generated from a fixed MED-style test split and sample size.",
+      "attempt_log_exists": true,
+      "raw_attempt_rows": 629,
+      "valid_output_rows": 114,
+      "attempt_status_counts": {
+        "duplicate_or_invalid_record": 129,
+        "filtered_non_macrocycle_or_basic_filters": 140,
+        "no_valid_anchor_pair": 236,
+        "ring_closure_failed": 10,
+        "valid_output": 114
+      }
+    },
+    {
+      "branch": "kaggle_diverse_rerun",
+      "benchmark_scope": "raw_attempt_logged",
+      "num_candidates": 68,
+      "num_unique_inchikeys": 68,
+      "validity_percent": 2.5298,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 100.0,
+      "novel_molecule_percent": 100.0,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": 100.0,
+      "median_mw": 519.671,
+      "median_logp": 3.3281,
+      "median_qed": 0.369,
+      "median_sa_score": 5.075,
+      "interpretation_note": "Includes measured linker novelty and raw-attempt validity when attempt logs are available; still not paper-equivalent unless generated from a fixed MED-style test split and sample size.",
+      "attempt_log_exists": true,
+      "raw_attempt_rows": 2688,
+      "valid_output_rows": 68,
+      "attempt_status_counts": {
+        "duplicate_or_invalid_record": 125,
+        "filtered_non_macrocycle_or_basic_filters": 429,
+        "no_valid_anchor_pair": 236,
+        "rejected_known_linker": 1720,
+        "ring_closure_failed": 110,
+        "valid_output": 68
+      }
+    },
+    {
+      "branch": "kaggle_v5_5_pocket_guided",
+      "benchmark_scope": "raw_attempt_logged",
+      "num_candidates": 1113,
+      "num_unique_inchikeys": 1113,
+      "validity_percent": 1.2751,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 100.0,
+      "novel_molecule_percent": 100.0,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": 100.0,
+      "median_mw": 497.646,
+      "median_logp": 4.3007,
+      "median_qed": 0.3913,
+      "median_sa_score": 4.77,
+      "interpretation_note": "Includes measured linker novelty and raw-attempt validity when attempt logs are available; still not paper-equivalent unless generated from a fixed MED-style test split and sample size.",
+      "attempt_log_exists": true,
+      "raw_attempt_rows": 87287,
+      "valid_output_rows": 1113,
+      "attempt_status_counts": {
+        "duplicate_or_invalid_record": 357,
+        "filtered_non_macrocycle_or_basic_filters": 2108,
+        "insufficient_anchors": 1,
+        "rejected_by_reward_model": 78257,
+        "rejected_known_linker": 5230,
+        "ring_closure_failed": 221,
+        "valid_output": 1113
+      }
+    },
+    {
+      "branch": "merged_with_v5_3",
+      "benchmark_scope": "filtered_survivor",
+      "num_candidates": 6888,
+      "num_unique_inchikeys": 6888,
+      "validity_percent": 100.0,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 48.6789,
+      "novel_molecule_percent": 98.9111,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": null,
+      "median_mw": 464.2615,
+      "median_logp": 3.4296,
+      "median_qed": 0.4277,
+      "median_sa_score": 4.125,
+      "interpretation_note": "Filtered survivor metrics; not directly equivalent to MED raw generation metrics."
+    }
+  ],
+  "docking_metrics": [
+    {
+      "branch": "v5_2_macrocycle_campaign",
+      "docking_rows": 148,
+      "scored_rows": 148,
+      "coverage_percent": 100.0,
+      "best_score": -9.186,
+      "median_score": -6.453,
+      "mean_score": -6.2381
+    },
+    {
+      "branch": "kaggle_v5_5_pocket_guided",
+      "docking_rows": 1036,
+      "scored_rows": 1036,
+      "coverage_percent": 100.0,
+      "best_score": -12.7,
+      "median_score": -8.4,
+      "mean_score": -8.372
+    },
+    {
+      "branch": "v5_3_model_guided_vina_gpu_2_1",
+      "docking_rows": 114,
+      "scored_rows": 114,
+      "coverage_percent": 100.0,
+      "best_score": -11.4,
+      "median_score": -8.3,
+      "mean_score": -8.6974
+    }
+  ],
+  "pose_metrics": [
+    {
+      "branch": "v5_2_macrocycle_campaign",
+      "pose_rows": 10,
+      "pose_pass_rows": 10,
+      "pose_pass_percent": 100.0
+    },
+    {
+      "branch": "kaggle_v5_5_pocket_guided",
+      "pose_rows": 20,
+      "pose_pass_rows": 20,
+      "pose_pass_percent": 100.0
+    },
+    {
+      "branch": "v5_3_model_guided_vina_gpu_2_1",
+      "pose_rows": 10,
+      "pose_pass_rows": 10,
+      "pose_pass_percent": 100.0
+    }
+  ],
+  "med_comparison": {
+    "branch": "kaggle_v5_5_pocket_guided",
+    "reference": "MED",
+    "beats_all_comparable_metrics": false,
+    "paper_equivalent_claim_allowed": false,
+    "comparisons": {
+      "validity_percent": "does_not_exceed",
+      "uniqueness_percent": "exceeds",
+      "macrocyclization_percent": "exceeds",
+      "linker_novelty_percent": "exceeds"
+    },
+    "claim_note": "All MED-style metrics are comparable for this row."
+  },
+  "active_branch_for_med_comparison": "kaggle_v5_5_pocket_guided"
+}

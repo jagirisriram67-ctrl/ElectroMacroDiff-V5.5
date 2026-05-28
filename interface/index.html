@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroMacroDiff V5.5 - JAK2 Project Results Dashboard</title>
+    <meta name="description" content="Real computational pipeline results dashboard for ElectroMacroDiff V5.5 - JAK2 macrocycle inhibitor discovery with pocket-guided ranking, ADMET proxies, docking, and 3D pose visualization">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- 3Dmol.js for 3D molecular visualization -->
+    <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+    <!-- Chart.js for data charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Ambient Background Orbs -->
+<div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav-bar" id="navbar">
+    <div class="nav-brand">
+        <div class="brand-icon">⚛</div>
+        <div class="brand-text">
+            <span class="brand-name">ElectroMacroDiff</span>
+            <span class="brand-version">V5.5 Hybrid - Real Pipeline Results</span>
+        </div>
+    </div>
+    <div class="nav-links" id="navLinks">
+        <a href="#overview" class="nav-link active" onclick="showSection('overview',this)">Overview</a>
+        <a href="#candidates" class="nav-link" onclick="showSection('candidates',this)">All Candidates</a>
+        <a href="#viewer3d" class="nav-link" onclick="showSection('viewer3d',this)">3D Viewer</a>
+        <a href="#docking" class="nav-link" onclick="showSection('docking',this)">Docking</a>
+        <a href="#admet" class="nav-link" onclick="showSection('admet',this)">ADMET</a>
+        <a href="#pipeline" class="nav-link" onclick="showSection('pipeline',this)">Pipeline</a>
+    </div>
+    <div class="nav-right">
+        <div class="nav-status">
+            <div class="status-dot"></div>
+            <span>Real Pipeline Data</span>
+        </div>
+        <button class="nav-menu-btn" id="menuBtn" onclick="toggleMobileMenu()">☰</button>
+    </div>
+</nav>
+
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav" id="mobileNav">
+    <a href="#overview" onclick="showSection('overview');toggleMobileMenu()">Overview</a>
+    <a href="#candidates" onclick="showSection('candidates');toggleMobileMenu()">All Candidates</a>
+    <a href="#viewer3d" onclick="showSection('viewer3d');toggleMobileMenu()">3D Viewer</a>
+    <a href="#docking" onclick="showSection('docking');toggleMobileMenu()">Docking</a>
+    <a href="#admet" onclick="showSection('admet');toggleMobileMenu()">ADMET</a>
+    <a href="#pipeline" onclick="showSection('pipeline');toggleMobileMenu()">Pipeline</a>
+</div>
+
+<main class="main-content">
+
+<!-- ============================================================ -->
+<!-- SECTION: OVERVIEW -->
+<!-- ============================================================ -->
+<section id="overview" class="section active">
+    <div class="section-header">
+        <div class="section-badge">Pocket-Guided Ranking · v5.5</div>
+        <h1>JAK2 Macrocycle Discovery Results</h1>
+        <p class="section-subtitle">All data exported directly from ElectroMacroDiff V5.5 project output files. Computational hypotheses only - not experimentally validated.</p>
+    </div>
+
+    <!-- KPI Row -->
+    <div class="kpi-strip" id="kpiStrip">
+        <div class="kpi-card glass-card animate-in" style="--d:0">
+            <div class="kpi-icon">🧬</div>
+            <div class="kpi-value" id="kpiLigands">Loading</div>
+            <div class="kpi-label">Curated JAK2 Ligands</div>
+        </div>
+        <div class="kpi-card glass-card animate-in" style="--d:1">
+            <div class="kpi-icon">💊</div>
+            <div class="kpi-value" id="kpiCandidates">Loading</div>
+            <div class="kpi-label">Ranked Candidates</div>
+        </div>
+        <div class="kpi-card glass-card animate-in" style="--d:2">
+            <div class="kpi-icon">🎯</div>
+            <div class="kpi-value" id="kpiBestScore">Loading</div>
+            <div class="kpi-label">Best Vina-GPU Score (kcal/mol)</div>
+        </div>
+        <div class="kpi-card glass-card animate-in" style="--d:3">
+            <div class="kpi-icon">⚡</div>
+            <div class="kpi-value" id="kpiBestFit">Loading</div>
+            <div class="kpi-label">Best Pocket Fit Score</div>
+        </div>
+        <div class="kpi-card glass-card animate-in" style="--d:4">
+            <div class="kpi-icon">🏆</div>
+            <div class="kpi-value" id="kpiTopScore">Loading</div>
+            <div class="kpi-label">Top Final Score</div>
+        </div>
+        <div class="kpi-card glass-card animate-in" style="--d:5">
+            <div class="kpi-icon">✅</div>
+            <div class="kpi-value" id="kpiTests">Loading</div>
+            <div class="kpi-label">Unit Tests Passed</div>
+        </div>
+    </div>
+
+    <!-- Top 5 Hero Cards -->
+    <div class="glass-card" style="margin-bottom:24px">
+        <div class="card-header">
+            <h2>🏆 Top 5 Ranked Candidates — Pocket-Guided Final Score</h2>
+            <div class="card-badge">From pocket_electronic_ranked_candidates.csv</div>
+        </div>
+        <div class="hero-candidates" id="heroCandidates"></div>
+    </div>
+
+    <!-- Summary table top 20 -->
+    <div class="glass-card table-card">
+        <div class="card-header">
+            <h2>📊 Top 20 Candidates — Summary</h2>
+            <div class="card-badge" id="tableCount">Loading candidates</div>
+        </div>
+        <div class="table-wrapper">
+            <table class="data-table" id="overviewTable">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Candidate ID</th>
+                        <th>Vina Score</th>
+                        <th>Pocket Fit</th>
+                        <th>Final Score</th>
+                        <th>MW</th>
+                        <th>QED</th>
+                        <th>Tier</th>
+                        <th>3D</th>
+                    </tr>
+                </thead>
+                <tbody id="overviewTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION: ALL CANDIDATES -->
+<!-- ============================================================ -->
+<section id="candidates" class="section">
+    <div class="section-header">
+        <div class="section-badge" id="candidateSectionBadge">Loading candidates</div>
+        <h1>All Ranked Candidates</h1>
+        <p class="section-subtitle">Full candidate table with multi-metric filtering, sorting, and export. All data from pipeline CSV output.</p>
+    </div>
+
+    <!-- Filter Panel -->
+    <div class="glass-card filter-panel">
+        <div class="filter-title">🔍 Filter & Sort Candidates</div>
+        <div class="filter-grid">
+            <div class="filter-group">
+                <label>Sort By</label>
+                <select id="sortBy" onchange="applyFilters()">
+                    <option value="pocket_guided_final_score">Pocket-Guided Final Score ↓</option>
+                    <option value="final_weighted_score">Final Weighted Score ↓</option>
+                    <option value="best_score">Vina Score (best) ↓</option>
+                    <option value="pocket_electronic_fit_score">Pocket Fit Score ↓</option>
+                    <option value="qed">QED ↓</option>
+                    <option value="admet_score">ADMET Score ↓</option>
+                    <option value="mw">MW ↑</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Tier Filter</label>
+                <select id="tierFilter" onchange="applyFilters()">
+                    <option value="">All Tiers</option>
+                    <option value="final_candidate">Final Candidates</option>
+                    <option value="backup_candidate">Backup Candidates</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Decision</label>
+                <select id="decisionFilter" onchange="applyFilters()">
+                    <option value="">All Decisions</option>
+                    <option value="primary_candidate">Primary Candidates</option>
+                    <option value="backup_candidate">Backup Candidates</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Lipinski Violations</label>
+                <select id="lipinskiFilter" onchange="applyFilters()">
+                    <option value="">Any</option>
+                    <option value="0">0 violations (Ro5 compliant)</option>
+                    <option value="1">≤1 violation</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Macrocycle</label>
+                <select id="macrocycleFilter" onchange="applyFilters()">
+                    <option value="">Any</option>
+                    <option value="true">Has Macrocycle (12-20)</option>
+                    <option value="false">No Macrocycle</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Min Vina Score (kcal/mol)</label>
+                <input type="number" id="minVina" placeholder="lower bound" step="0.1" onchange="applyFilters()">
+            </div>
+            <div class="filter-group">
+                <label>Max Vina Score (kcal/mol)</label>
+                <input type="number" id="maxVina" placeholder="-6.0" step="0.1" onchange="applyFilters()">
+            </div>
+            <div class="filter-group">
+                <label>Min QED</label>
+                <input type="number" id="minQed" placeholder="0.0" step="0.01" min="0" max="1" onchange="applyFilters()">
+            </div>
+            <div class="filter-group">
+                <label>Min Pocket Fit</label>
+                <input type="number" id="minPocketFit" placeholder="0.0" step="0.01" min="0" max="1" onchange="applyFilters()">
+            </div>
+            <div class="filter-group">
+                <label>Search SMILES / ID</label>
+                <input type="text" id="searchText" placeholder="CAND_ or SMILES fragment..." oninput="applyFilters()">
+            </div>
+            <div class="filter-group" style="align-items:flex-end">
+                <button class="btn-secondary" onclick="resetFilters()">↺ Reset Filters</button>
+            </div>
+            <div class="filter-group" style="align-items:flex-end">
+                <button class="btn-primary" onclick="exportCSV()">⬇ Export CSV</button>
+            </div>
+        </div>
+        <div class="filter-stats" id="filterStats">Loading candidates</div>
+    </div>
+
+    <!-- Full Table -->
+    <div class="glass-card table-card">
+        <div class="table-wrapper" style="max-height:70vh;overflow-y:auto">
+            <table class="data-table" id="fullCandTable">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Candidate ID</th>
+                        <th>Vina Score</th>
+                        <th>Pocket Fit</th>
+                        <th>Electrostatic</th>
+                        <th>H-Bond</th>
+                        <th>Hydrophobic</th>
+                        <th>Final Score</th>
+                        <th>MW</th>
+                        <th>LogP</th>
+                        <th>QED</th>
+                        <th>SA Score</th>
+                        <th>ADMET</th>
+                        <th>Ring Size</th>
+                        <th>Macrocycle</th>
+                        <th>Lip. Viol.</th>
+                        <th>Tier</th>
+                        <th>3D</th>
+                    </tr>
+                </thead>
+                <tbody id="fullCandTableBody"></tbody>
+            </table>
+        </div>
+        <div class="table-pagination" id="tablePagination"></div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION: 3D VIEWER -->
+<!-- ============================================================ -->
+<section id="viewer3d" class="section">
+    <div class="section-header">
+        <div class="section-badge">3Dmol.js · SMILES-based</div>
+        <h1>3D Protein-Ligand Viewer</h1>
+        <p class="section-subtitle">Interactive visualization of the real JAK2 receptor, docked candidate poses, contact residues, pocket overlay, and docking box from project outputs.</p>
+    </div>
+
+    <div class="viewer-layout">
+        <!-- Sidebar: selector + controls -->
+        <div class="viewer-sidebar glass-card">
+            <h3>🔍 Select Molecule</h3>
+            <input type="text" id="molSidebarSearch" class="sidebar-search" placeholder="Search by ID or SMILES..." oninput="filterMolList()">
+            <div class="molecule-list" id="molList"></div>
+
+            <div class="viewer-divider"></div>
+            <h3>🎨 Display Settings</h3>
+            <div class="control-row">
+                <label>Style</label>
+                <select id="mol3dStyle" onchange="render3D()">
+                    <option value="stick">Stick</option>
+                    <option value="sphere">Space-filling</option>
+                    <option value="line">Line</option>
+                    <option value="cross">Cross</option>
+                </select>
+            </div>
+            <div class="control-row">
+                <label>Color</label>
+                <select id="mol3dColor" onchange="render3D()">
+                    <option value="default">Element</option>
+                    <option value="spectrum">Spectrum</option>
+                    <option value="chain">Chain</option>
+                </select>
+            </div>
+            <div class="control-row">
+                <label>Background</label>
+                <select id="mol3dBg" onchange="render3DBg()">
+                    <option value="0x0a0a1a">Dark</option>
+                    <option value="0x000000">Black</option>
+                    <option value="0xffffff">White</option>
+                    <option value="0x1a1a2e">Navy</option>
+                </select>
+            </div>
+            <div class="control-row">
+                <label>Labels</label>
+                <input type="checkbox" id="mol3dLabels" class="toggle-check" onchange="render3D()">
+            </div>
+            <div class="control-row">
+                <label>Spin</label>
+                <input type="checkbox" id="mol3dSpin" class="toggle-check" onchange="toggleSpin3D()">
+            </div>
+            <div class="btn-group" style="margin-top:12px">
+                <button class="btn-sm" onclick="reset3DView()">Reset</button>
+                <button class="btn-sm" onclick="zoom3DFit()">Zoom Fit</button>
+                <button class="btn-sm" onclick="snap3D()">📸 Snapshot</button>
+            </div>
+
+            <!-- SMILES input -->
+            <div class="viewer-divider"></div>
+            <h3>✏️ Custom SMILES</h3>
+            <textarea id="customSmiles" rows="3" placeholder="Paste a candidate ID or exact project SMILES..." style="width:100%;padding:10px;background:rgba(15,15,40,0.8);border:1px solid rgba(100,120,255,0.15);border-radius:8px;color:#e8eaf6;font-family:'JetBrains Mono',monospace;font-size:11px;resize:vertical;outline:none;margin-bottom:8px"></textarea>
+            <button class="btn-primary" style="width:100%" onclick="loadCustomSmiles()">🔬 Visualize SMILES</button>
+        </div>
+
+        <!-- Main viewer area -->
+        <div class="viewer-main-col">
+            <div class="mol-viewer-container glass-card">
+                <div id="mol3dViewer" style="width:100%;height:560px;border-radius:16px;position:relative"></div>
+                <div class="viewer-overlay-text" id="viewerOverlayMsg">Select a candidate to load the real receptor and docked pose view.</div>
+            </div>
+            <!-- Info strip -->
+            <div class="mol-info-strip" id="molInfoStrip"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION: DOCKING -->
+<!-- ============================================================ -->
+<section id="docking" class="section">
+    <div class="section-header">
+        <div class="section-badge">Vina-GPU 2.1 · JAK2 5AEP</div>
+        <h1>Docking Analysis</h1>
+        <p class="section-subtitle" id="dockingSubtitle">Real Vina-GPU and pocket-electronic outputs exported from project files. Exact counts and grid values are loaded from data.js.</p>
+    </div>
+
+    <!-- Pocket Stats -->
+    <div class="glass-card" style="margin-bottom:24px">
+        <div class="card-header"><h2>🔬 JAK2 Binding Pocket — 5AEP Profile</h2><div class="card-badge">ATP-binding hinge region</div></div>
+        <div class="pocket-stat-grid" id="pocketStatGrid">
+            <div class="pocket-stat"><div class="stat-label">Status</div><div class="stat-value">Loading real project outputs</div></div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-grid">
+        <div class="glass-card chart-card">
+            <h3>Docking Score Distribution (v5.5 Pocket-Guided)</h3>
+            <canvas id="dockingHistChart"></canvas>
+        </div>
+        <div class="glass-card chart-card">
+            <h3>Pocket Electronic Fit vs Vina Score</h3>
+            <canvas id="scatterDockChart"></canvas>
+        </div>
+        <div class="glass-card chart-card">
+            <h3>Pocket Score Components — Top 20</h3>
+            <canvas id="radarPocketChart"></canvas>
+        </div>
+        <div class="glass-card chart-card">
+            <h3>Score by Ring Size</h3>
+            <canvas id="ringSizeChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Binding residues top candidate -->
+    <div class="glass-card">
+        <div class="card-header"><h2>🧬 Key Binding Residues — CAND_3688f8acdc (Rank #1)</h2><div class="card-badge">32 contact residues within 4Å</div></div>
+        <div class="residue-grid" id="residueGrid"></div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION: ADMET -->
+<!-- ============================================================ -->
+<section id="admet" class="section">
+    <div class="section-header">
+        <div class="section-badge">RDKit Descriptor Proxies</div>
+        <h1>ADMET & Synthesizability Analysis</h1>
+        <p class="section-subtitle">ADMET and SA scores are RDKit descriptor proxies from pipeline output — not experimental measurements.</p>
+    </div>
+
+    <!-- ADMET Charts -->
+    <div class="charts-grid">
+        <div class="glass-card chart-card">
+            <h3>QED Distribution</h3>
+            <canvas id="qedHistChart"></canvas>
+        </div>
+        <div class="glass-card chart-card">
+            <h3>Molecular Weight Distribution</h3>
+            <canvas id="mwHistChart"></canvas>
+        </div>
+        <div class="glass-card chart-card">
+            <h3>LogP Distribution</h3>
+            <canvas id="logpHistChart"></canvas>
+        </div>
+        <div class="glass-card chart-card">
+            <h3>SA Score Distribution</h3>
+            <canvas id="saHistChart"></canvas>
+        </div>
+        <div class="glass-card chart-card wide">
+            <h3>ADMET Score vs QED — All Candidates (coloured by Lipinski violations)</h3>
+            <canvas id="admetQedScatter"></canvas>
+        </div>
+    </div>
+
+    <!-- ADMET Rules Summary -->
+    <div class="glass-card">
+        <div class="card-header"><h2>📋 Molecular Property Summary — Ranked Candidates</h2><div class="card-badge" id="admetBadge">Loading candidates</div></div>
+        <div class="admet-summary-grid" id="admetSummary"></div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION: PIPELINE -->
+<!-- ============================================================ -->
+<section id="pipeline" class="section">
+    <div class="section-header">
+        <div class="section-badge">End-to-End · 12 Stages</div>
+        <h1>Pipeline Architecture</h1>
+        <p class="section-subtitle">V5.5 project execution summary populated from exported files and validation outputs.</p>
+    </div>
+
+    <!-- Pipeline stages visual -->
+    <div class="glass-card" style="margin-bottom:28px">
+        <div class="card-header"><h2>🔄 Pipeline Execution Flow</h2><div class="card-badge">v5.5 pocket-guided branch</div></div>
+        <div class="pipeline-flow-wrap" id="pipelineFlow"></div>
+    </div>
+
+    <!-- Generator stats table -->
+    <div class="glass-card" style="margin-bottom:24px">
+        <div class="card-header"><h2>🧬 Generator Branch Statistics</h2><div class="card-badge" id="generatorStatsBadge">From exported benchmark summary</div></div>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Generator</th><th># Candidates</th><th># Unique</th><th>Novel Fraction</th><th>Filter Pass</th><th>Macrocycle %</th><th>Median MW</th><th>Median LogP</th><th>Median QED</th><th>Median SA</th>
+                    </tr>
+                </thead>
+                <tbody id="generatorStatsBody">
+                    <tr><td colspan="10">Loading real branch metrics from data.js</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Pipeline metrics charts -->
+    <div class="charts-grid">
+        <div class="glass-card chart-card">
+            <h3>Generator Branch Composition</h3>
+            <canvas id="genPieChart"></canvas>
+        </div>
+        <div class="glass-card chart-card">
+            <h3>Score Components Breakdown (Top 10)</h3>
+            <canvas id="scoringRadar"></canvas>
+        </div>
+        <div class="glass-card chart-card wide">
+            <h3>Macrocycle Ring Size Distribution — Ranked Candidates</h3>
+            <canvas id="ringSizeBarChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Scientific disclaimer -->
+    <div class="glass-card disclaimer-card">
+        <div class="disclaimer-icon">⚠️</div>
+        <div class="disclaimer-text">
+            <strong>Scientific Boundary:</strong> All candidates shown are computational hypotheses. Vina docking scores, ADMET proxies, and synthesizability estimates are prioritization signals only — not experimental proof of potency, selectivity, safety, or achievable synthesis. Experimental validation (binding assays, cell viability, synthesis) is required before any biological or clinical conclusions can be drawn.
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer glass-card">
+    <div class="footer-content">
+        <span>ElectroMacroDiff V5.5 Hybrid - Computational Drug Discovery Pipeline - JAK2 Macrocycle Inhibitor Generation</span>
+        <span class="footer-disclaimer">⚠️ Computational candidates only. Not experimentally validated.</span>
+    </div>
+</footer>
+
+<!-- Candidate Detail Modal -->
+<div class="modal-overlay" id="candModal" onclick="closeCandModal(event)">
+    <div class="modal-card glass-card" id="candModalCard">
+        <button class="modal-close" onclick="document.getElementById('candModal').classList.remove('active')">✕</button>
+        <div id="candModalContent"></div>
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script src="charts.js"></script>
+</body>
+</html>

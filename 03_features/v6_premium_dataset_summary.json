@@ -1,0 +1,43 @@
+{
+  "phase": "v6_premium_dataset_preparation",
+  "manifest_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\03_features\\v6_premium_dataset_manifest.csv",
+  "ready_dataset_count": 1,
+  "missing_dataset_count": 4,
+  "ready_datasets": [
+    "chembl_bindingdb_jak"
+  ],
+  "missing_or_incomplete_datasets": [
+    "pdbbind",
+    "plinder",
+    "biolip2",
+    "crossdocked2020"
+  ],
+  "recommended_next_lane": "account_1_activity_reward",
+  "training_lanes": [
+    {
+      "lane": "account_1_activity_reward",
+      "dataset": "chembl_bindingdb_jak",
+      "goal": "Train JAK/JAK2 activity and affinity-prior reward models.",
+      "acceptance": "ROC-AUC or PR-AUC improves over V5.5 validity-only reward evidence."
+    },
+    {
+      "lane": "account_2_pdbbind_pose_affinity",
+      "dataset": "pdbbind",
+      "goal": "Train protein-ligand pose/affinity encoder on high-quality complexes.",
+      "acceptance": "Validation Pearson/Spearman and pose-quality classification are reported."
+    },
+    {
+      "lane": "account_3_plinder_biolip_contacts",
+      "dataset": "plinder, biolip2",
+      "goal": "Train residue-level contact and pocket interaction encoder.",
+      "acceptance": "Residue-contact AUC/F1 beats pocket-count baseline."
+    },
+    {
+      "lane": "account_4_v6_generator_distillation",
+      "dataset": "crossdocked2020 plus prior lanes",
+      "goal": "Distill learned pocket encoder into anchor/linker/generation policies.",
+      "acceptance": "Logged generation improves raw validity, docking, and pocket-fit metrics."
+    }
+  ],
+  "claim_boundary": "V6 preparation enables learned residue-level protein-ligand conditioning; it does not claim that V6 training has completed until checkpoints and metrics exist."
+}

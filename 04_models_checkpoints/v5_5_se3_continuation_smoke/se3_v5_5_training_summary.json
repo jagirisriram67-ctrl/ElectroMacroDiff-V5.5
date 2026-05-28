@@ -1,0 +1,16 @@
+{
+  "status": "completed",
+  "run_id": "v5_5_se3_continuation",
+  "smoke_test": true,
+  "model_type": "se3_flow_continuation",
+  "device": "cpu",
+  "init_epoch": 39,
+  "init_val_loss": 9.062095295299184,
+  "final_epoch": 41,
+  "best_epoch": 40,
+  "best_val_loss": 7.488337,
+  "test_loss": 9.784175,
+  "total_time_seconds": 1.3,
+  "device_type": "cpu",
+  "torch_version": "2.11.0+cpu"
+}

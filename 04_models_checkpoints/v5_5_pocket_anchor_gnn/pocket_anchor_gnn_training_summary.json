@@ -1,0 +1,31 @@
+{
+  "status": "completed",
+  "run_id": "v5_5_pocket_anchor_gnn",
+  "smoke_test": false,
+  "model_type": "pocket_anchor_gnn",
+  "device": "cuda",
+  "anchor_csv": "/kaggle/working/EMD_V5_2_Hybrid/03_features/v5_3_anchor_atom_training.csv",
+  "fragment_csv": "/kaggle/working/EMD_V5_2_Hybrid/02_curated_data/v5_3_macrocycle_fragment_linker_pairs.csv",
+  "epochs_trained": 573,
+  "best_epoch": 373,
+  "best_val_f1": 0.510204,
+  "test_metrics": {
+    "threshold": 0.4,
+    "f1": 0.484848,
+    "precision": 0.347826,
+    "recall": 0.8,
+    "accuracy": 0.896024,
+    "tp": 16,
+    "fp": 30,
+    "fn": 4,
+    "tn": 277
+  },
+  "num_graphs": 97,
+  "train_graphs": 72,
+  "val_graphs": 15,
+  "test_graphs": 10,
+  "total_time_seconds": 37.4,
+  "device_type": "cuda",
+  "torch_version": "2.10.0+cu128",
+  "cuda_device_name": "Tesla T4"
+}

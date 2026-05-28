@@ -1,0 +1,13 @@
+timestamp_utc: 2026-05-08T17:33:58Z
+python: 3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]
+platform: Windows-11-10.0.26200-SP0
+executable: C:\Python314\python.exe
+numpy: 2.3.5
+pandas: 3.0.2
+rdkit: 2025.09.6
+selfies: 2.1.1
+torch: 2.11.0+cpu
+e3nn: not_available (ModuleNotFoundError)
+meeko: 0.7.1
+gemmi: 0.7.5
+vina: not_available (ModuleNotFoundError)

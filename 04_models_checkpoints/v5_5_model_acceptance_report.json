@@ -1,0 +1,42 @@
+{
+  "status": "accepted_with_caveats",
+  "branch": "v5_5_pocket_guided",
+  "source_zip": "C:\\Users\\srira\\Downloads\\v5_5_outputs.zip",
+  "acceptance": {
+    "pocket_anchor_gnn": {
+      "decision": "accepted_improved_below_preferred_target",
+      "best_val_f1": 0.510204,
+      "test_f1": 0.484848,
+      "test_precision": 0.347826,
+      "baseline_f1": 0.209,
+      "preferred_f1_target": 0.55,
+      "note": "Improves strongly over V5.3 baseline but is below the preferred 0.55 F1 target."
+    },
+    "pocket_linker_policy": {
+      "decision": "accepted",
+      "test_size_exact_accuracy": 0.592811,
+      "test_size_within_one_accuracy": 0.818065,
+      "test_chemotype_accuracy": 0.755023,
+      "targets": {
+        "exact_accuracy": 0.5,
+        "within_one_accuracy": 0.75
+      }
+    },
+    "validity_reward": {
+      "decision": "accepted",
+      "best_val_roc_auc": 0.963598,
+      "test_roc_auc": 0.86049,
+      "target_roc_auc": 0.75,
+      "note": "Use threshold sweep in generation if validity/novelty tradeoff is too strict."
+    },
+    "se3_continuation": {
+      "decision": "accepted_auxiliary_only",
+      "init_val_loss": 9.062095295299184,
+      "best_val_loss": 7.432842,
+      "test_loss": 8.823802,
+      "note": "Improved validation loss but remains auxiliary geometry evidence."
+    }
+  },
+  "claim_boundary": "V5.5 conditions anchor selection, linker choice, and validity gating on JAK2 pocket-electronic context; it is not yet residue-level protein-conditioned diffusion.",
+  "next_step": "Run V5.5 generation on Kaggle GPU with the merged checkpoints, then dock and benchmark the generated branch."
+}

@@ -1,0 +1,8 @@
+{
+  "branch": "v5_5_pocket_guided",
+  "clean_ligand_count": 1036,
+  "raw_pose_count": 1036,
+  "grid_json": "/kaggle/working/EMD_V5_2_Hybrid/06_docking/v5_5_pocket_guided/receptor/docking_grid_5AEP_QUP.json",
+  "receptor": "/kaggle/working/EMD_V5_2_Hybrid/06_docking/receptor/jak2_prepared.pdbqt",
+  "note": "Kaggle run skipped RDKit/Meeko ligand preparation and ran Vina-GPU docking only."
+}

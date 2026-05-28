@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "run_id": "v5_5_pocket_linker_policy",
+  "smoke_test": true,
+  "model_type": "pocket_linker_policy",
+  "device": "cpu",
+  "input_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\02_curated_data\\v5_3_macrocycle_fragment_linker_pairs.csv",
+  "epochs_trained": 2,
+  "best_epoch": 2,
+  "best_val_combined": 0.327114,
+  "test_metrics": {
+    "size_exact_accuracy": 0.156313,
+    "size_within_one_accuracy": 0.302605,
+    "size_mae": 3.771543,
+    "chemo_accuracy": 0.118236
+  },
+  "total_samples": 5000,
+  "total_time_seconds": 0.7,
+  "device_type": "cpu",
+  "torch_version": "2.11.0+cpu"
+}

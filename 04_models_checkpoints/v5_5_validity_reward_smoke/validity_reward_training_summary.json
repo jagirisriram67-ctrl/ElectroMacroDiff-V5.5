@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "run_id": "v5_5_validity_reward",
+  "smoke_test": true,
+  "model_type": "pocket_validity_reward",
+  "device": "cpu",
+  "epochs_trained": 2,
+  "best_epoch": 1,
+  "best_val_roc_auc": 0.288828,
+  "test_metrics": {
+    "roc_auc": 0.592014,
+    "f1": 0.666667,
+    "precision": 0.5,
+    "recall": 1.0,
+    "accuracy": 0.5,
+    "tp": 24,
+    "fp": 24,
+    "fn": 0,
+    "tn": 0
+  },
+  "total_samples": 750,
+  "positive_samples": 116,
+  "negative_samples": 634,
+  "total_time_seconds": 0.1,
+  "device_type": "cpu",
+  "torch_version": "2.11.0+cpu"
+}

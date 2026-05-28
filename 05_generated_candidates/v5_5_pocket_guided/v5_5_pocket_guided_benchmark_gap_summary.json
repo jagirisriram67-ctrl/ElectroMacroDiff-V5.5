@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "generated_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\v5_5_pocket_guided\\generated_v5_5_pocket_guided.csv",
+  "training_fragment_paths": [
+    "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\02_curated_data\\v5_3_pretrain_fragment_linker_pairs.csv",
+    "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\02_curated_data\\v5_3_macrocycle_fragment_linker_pairs.csv"
+  ],
+  "generated_candidates": 1113,
+  "training_linker_count": 24475,
+  "linker_novelty_rows": 1113,
+  "linker_novelty_measured_rows": 1113,
+  "linker_novel_rows": 1113,
+  "linker_novelty_percent": 100.0,
+  "linker_novelty_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\v5_5_pocket_guided\\v5_5_pocket_guided_linker_novelty.csv",
+  "attempt_log_exists": true,
+  "attempt_log_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\v5_5_pocket_guided\\v5_5_pocket_guided_attempt_log.csv",
+  "raw_attempt_rows": 87287,
+  "valid_output_rows": 1113,
+  "raw_attempt_validity_percent": 1.2751,
+  "status_counts": {
+    "duplicate_or_invalid_record": 357,
+    "filtered_non_macrocycle_or_basic_filters": 2108,
+    "insufficient_anchors": 1,
+    "rejected_by_reward_model": 78257,
+    "rejected_known_linker": 5230,
+    "ring_closure_failed": 221,
+    "valid_output": 1113
+  },
+  "benchmark_note": "Raw-attempt validity is paper-equivalent only after generation logs every attempted molecule. Linker novelty is computed from RDKit two-bond macrocycle fragmentation and exact linker SMILES matching."
+}

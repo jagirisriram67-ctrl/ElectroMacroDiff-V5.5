@@ -1,0 +1,1139 @@
+{
+  "med": {
+    "title": "Macro-Equi-Diff (MED): De Novo Macrocycles Generation Using Equivariant Diffusion",
+    "source_pdf": "C:/Users/srira/Downloads/Macro Equi-Diff.pdf",
+    "objective": "Convert acyclic molecules into macrocycles through attachment-site prediction, linker generation, attachment validation, and pharmacokinetic screening.",
+    "pipeline": [
+      "Transformer-based site identification on acyclic SMILES.",
+      "E(3)-equivariant diffusion model with EGNN for conditional linker generation.",
+      "Fragment-linker attachment with dummy atom and valence validation.",
+      "Macrocycle filtering and ADMET/pharmacokinetic prioritization.",
+      "JAK2 case-study docking and interaction visualization."
+    ],
+    "dataset": [
+      [
+        "Transformer dataset",
+        "ChEMBL-derived macrocycles; fragmented by breaking two single bonds in largest ring; acyclic input and dummy-atom cyclization-site output.",
+        "PDF pp. 5-6"
+      ],
+      [
+        "Linker constraints",
+        "3-9 structural atoms, no large rings >=7 atoms, and <=25% of macrocycle structural atoms.",
+        "PDF p. 5"
+      ],
+      [
+        "Diffusion training",
+        "GEOM-derived fragment-linker pairs from Zenodo: 282,602 train and 1,251 validation pairs.",
+        "PDF p. 5"
+      ],
+      [
+        "Test set",
+        "5,551 ZINC pairs from Macformer data.",
+        "PDF p. 5"
+      ]
+    ],
+    "architecture": [
+      [
+        "Attachment model",
+        "Transformer encoder-decoder; 256-dimensional token embeddings; sinusoidal positional encodings; cross-entropy loss.",
+        "PDF pp. 6-7"
+      ],
+      [
+        "Transformer training",
+        "Adam optimizer, learning rate 1e-4, up to 40 epochs, batch size 32, NVIDIA A100-SXM4-80GB.",
+        "PDF p. 7"
+      ],
+      [
+        "Linker model",
+        "EDM using EGNN denoising; coordinates centered around anchor COM; E(3)/O(3)-equivariant coordinate and feature prediction.",
+        "PDF pp. 8-11"
+      ],
+      [
+        "Linker size",
+        "GNN predicts optimal linker length when not specified.",
+        "PDF p. 11"
+      ],
+      [
+        "Attachment",
+        "Requires valid dummy atoms, valence checks, bond formation, canonical SMILES, and macrocycle filter.",
+        "PDF pp. 11-13"
+      ]
+    ],
+    "results": [
+      [
+        "MED validity",
+        "93.82 +/- 1.02% in Table 1; abstract reports 93.92%.",
+        "PDF pp. 2, 15"
+      ],
+      [
+        "MED uniqueness",
+        "99.94 +/- 0.02%.",
+        "PDF p. 15"
+      ],
+      [
+        "MED macrocyclization",
+        "99.92 +/- 0.05%.",
+        "PDF p. 15"
+      ],
+      [
+        "MED linker novelty",
+        "82.81 +/- 2.12%.",
+        "PDF p. 15"
+      ],
+      [
+        "Ablation",
+        "EDM-only with simple valency-based anchors produced valid macrocycles in only 35% of test samples.",
+        "PDF p. 14"
+      ],
+      [
+        "JAK2 case",
+        "Macrocycles for Fedratinib, Ruxolitinib, Sunitinib, and Lenvatinib were docked with PyRx/AutoDock Vina against AlphaFold JAK2.",
+        "PDF p. 14"
+      ],
+      [
+        "JAK2 docking range",
+        "Reported favorable macrocycle binding affinities from about -7.8 to -10.6 kcal/mol.",
+        "PDF pp. 16, 20-23"
+      ]
+    ],
+    "benchmark": [
+      [
+        "MED",
+        93.82,
+        99.94,
+        99.92,
+        82.81
+      ],
+      [
+        "Macformer",
+        72.91,
+        47.74,
+        96.39,
+        44.24
+      ],
+      [
+        "MacLS",
+        89.67,
+        95.04,
+        100.0,
+        0.0
+      ]
+    ]
+  },
+  "emd_current": {
+    "paths": {
+      "curated": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\02_curated_data\\jak2_curated_ligands.csv",
+      "features": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\03_features\\ligand_features.csv",
+      "graphs_index": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\03_features\\ligand_graphs\\se3_graph_index.csv",
+      "rdkit": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\rdkit\\generated_rdkit_filtered.csv",
+      "selfies": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\selfies\\generated_selfies_filtered.csv",
+      "generated": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\merged\\generated_merged_filtered.csv",
+      "admet": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\07_admet_synthesis\\admet_scores.csv",
+      "sdf_manifest": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\ligands_sdf\\docking_input_manifest.csv",
+      "pdbqt_manifest": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\ligands_pdbqt\\ligand_pdbqt_manifest.csv",
+      "vina_manifest": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\scores\\vina_command_manifest.csv",
+      "docking_scores": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\scores\\docking_scores.csv",
+      "pose_sanity": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\scores\\pose_sanity_scores.csv",
+      "ranking": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\08_final_ranking\\final_ranked_candidates.csv",
+      "validation": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\00_project_registry\\validation_report.json",
+      "consistency": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\09_reports\\consistency_audit.json",
+      "se3_debug": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\se3_flow\\se3_dataloader_test_passed.json",
+      "grid": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\docking_grid_5AEP_QUP.json"
+    },
+    "counts": {
+      "curated": 204,
+      "features": 204,
+      "graphs": 204,
+      "rdkit": 250,
+      "selfies": 345,
+      "generated": 595,
+      "admet": 595,
+      "sdf": 150,
+      "pdbqt": 147,
+      "vina": 147,
+      "docking": 147,
+      "pose": 10,
+      "ranking": 595,
+      "final": 5,
+      "curated_macro": 0,
+      "curated_constrained": 1,
+      "generated_macro": 30,
+      "generated_constrained": 84,
+      "rdkit_macro": 0,
+      "selfies_macro": 30,
+      "candidate_cards": 37,
+      "molecule_images": 23
+    },
+    "status": {
+      "sdf_status": {
+        "failed_embed": 3,
+        "prepared": 147
+      },
+      "pdbqt_status": {
+        "prepared": 147
+      },
+      "vina_status": {
+        "completed": 147
+      },
+      "decision_counts": {
+        "backup_candidate": 105,
+        "hold_for_review": 408,
+        "primary_candidate": 28,
+        "reject_or_low_priority": 54
+      },
+      "tier_counts": {
+        "backup_candidate": 323,
+        "final_candidate": 5,
+        "not_selected": 267
+      },
+      "docking_stats": {
+        "count": 147,
+        "min": -11.13,
+        "median": -8.694,
+        "max": -4.14
+      },
+      "validation": {
+        "summary": {
+          "total": 48,
+          "passed": 48,
+          "failed": 0,
+          "failures": []
+        },
+        "results": [
+          {
+            "name": "dir:00_project_registry",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:01_raw_data/chembl",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:01_raw_data/bindingdb",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:01_raw_data/pubchem",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:01_raw_data/pdb",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:01_raw_data/literature",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:02_curated_data",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:03_features/ligand_graphs",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:03_features/conformers",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:03_features/splits",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:04_models_checkpoints/se3_flow",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:04_models_checkpoints/baseline_models",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:05_generated_candidates/se3",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:05_generated_candidates/selfies",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:05_generated_candidates/rdkit",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:05_generated_candidates/merged",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:06_docking/receptor",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:06_docking/ligands_sdf",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:06_docking/ligands_pdbqt",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:06_docking/poses",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:06_docking/scores",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:06_docking/images",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:07_admet_synthesis",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:07_admet_synthesis/aizynth_routes",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:08_final_ranking",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:09_reports",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:10_notebooks",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "dir:11_logs",
+            "passed": true,
+            "message": "exists"
+          },
+          {
+            "name": "schema:jak2_curated_ligands.csv",
+            "passed": true,
+            "message": "schema ok"
+          },
+          {
+            "name": "schema:ligand_features.csv",
+            "passed": true,
+            "message": "schema ok"
+          },
+          {
+            "name": "schema:generated_merged_filtered.csv",
+            "passed": true,
+            "message": "schema ok"
+          },
+          {
+            "name": "schema:docking_scores.csv",
+            "passed": true,
+            "message": "schema ok"
+          },
+          {
+            "name": "schema:final_ranked_candidates.csv",
+            "passed": true,
+            "message": "schema ok"
+          },
+          {
+            "name": "gate:m0_environment",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\00_project_registry\\environment_versions.txt"
+          },
+          {
+            "name": "gate:m1_curated_ligands",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\02_curated_data\\jak2_curated_ligands.csv"
+          },
+          {
+            "name": "gate:m1_receptor_pdb",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\01_raw_data\\pdb\\5AEP.pdb"
+          },
+          {
+            "name": "gate:m2_graph_tensors",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\03_features\\ligand_graphs\\se3_graphs.pt"
+          },
+          {
+            "name": "gate:m3_debug_checkpoint",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\se3_flow\\se3_latest_checkpoint.pt"
+          },
+          {
+            "name": "gate:m3_debug_json",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\se3_flow\\se3_dataloader_test_passed.json"
+          },
+          {
+            "name": "gate:m4_candidates",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\merged\\generated_merged_filtered.csv"
+          },
+          {
+            "name": "gate:m5_docking_grid",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\docking_grid_5AEP_QUP.json"
+          },
+          {
+            "name": "gate:m5_ligand_sdf",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\ligands_sdf\\candidates_for_docking.sdf"
+          },
+          {
+            "name": "gate:m5_receptor_pdbqt",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\jak2_prepared.pdbqt"
+          },
+          {
+            "name": "gate:m5_ligand_pdbqt_manifest",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\ligands_pdbqt\\ligand_pdbqt_manifest.csv"
+          },
+          {
+            "name": "gate:m5_vina_manifest",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\scores\\vina_command_manifest.csv"
+          },
+          {
+            "name": "gate:m5_docking_scores",
+            "passed": true,
+            "message": "147 numeric docking scores parsed"
+          },
+          {
+            "name": "gate:m6_admet",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\07_admet_synthesis\\admet_scores.csv"
+          },
+          {
+            "name": "gate:m7_ranking",
+            "passed": true,
+            "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\08_final_ranking\\final_ranked_candidates.csv"
+          }
+        ]
+      },
+      "consistency": {
+        "project": "ElectroMacroDiff V5.2 Hybrid",
+        "base": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid",
+        "status": "pass",
+        "counts": {
+          "generated_candidates": 595,
+          "prepared_sdf": 147,
+          "prepared_pdbqt": 147,
+          "vina_manifest_rows": 147,
+          "docking_score_rows": 147,
+          "docking_numeric_scores": 147,
+          "ranked_candidates": 595,
+          "final_candidates": 5,
+          "pose_sanity_rows": 10,
+          "validation_passed": 48,
+          "validation_failed": 0
+        },
+        "final_candidate_ids": [
+          "CAND_3a8fd34d0b",
+          "CAND_eadd8f8ad8",
+          "CAND_ff18b6effe",
+          "CAND_9d6374c432",
+          "CAND_d028052563"
+        ],
+        "top_final_candidates": [
+          {
+            "rank": 1,
+            "diverse_rank": 1,
+            "candidate_id": "CAND_3a8fd34d0b",
+            "source_generator": "rdkit",
+            "docking_score": -11.13,
+            "final_weighted_score": 0.936263,
+            "pose_decision": "pass",
+            "main_risk": "no_major_descriptor_risk"
+          },
+          {
+            "rank": 4,
+            "diverse_rank": 2,
+            "candidate_id": "CAND_eadd8f8ad8",
+            "source_generator": "selfies",
+            "docking_score": -10.08,
+            "final_weighted_score": 0.895281,
+            "pose_decision": "pass",
+            "main_risk": "no_major_descriptor_risk"
+          },
+          {
+            "rank": 5,
+            "diverse_rank": 3,
+            "candidate_id": "CAND_ff18b6effe",
+            "source_generator": "selfies",
+            "docking_score": -10.15,
+            "final_weighted_score": 0.893336,
+            "pose_decision": "pass",
+            "main_risk": "no_major_descriptor_risk"
+          },
+          {
+            "rank": 6,
+            "diverse_rank": 4,
+            "candidate_id": "CAND_9d6374c432",
+            "source_generator": "selfies",
+            "docking_score": -9.58,
+            "final_weighted_score": 0.889904,
+            "pose_decision": "pass",
+            "main_risk": "no_major_descriptor_risk"
+          },
+          {
+            "rank": 7,
+            "diverse_rank": 5,
+            "candidate_id": "CAND_d028052563",
+            "source_generator": "selfies",
+            "docking_score": -9.864,
+            "final_weighted_score": 0.889571,
+            "pose_decision": "pass",
+            "main_risk": "no_major_descriptor_risk"
+          }
+        ],
+        "failures": [],
+        "warnings": []
+      },
+      "se3_debug": {
+        "device": "cpu",
+        "loss": 21.236228942871094,
+        "checkpoint": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\se3_flow\\se3_latest_checkpoint.pt",
+        "num_graphs": 204,
+        "status": "passed"
+      },
+      "grid": {
+        "source_pdb": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\01_raw_data\\pdb\\5AEP.pdb",
+        "reference_ligand": "QUP:A:2000:",
+        "num_ligand_atoms": 25,
+        "center": {
+          "x": 32.53,
+          "y": 13.271,
+          "z": -3.863
+        },
+        "size": {
+          "x": 18.0,
+          "y": 18.0,
+          "z": 18.0
+        },
+        "method": "centroid_and_extent_of_largest_nonexcluded_hetatm_ligand",
+        "notes": "Verify visually before production docking."
+      }
+    },
+    "final": [
+      {
+        "candidate_id": "CAND_3a8fd34d0b",
+        "source_generator": "rdkit",
+        "parent_mol_id": "JAK2_071bd53e13",
+        "canonical_smiles": "CC(C)(C)c1nc2c3cc(F)c(F)cc3c3c(=O)[nH]ccc3c2[nH]1",
+        "inchikey": "LSMIBCWFYUCWGO-UHFFFAOYSA-N",
+        "valid_rdkit": "True",
+        "unique_flag": "True",
+        "novel_flag": "True",
+        "mw": "327.334",
+        "logp": "4.1333",
+        "tpsa": "61.54",
+        "hbd": "2",
+        "hba": "2",
+        "rotatable_bonds": "0",
+        "qed": "0.477",
+        "sa_score": "2.0",
+        "murcko_scaffold": "O=c1[nH]ccc2c3[nH]cnc3c3ccccc3c12",
+        "max_ring_size": "6",
+        "has_macrocycle_12_20": "False",
+        "has_constrained_ring_8_11": "False",
+        "passes_basic_filters": "True",
+        "generation_notes": "rdkit_reaction_aryl_F",
+        "best_score": "-11.13",
+        "qed_admet": "0.477",
+        "sa_score_admet": "2.0",
+        "mw_admet": "327.334",
+        "logp_admet": "4.1333",
+        "tpsa_admet": "61.54",
+        "hbd_admet": "2",
+        "hba_admet": "2",
+        "rotatable_bonds_admet": "0",
+        "lipinski_violations": "0",
+        "veber_pass": "True",
+        "admet_score": "0.76465",
+        "synthesis_score": "0.888889",
+        "safety_proxy_score": "1.0",
+        "main_risk": "no_major_descriptor_risk",
+        "pose_score": "1.0",
+        "pose_decision": "pass",
+        "contacts_within_4A": "526.0",
+        "hard_clashes_lt_1_8A": "0.0",
+        "smiles": "CC(C)(C)c1nc2c3cc(F)c(F)cc3c3c(=O)[nH]ccc3c2[nH]1",
+        "docking_score": "-11.13",
+        "diversity_cluster": "scaffold_025e252a",
+        "docking_score_scaled": "1.0",
+        "novelty_score": "1.0",
+        "final_weighted_score": "0.936263",
+        "rank": "1",
+        "decision": "primary_candidate",
+        "diverse_rank": "1",
+        "selection_tier": "final_candidate"
+      },
+      {
+        "candidate_id": "CAND_eadd8f8ad8",
+        "source_generator": "selfies",
+        "parent_mol_id": "JAK2_071bd53e13",
+        "canonical_smiles": "CC(C)(C)c1nc2c3c(c4c(=O)[nH]ccc4c2[nH]1)SC(F)C=C3",
+        "inchikey": "YXBSNZBLUZDOFW-UHFFFAOYSA-N",
+        "valid_rdkit": "True",
+        "unique_flag": "True",
+        "novel_flag": "True",
+        "mw": "329.4",
+        "logp": "4.1164",
+        "tpsa": "61.54",
+        "hbd": "2",
+        "hba": "3",
+        "rotatable_bonds": "0",
+        "qed": "0.6521",
+        "sa_score": "2.25",
+        "murcko_scaffold": "O=c1[nH]ccc2c1c1c(c3nc[nH]c32)C=CCS1",
+        "max_ring_size": "6",
+        "has_macrocycle_12_20": "False",
+        "has_constrained_ring_8_11": "False",
+        "passes_basic_filters": "True",
+        "generation_notes": "selfies_token_mutation",
+        "best_score": "-10.08",
+        "qed_admet": "0.6521",
+        "sa_score_admet": "2.25",
+        "mw_admet": "329.4",
+        "logp_admet": "4.1164",
+        "tpsa_admet": "61.54",
+        "hbd_admet": "2",
+        "hba_admet": "3",
+        "rotatable_bonds_admet": "0",
+        "lipinski_violations": "0",
+        "veber_pass": "True",
+        "admet_score": "0.843445",
+        "synthesis_score": "0.861111",
+        "safety_proxy_score": "1.0",
+        "main_risk": "no_major_descriptor_risk",
+        "pose_score": "1.0",
+        "pose_decision": "pass",
+        "contacts_within_4A": "489.0",
+        "hard_clashes_lt_1_8A": "0.0",
+        "smiles": "CC(C)(C)c1nc2c3c(c4c(=O)[nH]ccc4c2[nH]1)SC(F)C=C3",
+        "docking_score": "-10.08",
+        "diversity_cluster": "scaffold_eb325b6e",
+        "docking_score_scaled": "0.8497854077253219",
+        "novelty_score": "1.0",
+        "final_weighted_score": "0.895281",
+        "rank": "4",
+        "decision": "primary_candidate",
+        "diverse_rank": "2",
+        "selection_tier": "final_candidate"
+      },
+      {
+        "candidate_id": "CAND_ff18b6effe",
+        "source_generator": "selfies",
+        "parent_mol_id": "JAK2_071bd53e13",
+        "canonical_smiles": "CC(C)(C)C=Nc1c([NH])c2cc[nH]c(=O)c2c2cc(F)ccc12",
+        "inchikey": "UIIJQYYMAJZCIP-UHFFFAOYSA-N",
+        "valid_rdkit": "True",
+        "unique_flag": "True",
+        "novel_flag": "True",
+        "mw": "310.352",
+        "logp": "4.4832",
+        "tpsa": "69.02",
+        "hbd": "1",
+        "hba": "2",
+        "rotatable_bonds": "1",
+        "qed": "0.5221",
+        "sa_score": "1.875",
+        "murcko_scaffold": "O=c1[nH]ccc2ccc3ccccc3c12",
+        "max_ring_size": "6",
+        "has_macrocycle_12_20": "False",
+        "has_constrained_ring_8_11": "False",
+        "passes_basic_filters": "True",
+        "generation_notes": "selfies_token_mutation",
+        "best_score": "-10.15",
+        "qed_admet": "0.5221",
+        "sa_score_admet": "1.875",
+        "mw_admet": "310.352",
+        "logp_admet": "4.4832",
+        "tpsa_admet": "69.02",
+        "hbd_admet": "1",
+        "hba_admet": "2",
+        "rotatable_bonds_admet": "1",
+        "lipinski_violations": "0",
+        "veber_pass": "True",
+        "admet_score": "0.784945",
+        "synthesis_score": "0.902778",
+        "safety_proxy_score": "1.0",
+        "main_risk": "no_major_descriptor_risk",
+        "pose_score": "1.0",
+        "pose_decision": "pass",
+        "contacts_within_4A": "532.0",
+        "hard_clashes_lt_1_8A": "0.0",
+        "smiles": "CC(C)(C)C=Nc1c([NH])c2cc[nH]c(=O)c2c2cc(F)ccc12",
+        "docking_score": "-10.15",
+        "diversity_cluster": "scaffold_d7c5f8cd",
+        "docking_score_scaled": "0.8597997138769671",
+        "novelty_score": "1.0",
+        "final_weighted_score": "0.893336",
+        "rank": "5",
+        "decision": "primary_candidate",
+        "diverse_rank": "3",
+        "selection_tier": "final_candidate"
+      },
+      {
+        "candidate_id": "CAND_9d6374c432",
+        "source_generator": "selfies",
+        "parent_mol_id": "JAK2_c4f254cc9f",
+        "canonical_smiles": "Nc1nn2cccnc2c1C=C1N=CN=C1OCC=C1C=CC(CF)=C1",
+        "inchikey": "KWMOIGZREJAIOF-UHFFFAOYSA-N",
+        "valid_rdkit": "True",
+        "unique_flag": "True",
+        "novel_flag": "True",
+        "mw": "350.357",
+        "logp": "2.5015",
+        "tpsa": "90.16",
+        "hbd": "1",
+        "hba": "6",
+        "rotatable_bonds": "4",
+        "qed": "0.9172",
+        "sa_score": "2.502",
+        "murcko_scaffold": "C1=CC(=CCOC2=NC=NC2=Cc2cnn3cccnc23)C=C1",
+        "max_ring_size": "6",
+        "has_macrocycle_12_20": "False",
+        "has_constrained_ring_8_11": "False",
+        "passes_basic_filters": "True",
+        "generation_notes": "selfies_token_mutation",
+        "best_score": "-9.58",
+        "qed_admet": "0.9172",
+        "sa_score_admet": "2.502",
+        "mw_admet": "350.357",
+        "logp_admet": "2.5015",
+        "tpsa_admet": "90.16",
+        "hbd_admet": "1",
+        "hba_admet": "6",
+        "rotatable_bonds_admet": "4",
+        "lipinski_violations": "0",
+        "veber_pass": "True",
+        "admet_score": "0.96274",
+        "synthesis_score": "0.833111",
+        "safety_proxy_score": "1.0",
+        "main_risk": "no_major_descriptor_risk",
+        "pose_score": "1.0",
+        "pose_decision": "pass",
+        "contacts_within_4A": "677.0",
+        "hard_clashes_lt_1_8A": "0.0",
+        "smiles": "Nc1nn2cccnc2c1C=C1N=CN=C1OCC=C1C=CC(CF)=C1",
+        "docking_score": "-9.58",
+        "diversity_cluster": "scaffold_cf3ea8b8",
+        "docking_score_scaled": "0.7782546494992846",
+        "novelty_score": "1.0",
+        "final_weighted_score": "0.889904",
+        "rank": "6",
+        "decision": "primary_candidate",
+        "diverse_rank": "4",
+        "selection_tier": "final_candidate"
+      },
+      {
+        "candidate_id": "CAND_d028052563",
+        "source_generator": "selfies",
+        "parent_mol_id": "JAK2_69019d0e87",
+        "canonical_smiles": "O=CNc1cc2cc(F)ccc2c2c1C=CNC21C=C(F)CC=C1Cl",
+        "inchikey": "NVVAGNOVLCZETH-UHFFFAOYSA-N",
+        "valid_rdkit": "True",
+        "unique_flag": "True",
+        "novel_flag": "True",
+        "mw": "358.775",
+        "logp": "4.6962",
+        "tpsa": "41.13",
+        "hbd": "2",
+        "hba": "2",
+        "rotatable_bonds": "2",
+        "qed": "0.7642",
+        "sa_score": "2.549",
+        "murcko_scaffold": "C1=CC2(C=CC1)NC=Cc1ccc3ccccc3c12",
+        "max_ring_size": "6",
+        "has_macrocycle_12_20": "False",
+        "has_constrained_ring_8_11": "False",
+        "passes_basic_filters": "True",
+        "generation_notes": "selfies_token_mutation",
+        "best_score": "-9.864",
+        "qed_admet": "0.7642",
+        "sa_score_admet": "2.549",
+        "mw_admet": "358.775",
+        "logp_admet": "4.6962",
+        "tpsa_admet": "41.13",
+        "hbd_admet": "2",
+        "hba_admet": "2",
+        "rotatable_bonds_admet": "2",
+        "lipinski_violations": "0",
+        "veber_pass": "True",
+        "admet_score": "0.89389",
+        "synthesis_score": "0.827889",
+        "safety_proxy_score": "1.0",
+        "main_risk": "no_major_descriptor_risk",
+        "pose_score": "1.0",
+        "pose_decision": "pass",
+        "contacts_within_4A": "575.0",
+        "hard_clashes_lt_1_8A": "0.0",
+        "smiles": "O=CNc1cc2cc(F)ccc2c2c1C=CNC21C=C(F)CC=C1Cl",
+        "docking_score": "-9.864",
+        "diversity_cluster": "scaffold_62f991eb",
+        "docking_score_scaled": "0.8188841201716739",
+        "novelty_score": "1.0",
+        "final_weighted_score": "0.889571",
+        "rank": "7",
+        "decision": "primary_candidate",
+        "diverse_rank": "5",
+        "selection_tier": "final_candidate"
+      }
+    ],
+    "top_macrocycles": [
+      {
+        "candidate_id": "CAND_9e995f1d74",
+        "source_generator": "selfies",
+        "parent_mol_id": "JAK2_071bd53e13",
+        "canonical_smiles": "C=C1C=CNC(=O)C12C=C(F)C=CC=CN=CC(C)(C)CN2",
+        "inchikey": "KHSTWUJDTSAAAX-UHFFFAOYSA-N",
+        "valid_rdkit": "True",
+        "unique_flag": "True",
+        "novel_flag": "True",
+        "mw": "301.365",
+        "logp": "2.5484",
+        "tpsa": "53.49",
+        "hbd": "2",
+        "hba": "3",
+        "rotatable_bonds": "0",
+        "qed": "0.7223",
+        "sa_score": "2.95",
+        "murcko_scaffold": "C=C1C=CNC(=O)C12C=CC=CC=CN=CCCN2",
+        "max_ring_size": "12",
+        "has_macrocycle_12_20": "True",
+        "has_constrained_ring_8_11": "False",
+        "passes_basic_filters": "True",
+        "generation_notes": "selfies_token_mutation",
+        "best_score": "-6.075",
+        "qed_admet": "0.7223",
+        "sa_score_admet": "2.95",
+        "mw_admet": "301.365",
+        "logp_admet": "2.5484",
+        "tpsa_admet": "53.49",
+        "hbd_admet": "2",
+        "hba_admet": "3",
+        "rotatable_bonds_admet": "0",
+        "lipinski_violations": "0",
+        "veber_pass": "True",
+        "admet_score": "0.875035",
+        "synthesis_score": "0.783333",
+        "safety_proxy_score": "1.0",
+        "main_risk": "no_major_descriptor_risk",
+        "pose_score": "0.5",
+        "pose_decision": "",
+        "contacts_within_4A": "",
+        "hard_clashes_lt_1_8A": "",
+        "smiles": "C=C1C=CNC(=O)C12C=C(F)C=CC=CN=CC(C)(C)CN2",
+        "docking_score": "-6.075",
+        "diversity_cluster": "scaffold_29c181c1",
+        "docking_score_scaled": "0.276824034334764",
+        "novelty_score": "1.0",
+        "final_weighted_score": "0.614395",
+        "rank": "135",
+        "decision": "hold_for_review",
+        "diverse_rank": "74",
+        "selection_tier": "backup_candidate"
+      },
+      {
+        "candidate_id": "CAND_93f72f3176",
+        "source_generator": "selfies",
+        "parent_mol_id": "JAK2_efc2226329",
+        "canonical_smiles": "CC1C=CC=C[C@H](C)NC=CC=NC(Nc2ccncn2)=N1",
+        "inchikey": "SRYBKQAVNNEDME-LSLKUGRBSA-N",
+        "valid_rdkit": "True",
+        "unique_flag": "True",
+        "novel_flag": "True",
+        "mw": "296.378",
+        "logp": "2.3216",
+        "tpsa": "74.56",
+        "hbd": "2",
+        "hba": "6",
+        "rotatable_bonds": "1",
+        "qed": "0.8338",
+        "sa_score": "3.325",
+        "murcko_scaffold": "C1=CCN=C(Nc2ccncn2)N=CC=CNCC=C1",
+        "max_ring_size": "13",
+        "has_macrocycle_12_20": "True",
+        "has_constrained_ring_8_11": "False",
+        "passes_basic_filters": "True",
+        "generation_notes": "selfies_token_mutation",
+        "best_score": "-5.888",
+        "qed_admet": "0.8338",
+        "sa_score_admet": "3.325",
+        "mw_admet": "296.378",
+        "logp_admet": "2.3216",
+        "tpsa_admet": "74.56",
+        "hbd_admet": "2",
+        "hba_admet": "6",
+        "rotatable_bonds_admet": "1",
+        "lipinski_violations": "0",
+        "veber_pass": "True",
+        "admet_score": "0.92521",
+        "synthesis_score": "0.741667",
+        "safety_proxy_score": "1.0",
+        "main_risk": "no_major_descriptor_risk",
+        "pose_score": "0.5",
+        "pose_decision": "",
+        "contacts_within_4A": "",
+        "hard_clashes_lt_1_8A": "",
+        "smiles": "CC1C=CC=C[C@H](C)NC=CC=NC(Nc2ccncn2)=N1",
+        "docking_score": "-5.888",
+        "diversity_cluster": "scaffold_9443a283",
+        "docking_score_scaled": "0.250071530758226",
+        "novelty_score": "1.0",
+        "final_weighted_score": "0.608817",
+        "rank": "138",
+        "decision": "hold_for_review",
+        "diverse_rank": "77",
+        "selection_tier": "backup_candidate"
+      },
+      {
+        "candidate_id": "CAND_35def203c8",
+        "source_generator": "selfies",
+        "parent_mol_id": "JAK2_22b5f1b127",
+        "canonical_smiles": "CCC[CH]NC=C1CCOC(N)=NNC=CC=NC=NC=N1",
+        "inchikey": "BHLMVBMYLPPIPN-UHFFFAOYSA-N",
+        "valid_rdkit": "True",
+        "unique_flag": "True",
+        "novel_flag": "True",
+        "mw": "304.378",
+        "logp": "1.26",
+        "tpsa": "108.75",
+        "hbd": "3",
+        "hba": "8",
+        "rotatable_bonds": "4",
+        "qed": "0.6792",
+        "sa_score": "2.95",
+        "murcko_scaffold": "C=C1CCOC=NNC=CC=NC=NC=N1",
+        "max_ring_size": "15",
+        "has_macrocycle_12_20": "True",
+        "has_constrained_ring_8_11": "False",
+        "passes_basic_filters": "True",
+        "generation_notes": "selfies_token_mutation",
+        "best_score": "-5.378",
+        "qed_admet": "0.6792",
+        "sa_score_admet": "2.95",
+        "mw_admet": "304.378",
+        "logp_admet": "1.26",
+        "tpsa_admet": "108.75",
+        "hbd_admet": "3",
+        "hba_admet": "8",
+        "rotatable_bonds_admet": "4",
+        "lipinski_violations": "0",
+        "veber_pass": "True",
+        "admet_score": "0.85564",
+        "synthesis_score": "0.783333",
+        "safety_proxy_score": "1.0",
+        "main_risk": "no_major_descriptor_risk",
+        "pose_score": "0.5",
+        "pose_decision": "",
+        "contacts_within_4A": "",
+        "hard_clashes_lt_1_8A": "",
+        "smiles": "CCC[CH]NC=C1CCOC(N)=NNC=CC=NC=NC=N1",
+        "docking_score": "-5.378",
+        "diversity_cluster": "scaffold_82dcbded",
+        "docking_score_scaled": "0.17711015736766814",
+        "novelty_score": "1.0",
+        "final_weighted_score": "0.575617",
+        "rank": "141",
+        "decision": "hold_for_review",
+        "diverse_rank": "80",
+        "selection_tier": "backup_candidate"
+      },
+      {
+        "candidate_id": "CAND_9b837e9bd9",
+        "source_generator": "selfies",
+        "parent_mol_id": "JAK2_3f9d4c8aea",
+        "canonical_smiles": "FC1=CC=CNC=CC=NC2(C=CCC=CN=CN2)CC=C1",
+        "inchikey": "CPXIERJIQUKUOG-UHFFFAOYSA-N",
+        "valid_rdkit": "True",
+        "unique_flag": "True",
+        "novel_flag": "True",
+        "mw": "298.365",
+        "logp": "3.2753",
+        "tpsa": "48.78",
+        "hbd": "2",
+        "hba": "4",
+        "rotatable_bonds": "0",
+        "qed": "0.6743",
+        "sa_score": "2.95",
+        "murcko_scaffold": "C1=CC=CNC=CC=NC2(C=CCC=CN=CN2)CC=C1",
+        "max_ring_size": "13",
+        "has_macrocycle_12_20": "True",
+        "has_constrained_ring_8_11": "False",
+        "passes_basic_filters": "True",
+        "generation_notes": "selfies_token_mutation",
+        "best_score": "-5.379",
+        "qed_admet": "0.6743",
+        "sa_score_admet": "2.95",
+        "mw_admet": "298.365",
+        "logp_admet": "3.2753",
+        "tpsa_admet": "48.78",
+        "hbd_admet": "2",
+        "hba_admet": "4",
+        "rotatable_bonds_admet": "0",
+        "lipinski_violations": "0",
+        "veber_pass": "True",
+        "admet_score": "0.853435",
+        "synthesis_score": "0.783333",
+        "safety_proxy_score": "1.0",
+        "main_risk": "no_major_descriptor_risk",
+        "pose_score": "0.5",
+        "pose_decision": "",
+        "contacts_within_4A": "",
+        "hard_clashes_lt_1_8A": "",
+        "smiles": "FC1=CC=CNC=CC=NC2(C=CCC=CN=CN2)CC=C1",
+        "docking_score": "-5.379",
+        "diversity_cluster": "scaffold_e890015e",
+        "docking_score_scaled": "0.17725321888412013",
+        "novelty_score": "1.0",
+        "final_weighted_score": "0.575226",
+        "rank": "142",
+        "decision": "hold_for_review",
+        "diverse_rank": "81",
+        "selection_tier": "backup_candidate"
+      },
+      {
+        "candidate_id": "CAND_8f061e412c",
+        "source_generator": "selfies",
+        "parent_mol_id": "JAK2_9ce72827e9",
+        "canonical_smiles": "C[CH]NC=C1CC=NCN=NNC=CC=NC=NC=N1",
+        "inchikey": "HYWLJAYKVDEBBE-UHFFFAOYSA-N",
+        "valid_rdkit": "True",
+        "unique_flag": "True",
+        "novel_flag": "True",
+        "mw": "273.324",
+        "logp": "1.629",
+        "tpsa": "98.22",
+        "hbd": "2",
+        "hba": "8",
+        "rotatable_bonds": "2",
+        "qed": "0.7989",
+        "sa_score": "2.7",
+        "murcko_scaffold": "C=C1CC=NCN=NNC=CC=NC=NC=N1",
+        "max_ring_size": "16",
+        "has_macrocycle_12_20": "True",
+        "has_constrained_ring_8_11": "False",
+        "passes_basic_filters": "True",
+        "generation_notes": "selfies_token_mutation",
+        "best_score": "-4.822",
+        "qed_admet": "0.7989",
+        "sa_score_admet": "2.7",
+        "mw_admet": "273.324",
+        "logp_admet": "1.629",
+        "tpsa_admet": "98.22",
+        "hbd_admet": "2",
+        "hba_admet": "8",
+        "rotatable_bonds_admet": "2",
+        "lipinski_violations": "0",
+        "veber_pass": "True",
+        "admet_score": "0.909505",
+        "synthesis_score": "0.811111",
+        "safety_proxy_score": "1.0",
+        "main_risk": "no_major_descriptor_risk",
+        "pose_score": "0.5",
+        "pose_decision": "",
+        "contacts_within_4A": "",
+        "hard_clashes_lt_1_8A": "",
+        "smiles": "C[CH]NC=C1CC=NCN=NNC=CC=NC=NC=N1",
+        "docking_score": "-4.822",
+        "diversity_cluster": "scaffold_694c6104",
+        "docking_score_scaled": "0.09756795422031478",
+        "novelty_score": "1.0",
+        "final_weighted_score": "0.562716",
+        "rank": "144",
+        "decision": "hold_for_review",
+        "diverse_rank": "83",
+        "selection_tier": "backup_candidate"
+      },
+      {
+        "candidate_id": "CAND_d92b9ae560",
+        "source_generator": "selfies",
+        "parent_mol_id": "JAK2_efc2226329",
+        "canonical_smiles": "C[C@H]1C=CC=CC2=CCC=CN=CNC2(C)N=CC=CN1",
+        "inchikey": "IHNXFLDOBLUGRJ-MYJWUSKBSA-N",
+        "valid_rdkit": "True",
+        "unique_flag": "True",
+        "novel_flag": "True",
+        "mw": "282.391",
+        "logp": "2.8529",
+        "tpsa": "48.78",
+        "hbd": "2",
+        "hba": "4",
+        "rotatable_bonds": "0",
+        "qed": "0.7175",
+        "sa_score": "3.2",
+        "murcko_scaffold": "C1=CCNC=CC=NC2NC=NC=CCC=C2C=C1",
+        "max_ring_size": "12",
+        "has_macrocycle_12_20": "True",
+        "has_constrained_ring_8_11": "False",
+        "passes_basic_filters": "True",
+        "generation_notes": "selfies_token_mutation",
+        "best_score": "-4.827",
+        "qed_admet": "0.7175",
+        "sa_score_admet": "3.2",
+        "mw_admet": "282.391",
+        "logp_admet": "2.8529",
+        "tpsa_admet": "48.78",
+        "hbd_admet": "2",
+        "hba_admet": "4",
+        "rotatable_bonds_admet": "0",
+        "lipinski_violations": "0",
+        "veber_pass": "True",
+        "admet_score": "0.872875",
+        "synthesis_score": "0.755556",
+        "safety_proxy_score": "1.0",
+        "main_risk": "no_major_descriptor_risk",
+        "pose_score": "0.5",
+        "pose_decision": "",
+        "contacts_within_4A": "",
+        "hard_clashes_lt_1_8A": "",
+        "smiles": "C[C@H]1C=CC=CC2=CCC=CN=CNC2(C)N=CC=CN1",
+        "docking_score": "-4.827",
+        "diversity_cluster": "scaffold_aa33bbe8",
+        "docking_score_scaled": "0.09828326180257513",
+        "novelty_score": "1.0",
+        "final_weighted_score": "0.547308",
+        "rank": "145",
+        "decision": "hold_for_review",
+        "diverse_rank": "84",
+        "selection_tier": "backup_candidate"
+      }
+    ],
+    "base": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid"
+  },
+  "pdf_path": "C:\\Users\\srira\\Downloads\\Macro Equi-Diff.pdf"
+}

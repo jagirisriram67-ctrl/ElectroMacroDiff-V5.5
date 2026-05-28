@@ -1,0 +1,3 @@
+parent_mol_id,seed_smiles,status
+JAK2_79038ef114,COc1ccccc1Nc1nc2c(-c3ccc(S(C)(=O)=O)cc3)cccn2n1,insufficient_anchors
+JAK2_bb041e75cb,CC(=O)Nc1ccc(-c2nc(Nc3ccc(N4CCOCC4)cc3)ncc2C)cc1,insufficient_anchors

@@ -1,0 +1,7 @@
+{
+  "device": "cpu",
+  "loss": 19.953413009643555,
+  "checkpoint": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\se3_flow\\se3_latest_checkpoint.pt",
+  "num_graphs": 1135,
+  "status": "passed"
+}
