@@ -30,7 +30,7 @@ The strongest result is not a claim of experimental activity. The strongest resu
 | Uniqueness | 100% |
 | Macrocyclization | 100% |
 | Validation checks | 54/54 passed |
-| Unit tests | 40/40 passed |
+| Unit tests | 46/46 passed |
 
 ## Top Ranked Candidate
 

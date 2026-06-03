@@ -28,3 +28,16 @@ env/
 06_docking/ligands_pdbqt/*
 09_reports/*.pdf
 09_reports/*.pptx
+
+# Review handover: keep the compact trained/runtime artifacts needed for
+# validating the V5.5 repo without the separate large handover zip.
+!03_features/ligand_graphs/se3_graphs.pt
+!04_models_checkpoints/se3_flow/se3_best_checkpoint.pt
+!04_models_checkpoints/se3_flow/se3_latest_checkpoint.pt
+!04_models_checkpoints/v5_5_pocket_anchor_gnn/pocket_anchor_gnn_best.pt
+!04_models_checkpoints/v5_5_pocket_linker_policy/pocket_linker_policy_best.pt
+!04_models_checkpoints/v5_5_validity_reward/validity_reward_best.pt
+!04_models_checkpoints/v5_5_se3_continuation/se3_v5_5_best_checkpoint.pt
+!06_docking/receptor/jak2_prepared.pdbqt
+!06_docking/ligands_sdf/candidates_for_docking.sdf
+!submission_artifacts_2026-05-28/*.pptx

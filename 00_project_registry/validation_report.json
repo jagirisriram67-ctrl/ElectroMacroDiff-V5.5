@@ -204,62 +204,62 @@
     {
       "name": "gate:m0_environment",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\00_project_registry\\environment_versions.txt"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\00_project_registry\\environment_versions.txt"
     },
     {
       "name": "gate:m1_curated_ligands",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\02_curated_data\\jak2_curated_ligands.csv"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\02_curated_data\\jak2_curated_ligands.csv"
     },
     {
       "name": "gate:m1_receptor_pdb",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\01_raw_data\\pdb\\5AEP.pdb"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\01_raw_data\\pdb\\5AEP.pdb"
     },
     {
       "name": "gate:m2_graph_tensors",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\03_features\\ligand_graphs\\se3_graphs.pt"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\03_features\\ligand_graphs\\se3_graphs.pt"
     },
     {
       "name": "gate:m3_debug_checkpoint",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\se3_flow\\se3_latest_checkpoint.pt"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\04_models_checkpoints\\se3_flow\\se3_latest_checkpoint.pt"
     },
     {
       "name": "gate:m3_debug_json",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\04_models_checkpoints\\se3_flow\\se3_dataloader_test_passed.json"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\04_models_checkpoints\\se3_flow\\se3_dataloader_test_passed.json"
     },
     {
       "name": "gate:m4_candidates",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\merged\\generated_merged_filtered.csv"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\05_generated_candidates\\merged\\generated_merged_filtered.csv"
     },
     {
       "name": "gate:m5_docking_grid",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\docking_grid_5AEP_QUP.json"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\06_docking\\receptor\\docking_grid_5AEP_QUP.json"
     },
     {
       "name": "gate:m5_ligand_sdf",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\ligands_sdf\\candidates_for_docking.sdf"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\06_docking\\ligands_sdf\\candidates_for_docking.sdf"
     },
     {
       "name": "gate:m5_receptor_pdbqt",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\jak2_prepared.pdbqt"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\06_docking\\receptor\\jak2_prepared.pdbqt"
     },
     {
       "name": "gate:m5_ligand_pdbqt_manifest",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\ligands_pdbqt\\ligand_pdbqt_manifest.csv"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\06_docking\\ligands_pdbqt\\ligand_pdbqt_manifest.csv"
     },
     {
       "name": "gate:m5_vina_manifest",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\scores\\vina_command_manifest.csv"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\06_docking\\scores\\vina_command_manifest.csv"
     },
     {
       "name": "gate:m5_docking_scores",
@@ -269,12 +269,12 @@
     {
       "name": "gate:m6_admet",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\07_admet_synthesis\\admet_scores.csv"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\07_admet_synthesis\\admet_scores.csv"
     },
     {
       "name": "gate:m7_ranking",
       "passed": true,
-      "message": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\08_final_ranking\\final_ranked_candidates.csv"
+      "message": "C:\\Users\\srira\\Desktop\\new_plan\\_remote_check_ElectroMacroDiff_V5_5\\08_final_ranking\\final_ranked_candidates.csv"
     }
   ]
 }

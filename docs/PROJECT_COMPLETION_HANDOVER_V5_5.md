@@ -28,7 +28,7 @@ protein-conditioned diffusion claim is made.
 | Macrocyclization | 100.0% |
 | Uniqueness | 100.0% |
 | Project validation | 54/54 passed |
-| Unit tests | 40/40 passed |
+| Unit tests | 46/46 passed |
 
 ## Current Top Ranked Candidate
 

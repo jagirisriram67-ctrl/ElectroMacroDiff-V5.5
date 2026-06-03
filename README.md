@@ -27,7 +27,20 @@ This repository reports computational candidates only. It does not claim experim
 | Uniqueness | 100% |
 | Macrocyclization | 100% |
 | Validation checks | 54/54 passed |
-| Unit tests | 40/40 passed |
+| Unit tests | 46/46 passed |
+
+## Reviewer Handover Status
+
+This repository is prepared as the college-review handover package. It includes:
+
+- V5.5 source code and reusable Python modules
+- trained V5.5 checkpoint files required by the active workflow
+- compact graph/runtime artifacts required by the validation gate
+- generated V5.5 candidate tables and attempt logs
+- Vina-GPU docking score tables and pocket-electronic ranking outputs
+- project reports, senior-review explanation notes, architecture diagrams, and dashboard assets
+
+The files are computational research artifacts only. They are not wet-lab validation data and should not be interpreted as experimentally confirmed drug candidates.
 
 ## Dashboard
 
@@ -39,7 +52,7 @@ The interactive dashboard is in `interface/` and is designed for static hosting.
 - embedded JAK2 receptor and docked pose data
 - interactive 3D protein-ligand review with 3Dmol.js
 
-After GitHub Pages is enabled for the deployed branch, the dashboard is intended to be available at:
+The deployed GitHub Pages dashboard is available at:
 
 ```text
 https://jagirisriram67-ctrl.github.io/ElectroMacroDiff-V5.5/
@@ -74,6 +87,8 @@ tests/                    Unit and validation tests
 - `docs/V5_5_GENERATION_RESULTS.md`
 - `docs/V5_5_GPU_DOCKING_RESULTS.md`
 - `docs/SCIENTIFIC_BOUNDARIES.md`
+- `docs/V5_5_SENIOR_REVIEW_MODEL_DATASET_PROVENANCE_FAQ.md`
+- `submission_artifacts_2026-05-28/`
 
 ## Local Checks
 
