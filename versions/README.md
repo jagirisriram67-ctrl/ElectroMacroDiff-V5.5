@@ -1,6 +1,6 @@
 # ElectroMacroDiff Version History Archive
 
-This folder is a reviewer-facing history of how the project developed. The repository root remains the final V5.5 implementation. The folders here preserve earlier code, planning documents, molecules, metrics, docking outputs, model checkpoints, and benchmark evidence so the team can explain where the work started and how it matured.
+This folder is a project-facing history of how the project developed. The repository root remains the final V5.5 implementation. The folders here preserve earlier code, planning documents, molecules, metrics, docking outputs, model checkpoints, and benchmark evidence so the team can explain where the work started and how it matured.
 
 ## Folder Map
 
@@ -13,7 +13,7 @@ This folder is a reviewer-facing history of how the project developed. The repos
 
 ## Final Version Context
 
-V5.5 is not duplicated here because the root repository is V5.5. The final implementation adds pocket-conditioned anchor selection, pocket-conditioned linker policy, validity gating, V5.5 generation outputs, V5.5 docking scores, reviewer documents, and the interactive dashboard.
+V5.5 is not duplicated here because the root repository is V5.5. The final implementation adds pocket-conditioned anchor selection, pocket-conditioned linker policy, validity gating, V5.5 generation outputs, V5.5 docking scores, project explanation documents, and the interactive dashboard.
 
 ## Large Artifact Handling
 

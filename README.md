@@ -1,10 +1,10 @@
 # ElectroMacroDiff V5.5
 
-Pocket-guided computational drug-discovery pipeline for JAK2-focused constrained macrocycle generation, Vina-GPU docking, ADMET proxy scoring, pocket-electronic rescoring, final candidate ranking, and interactive 3D review.
+Pocket-guided computational drug-discovery pipeline for JAK2-focused constrained macrocycle generation, Vina-GPU docking, ADMET proxy scoring, pocket-electronic rescoring, final candidate ranking, and interactive 3D inspection.
 
 ## Project Scope
 
-ElectroMacroDiff V5.5 is a reproducible computational discovery package. It connects macrocycle generation with JAK2 pocket evidence, real docking outputs, interpretable scoring tables, and a browser-based dashboard for reviewing ranked protein-ligand poses.
+ElectroMacroDiff V5.5 is a reproducible computational discovery package. It connects macrocycle generation with JAK2 pocket evidence, real docking outputs, interpretable scoring tables, and a browser-based dashboard for inspecting ranked protein-ligand poses.
 
 This repository reports computational candidates only. It does not claim experimentally proven potency, synthesis success, clinical safety, FDA readiness, or wet-lab validation.
 
@@ -29,24 +29,25 @@ This repository reports computational candidates only. It does not claim experim
 | Validation checks | 54/54 passed |
 | Unit tests | 46/46 passed |
 
-## Reviewer Handover Status
+## Repository Contents
 
-This repository is prepared as the college-review handover package. It includes:
+This repository contains the complete ElectroMacroDiff V5.5 computational research package. It includes:
 
 - V5.5 source code and reusable Python modules
 - trained V5.5 checkpoint files required by the active workflow
 - compact graph/runtime artifacts required by the validation gate
 - generated V5.5 candidate tables and attempt logs
 - Vina-GPU docking score tables and pocket-electronic ranking outputs
-- project reports, senior-review explanation notes, architecture diagrams, and dashboard assets
+- project reports, model/data provenance notes, architecture diagrams, and dashboard assets
 - a `versions/` archive showing how the project evolved from V5.0/V5.1 planning to V5.2, V5.3, V5.4, and the final V5.5 root implementation
+- an `explanation for review/` bundle collecting Markdown explanations and visual assets for project discussions, presentations, and evaluation
 
 The files are computational research artifacts only. They are not wet-lab validation data and should not be interpreted as experimentally confirmed drug candidates.
 
-For a reviewer-facing explanation of every folder and every tracked file in this repository, open:
+For a detailed explanation of every folder and every tracked file in this repository, open:
 
 ```text
-REPOSITORY_FILE_GUIDE_FOR_REVIEWERS.md
+REPOSITORY_FILE_GUIDE.md
 ```
 
 ## Dashboard
@@ -57,7 +58,7 @@ The interactive dashboard is in `interface/` and is designed for static hosting.
 - project metrics and charts
 - candidate detail views
 - embedded JAK2 receptor and docked pose data
-- interactive 3D protein-ligand review with 3Dmol.js
+- interactive 3D protein-ligand inspection with 3Dmol.js
 
 The deployed GitHub Pages dashboard is available at:
 
@@ -81,11 +82,12 @@ https://jagirisriram67-ctrl.github.io/ElectroMacroDiff-V5.5/
 10_notebooks/             Colab/Kaggle workflow notebooks and templates
 11_logs/                  Daily logs and AI assistance notes
 docs/                     Handover reports, methods, plans, and boundaries
+explanation for review/   Consolidated explanation Markdown files and visual assets
 interface/                Static UI dashboard
 scripts/                  Command-line pipeline stages
 src/                      Reusable Python implementation modules
 tests/                    Unit and validation tests
-versions/                 Earlier-version archive for reviewer traceability
+versions/                 Earlier-version archive for project traceability
 ```
 
 ## Key Reports
@@ -95,7 +97,7 @@ versions/                 Earlier-version archive for reviewer traceability
 - `docs/V5_5_GENERATION_RESULTS.md`
 - `docs/V5_5_GPU_DOCKING_RESULTS.md`
 - `docs/SCIENTIFIC_BOUNDARIES.md`
-- `docs/V5_5_SENIOR_REVIEW_MODEL_DATASET_PROVENANCE_FAQ.md`
+- `docs/V5_5_MODEL_DATASET_PROVENANCE_FAQ.md`
 - `submission_artifacts_2026-05-28/`
 
 ## Local Checks
@@ -107,7 +109,7 @@ python -m unittest discover -s tests
 python scripts/08_validate_project.py --base .
 ```
 
-For dashboard-only review, open:
+For dashboard-only inspection, open:
 
 ```text
 interface/index.html

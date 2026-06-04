@@ -62,9 +62,9 @@ Ideal success:
 - 500+ generated candidates
 - validity, novelty, uniqueness, ring-size, and descriptor distributions reported
 
-### 3. What the Reviewers Should See
+### 3. What the Project readers Should See
 
-Reviewer question:
+Project reader question:
 
 > Where is the deep learning?
 
@@ -72,7 +72,7 @@ Answer:
 
 > The central generation step uses our custom SE(3)-aware flow matching model trained on curated JAK2 macrocycle/constrained ligand data. RDKit and SELFIES are used as controlled baselines and fallback generators. We compare validity, novelty, chemical property distributions, and downstream docking performance between the deep model and rule/string baselines.
 
-Reviewer question:
+Project reader question:
 
 > What is novel?
 
@@ -80,7 +80,7 @@ Answer:
 
 > The novelty is the low-resource adaptation of an SE(3) flow-matching generator with electronic/3D molecular features inside a fully checkpointed student-scale discovery pipeline. The pipeline does not merely screen existing molecules; it generates candidates, ranks them, and produces a TPP-style dossier under severe compute constraints.
 
-Reviewer question:
+Project reader question:
 
 > Did the model actually help?
 

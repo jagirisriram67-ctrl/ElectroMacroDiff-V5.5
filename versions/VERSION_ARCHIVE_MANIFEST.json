@@ -153,7 +153,7 @@
   },
   "archive_notes": {
     "root_repository_version": "V5.5 final handover implementation",
-    "purpose": "Earlier-version evidence archive for reviewer traceability",
+    "purpose": "Earlier-version evidence archive for project traceability",
     "large_file_policy": "V5.3 pretrain anchor atom table is stored as gzip plus SHA-256 manifest instead of an uncompressed 279 MB CSV."
   }
 }

@@ -1404,8 +1404,8 @@ Compressed-mode sacrifice:
 | GNINA/DiffDock too heavy | high | medium | stretch only |
 | AiZynthFinder too heavy | high | medium | SA score + route notes fallback |
 | Generated molecules invalid | medium | high | SELFIES/RDKit backup |
-| Reviewer asks about novelty | high | high | show SE(3) architecture, training curve, comparison |
-| Reviewer asks about proof | high | medium | state computational hypothesis limits clearly |
+| Project reader asks about novelty | high | high | show SE(3) architecture, training curve, comparison |
+| Project reader asks about proof | high | medium | state computational hypothesis limits clearly |
 
 ---
 

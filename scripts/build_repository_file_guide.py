@@ -1,4 +1,4 @@
-"""Build a reviewer-facing file guide for every tracked repository file."""
+"""Build a project-facing file guide for every tracked repository file."""
 
 from __future__ import annotations
 
@@ -9,12 +9,12 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "REPOSITORY_FILE_GUIDE_FOR_REVIEWERS.md"
-SELF = "scripts/build_reviewer_repository_file_guide.py"
+OUT = ROOT / "REPOSITORY_FILE_GUIDE.md"
+SELF = "scripts/build_repository_file_guide.py"
 
 
 FOLDER_PURPOSES = {
-    "<root>": ("Project entry files", "Top-level settings, README, license/config controls, and reviewer guide."),
+    "<root>": ("Project entry files", "Top-level settings, README, license/config controls, and repository guide."),
     "00_project_registry": ("Project registry and audit trail", "Configuration, environment, run registry, artifact registry, progress logs, and validation evidence."),
     "01_raw_data": ("Raw input data", "Original JAK2 activity records and protein structure inputs before curation."),
     "02_curated_data": ("Curated chemistry datasets", "Cleaned ligand tables, macrocycle subsets, and fragment-linker datasets."),
@@ -27,11 +27,12 @@ FOLDER_PURPOSES = {
     "09_reports": ("Reports and decision packages", "Benchmark reports, candidate cards, molecule images, and decision packages."),
     "10_notebooks": ("Notebook workflows", "Notebook-style execution material for Colab/Kaggle or stepwise reproduction."),
     "11_logs": ("Work logs", "Daily implementation/progress notes and AI assistance logs."),
-    "docs": ("Technical documentation", "Handover reports, methods, architecture explanations, reviewer answers, and claim boundaries."),
-    "interface": ("Interactive dashboard", "Static HTML/CSS/JS dashboard and real exported data for visual review and 3D inspection."),
+    "docs": ("Technical documentation", "Handover reports, methods, architecture explanations, project explanation answers, and claim boundaries."),
+    "explanation for review": ("Explanation bundle", "Consolidated Markdown explanations and visual assets for project discussions, presentations, and evaluation."),
+    "interface": ("Interactive dashboard", "Static HTML/CSS/JS dashboard and real exported data for visual inspection and 3D interaction."),
     "scripts": ("Executable pipeline stages", "Command-line scripts for data, features, training, generation, docking, scoring, reports, and validation."),
     "src": ("Reusable Python package", "Core implementation modules imported by scripts and tests."),
-    "submission_artifacts_2026-05-28": ("Submission-ready artifacts", "PPT, DOCX, diagrams, workflow explanations, and final college-review assets."),
+    "submission_artifacts_2026-05-28": ("Submission-ready artifacts", "PPT, DOCX, diagrams, workflow explanations, and final project assets."),
     "tests": ("Unit tests", "Smoke and focused tests for chemistry, generation, benchmark, dashboard, and V5.5 utilities."),
     "tools": ("Tool configuration/helpers", "Auxiliary tool folders such as Vina-related placeholders/configuration."),
     "versions": ("Earlier-version archive", "V5.0/V5.1 planning, V5.2 initial code, V5.3 outputs, and V5.4 pocket scoring evidence."),
@@ -70,7 +71,7 @@ SCRIPT_PURPOSES = {
     "28_train_se3_continuation.py": "continues SE(3) training for V5.5 auxiliary evidence",
     "29_generate_v5_5_pocket_guided.py": "generates V5.5 pocket-conditioned macrocycle candidates",
     "30_prepare_v5_5_docking_inputs_parallel.py": "prepares V5.5 docking inputs in parallel",
-    "build_reviewer_repository_file_guide.py": "builds this complete repository guide",
+    "build_repository_file_guide.py": "builds this complete repository guide",
     "build_v5_5_presentation_docs.py": "builds V5.5 presentation/document outputs",
     "fix_kaggle_zip.py": "fixes ZIP path separators for Kaggle upload compatibility",
     "run_v5_3_vina_gpu_colab.py": "runs V5.3 Vina-GPU workflow in Colab/Kaggle style environments",
@@ -187,7 +188,7 @@ def explain(path: str) -> tuple[str, str]:
 
     exact = {
         "README.md": ("Main project overview with V5.5 metrics, dashboard link, folder map, and handover status.", "Start here when explaining the whole project."),
-        "REPOSITORY_FILE_GUIDE_FOR_REVIEWERS.md": ("This reviewer guide and complete tracked-file inventory.", "Use it as speaking notes for explaining the repository."),
+        "REPOSITORY_FILE_GUIDE.md": ("This repository guide and complete tracked-file inventory.", "Use it as speaking notes for explaining the repository."),
         ".gitignore": ("Rules keeping cache/heavy local-only files out of Git while allowing required handover artifacts.", "Explains why some huge generated files are compressed or excluded."),
         ".gitattributes": ("Line-ending and binary-file rules for code, chemistry files, checkpoints, reports, and archives.", "Protects binary artifacts and keeps text readable across Windows/Linux."),
         "LICENSE": ("Repository license file.", "Defines reuse permissions for the package."),
@@ -203,11 +204,11 @@ def explain(path: str) -> tuple[str, str]:
         if lower.endswith(".sdf"):
             return (f"3D ligand structure for candidate `{cid}` in SDF format.", "Intermediate structure before PDBQT conversion and useful for chemistry inspection.")
         if lower.endswith(".png"):
-            return (f"Image/pose/molecule visual for candidate `{cid}`.", "Use in reports, slides, or reviewer discussion.")
+            return (f"Image/pose/molecule visual for candidate `{cid}`.", "Use in reports, slides, or project discussion.")
         if lower.endswith(".md"):
             return (f"Candidate card describing candidate `{cid}`.", "Use for individual molecule review.")
         if "vina.log" in lower:
-            return (f"Docking log for candidate `{cid}`.", "Use if a reviewer asks how the Vina result was produced or parsed.")
+            return (f"Docking log for candidate `{cid}`.", "Use when explaining how the Vina result was produced or parsed.")
 
     if path.startswith("00_project_registry/"):
         if "artifact_registry" in name:
@@ -331,7 +332,7 @@ def explain(path: str) -> tuple[str, str]:
 
     if path.startswith("09_reports/"):
         if "candidate_cards" in path:
-            return ("Individual candidate report card.", "Use for molecule-by-molecule reviewer discussion.")
+            return ("Individual candidate report card.", "Use for molecule-by-molecule project discussion.")
         if "benchmark" in path:
             return ("Benchmark comparison artifact.", "Supports MED/Macformer/MacLS comparison and gap discussion.")
         if "decision_package" in path:
@@ -341,7 +342,7 @@ def explain(path: str) -> tuple[str, str]:
         return ("Project report or supporting report asset.", "Use for final handover or written explanation.")
 
     if path.startswith("docs/"):
-        return ("Technical/handover documentation file.", "Answers reviewer questions about methods, claims, data provenance, models, or workflow.")
+        return ("Technical/handover documentation file.", "Answers project reader questions about methods, claims, data provenance, models, or workflow.")
 
     if path.startswith("interface/"):
         if name == "data.js":
@@ -399,7 +400,7 @@ def explain(path: str) -> tuple[str, str]:
 
 def main() -> None:
     tracked = git("ls-files").splitlines()
-    for must_include in ("REPOSITORY_FILE_GUIDE_FOR_REVIEWERS.md", SELF):
+    for must_include in ("REPOSITORY_FILE_GUIDE.md", SELF):
         if must_include not in tracked:
             tracked.append(must_include)
     tracked = sorted(dict.fromkeys(tracked), key=lambda p: (top_folder(p), p))
@@ -420,9 +421,9 @@ def main() -> None:
 
     lines: list[str] = []
     lines += [
-        "# ElectroMacroDiff V5.5 Repository File Guide for Reviewers",
+        "# ElectroMacroDiff V5.5 Repository File Guide",
         "",
-        "This document maps the GitHub repository for reviewers. It explains what each folder is for, why it exists, how it fits into the project flow, and what every tracked file represents.",
+        "This document maps the GitHub repository for collaborators, project readers, and future contributors. It explains what each folder is for, why it exists, how it fits into the project flow, and what every tracked file represents.",
         "",
         "> Scope note: this is a computational drug-discovery handover package. The files prove code, model training evidence, generated molecules, docking outputs, ADMET proxy scores, pocket-electronic scoring, rankings, reports, and dashboard assets. They do not prove wet-lab activity or clinical safety.",
         "",
@@ -466,15 +467,15 @@ def main() -> None:
         "- The AI models make generation decisions; RDKit builds molecules from those decisions.",
         "- V5.5 is the active final version at the repository root.",
         "- `versions/` exists for historical evidence, not because the final code needs to be run from those folders.",
-        "- V5.3 and V5.4 are included so reviewers can see the progression from model-guided generation to pocket-electronic scoring and then V5.5 pocket-conditioned generation.",
+        "- V5.3 and V5.4 are included so readers can see the progression from model-guided generation to pocket-electronic scoring and then V5.5 pocket-conditioned generation.",
         "- The project uses computational metrics and docking outputs only; no experimental potency or toxicity claim is made.",
         "",
-        "## How to Use This Repository During Review",
+        "## How to Use This Repository During Project Discussion",
         "",
-        "| Reviewer question | Where to point them |",
+        "| Project question | Where to look |",
         "|---|---|",
         "| What is the final project? | `README.md`, `docs/PROJECT_COMPLETION_HANDOVER_V5_5.md`, `docs/v5_5_final_handover_report_2026-05-16.md` |",
-        "| What models were used? | `docs/EMD_V5_5_MODEL_PROVENANCE_AND_DATASET_EXPLANATION.md`, `04_models_checkpoints/`, `src/emd_v5_2_hybrid/` |",
+        "| What models were used? | `docs/V5_5_MODEL_DATASET_PROVENANCE_FAQ.md`, `04_models_checkpoints/`, `src/emd_v5_2_hybrid/` |",
         "| Where are generated molecules? | `05_generated_candidates/v5_5_pocket_guided/` and earlier branches in `versions/v5_3_model_guided_generation/` |",
         "| Where are docking results? | `06_docking/v5_5_pocket_guided/scores/` and `08_final_ranking/` |",
         "| Where is the dashboard? | `interface/index.html`, `interface/app.js`, `interface/data.js` |",
@@ -507,7 +508,7 @@ def main() -> None:
         "",
         "## Final Speaking Summary",
         "",
-        "For reviewers, explain the repository like this: the root folder is the completed V5.5 system; the numbered data/model/output folders show the live computational pipeline; `interface/` shows the real dashboard; `docs/` and `submission_artifacts_2026-05-28/` contain explanation material; and `versions/` proves how the project evolved from earlier planning and V5.2/V5.3/V5.4 stages into the final V5.5 handover.",
+        "Explain the repository like this: the root folder is the completed V5.5 system; the numbered data/model/output folders show the live computational pipeline; `interface/` shows the real dashboard; `docs/`, `submission_artifacts_2026-05-28/`, and `explanation for review/` contain explanation material; and `versions/` preserves how the project evolved from earlier planning and V5.2/V5.3/V5.4 stages into the final V5.5 system.",
         "",
     ]
 

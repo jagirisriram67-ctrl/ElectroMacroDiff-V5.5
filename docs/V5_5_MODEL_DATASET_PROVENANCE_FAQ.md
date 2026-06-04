@@ -1,4 +1,4 @@
-# ElectroMacroDiff V5.5 Senior Review Dossier
+# ElectroMacroDiff V5.5 Model and Dataset Provenance FAQ
 
 Project number: 1169
 
@@ -6,7 +6,7 @@ Audit date: 2026-05-29
 
 Repository audited: `C:\Users\srira\Desktop\new_plan\EMD_V5_2_Hybrid`
 
-This document is written for explaining the project to a senior reviewer or project coordinator. It answers the main questions about model origin, checkpoint provenance, datasets, training scale, metrics, overfitting, V5.3 versus V5.5 naming, and the final architecture. All numbers below are taken from local project CSV/JSON/checkpoint summaries in this repository.
+This document explains the project model origin, checkpoint provenance, datasets, training scale, metrics, overfitting risk, V5.3 versus V5.5 naming, and the final architecture. All numbers below are taken from local project CSV/JSON/checkpoint summaries in this repository.
 
 ## 1. One-page answer for sir
 
@@ -893,4 +893,3 @@ Not allowed claims:
 ## 20. Final summary
 
 ElectroMacroDiff V5.5 is the latest project branch. It does not use MED checkpoints. It uses public ChEMBL/RCSB data and project-generated logs to train a multi-model pocket-electronic-conditioned macrocycle generation pipeline for JAK2. V5.3 artifacts are present because they are earlier internal foundation artifacts used to build V5.5, not because the final branch is old. The final V5.5 branch generated 1,113 unique macrocyclic candidates, parsed 1,036 Vina-GPU docking scores, and produced a ranked candidate table with transparent metric definitions and claim boundaries.
-

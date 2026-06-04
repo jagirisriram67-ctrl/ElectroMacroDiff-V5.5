@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2600" height="1700" viewBox="0 0 2600 1700">
+  <rect width="2600" height="1700" fill="#f7fafc"/>
+  <text x="70" y="95" font-family="Segoe UI, Arial" font-size="58" font-weight="700" fill="#12355b">ElectroMacroDiff V5.5 Active Architecture</text>
+  <text x="70" y="145" font-family="Segoe UI, Arial" font-size="30" fill="#526174">Only the 4 active V5.5 model blocks are shown. RDKit and Vina-GPU are execution tools, not trained models.</text>
+  <image href="v5_5_four_active_model_architecture.png" x="0" y="0" width="2600" height="1700"/>
+</svg>
