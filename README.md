@@ -43,6 +43,12 @@ This repository is prepared as the college-review handover package. It includes:
 
 The files are computational research artifacts only. They are not wet-lab validation data and should not be interpreted as experimentally confirmed drug candidates.
 
+For a reviewer-facing explanation of every folder and every tracked file in this repository, open:
+
+```text
+REPOSITORY_FILE_GUIDE_FOR_REVIEWERS.md
+```
+
 ## Dashboard
 
 The interactive dashboard is in `interface/` and is designed for static hosting. It includes:
