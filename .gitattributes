@@ -1,0 +1,25 @@
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.pdbqt text eol=lf
+*.sdf text eol=lf
+*.mol2 text eol=lf
+
+*.pt binary
+*.pth binary
+*.ckpt binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pptx binary
+*.docx binary
+*.xlsx binary

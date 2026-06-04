@@ -1,0 +1,9 @@
+{
+  "source_file_name": "v5_3_pretrain_anchor_atom_training.csv",
+  "archive_file": "v5_3_pretrain_anchor_atom_training.csv.gz",
+  "reason_for_compression": "The original CSV is larger than GitHub's normal single-file size limit, so this archive keeps it available without committing the uncompressed 279 MB file.",
+  "original_size_bytes": 279222607,
+  "compressed_size_bytes": 10523484,
+  "original_sha256": "5db606ee9480af420e6c5e8ff26dd8dc3a25e38e919cf0308944c23e06e7bd94",
+  "compressed_sha256": "74464cee140315a742ecf466830f3c3b24326a67386edefb8d284351f375d0eb"
+}

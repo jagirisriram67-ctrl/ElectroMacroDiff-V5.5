@@ -1,0 +1,159 @@
+{
+  "v5_0_v5_1_planning": {
+    "file_count": 4,
+    "total_size_bytes": 103524,
+    "largest_files": [
+      {
+        "path": "ElectroMacroDiff_V5.0_Technical_Report.pdf",
+        "bytes": 47387
+      },
+      {
+        "path": "ElectroMacroDiff_V5.0_Upgradation_Plan.pdf",
+        "bytes": 31728
+      },
+      {
+        "path": "ElectroMacroDiff_V5.1_Upgradation_Implementation_Plan.md",
+        "bytes": 23906
+      },
+      {
+        "path": "README.md",
+        "bytes": 503
+      }
+    ]
+  },
+  "v5_2_initial_hybrid": {
+    "file_count": 44,
+    "total_size_bytes": 836788,
+    "largest_files": [
+      {
+        "path": "planning_documents/ElectroMacroDiff_V5.2_Hybrid_Master_Execution_Blueprint.pdf",
+        "bytes": 323690
+      },
+      {
+        "path": "planning_documents/ElectroMacroDiff_V5.2_Hybrid_Master_Execution_Blueprint.html",
+        "bytes": 52999
+      },
+      {
+        "path": "planning_documents/ElectroMacroDiff_V5.2_Hybrid_Master_Execution_Blueprint.md",
+        "bytes": 33156
+      },
+      {
+        "path": "EMD_v5_2_original_code/emd_pipeline/se3_flow_model.py",
+        "bytes": 26435
+      },
+      {
+        "path": "EMD_v5_2_original_code/test_pipeline.py",
+        "bytes": 25343
+      },
+      {
+        "path": "EMD_v5_2_original_code/notebooks/quickstart_full_pipeline.ipynb",
+        "bytes": 21988
+      },
+      {
+        "path": "EMD_v5_2_original_code/emd_pipeline/candidate_generation.py",
+        "bytes": 18618
+      },
+      {
+        "path": "EMD_v5_2_original_code/notebooks/07_final_ranking_and_tpp.ipynb",
+        "bytes": 18336
+      },
+      {
+        "path": "planning_documents/ElectroMacroDiff_V5.2_Student_Execution_Plan.md",
+        "bytes": 16399
+      },
+      {
+        "path": "EMD_v5_2_original_code/emd_pipeline/ranking_report.py",
+        "bytes": 15360
+      }
+    ]
+  },
+  "v5_3_model_guided_generation": {
+    "file_count": 1023,
+    "total_size_bytes": 66029870,
+    "largest_files": [
+      {
+        "path": "02_curated_data/v5_3_pretrain_fragment_linker_pairs.csv",
+        "bytes": 18793571
+      },
+      {
+        "path": "03_features/v5_3_pretrain_anchor_atom_training.csv.gz",
+        "bytes": 10523484
+      },
+      {
+        "path": "03_features/v5_3_anchor_atom_training.csv",
+        "bytes": 9451572
+      },
+      {
+        "path": "05_generated_candidates/model_guided_macrocycle/generated_v5_3_model_guided_macrocycles_kaggle_diverse_attempt_log.csv",
+        "bytes": 1678496
+      },
+      {
+        "path": "06_docking/v5_3_model_guided/ligands_sdf/candidates_for_docking.sdf",
+        "bytes": 769235
+      },
+      {
+        "path": "09_reports/v5_3_gpu_decision_package/V5_3_GPU_Candidate_Decision_Package.zip",
+        "bytes": 654941
+      },
+      {
+        "path": "02_curated_data/v5_3_macrocycle_fragment_linker_pairs.csv",
+        "bytes": 627893
+      },
+      {
+        "path": "02_curated_data/v5_3_pretrain_macrocycles.csv",
+        "bytes": 537744
+      },
+      {
+        "path": "04_models_checkpoints/v5_3_linker_size/linker_size_training_features.csv",
+        "bytes": 493131
+      },
+      {
+        "path": "vina_gpu_2_1_results_full/06_docking/v5_3_model_guided/scores/vina_gpu_colab_driver.log",
+        "bytes": 184582
+      }
+    ]
+  },
+  "v5_4_pocket_electronic_scoring": {
+    "file_count": 8,
+    "total_size_bytes": 237499,
+    "largest_files": [
+      {
+        "path": "08_final_ranking/v5_3_model_guided_pocket_electronic_ranked_candidates.csv",
+        "bytes": 129457
+      },
+      {
+        "path": "06_docking/v5_3_model_guided/scores/pocket_electronic_fit_scores.csv",
+        "bytes": 77864
+      },
+      {
+        "path": "src/emd_v5_2_hybrid/pocket_electronics.py",
+        "bytes": 12323
+      },
+      {
+        "path": "scripts/21_score_pocket_electronics.py",
+        "bytes": 7970
+      },
+      {
+        "path": "docs/V5_4_POCKET_ELECTRONIC_GUIDANCE_PLAN.md",
+        "bytes": 5030
+      },
+      {
+        "path": "06_docking/v5_3_model_guided/scores/jak2_pocket_electronic_profile.json",
+        "bytes": 2439
+      },
+      {
+        "path": "00_project_registry/progress_v5_4_pocket_electronic_fit.json",
+        "bytes": 1385
+      },
+      {
+        "path": "README.md",
+        "bytes": 1031
+      }
+    ]
+  },
+  "archive_notes": {
+    "root_repository_version": "V5.5 final handover implementation",
+    "purpose": "Earlier-version evidence archive for reviewer traceability",
+    "large_file_policy": "V5.3 pretrain anchor atom table is stored as gzip plus SHA-256 manifest instead of an uncompressed 279 MB CSV."
+  }
+}

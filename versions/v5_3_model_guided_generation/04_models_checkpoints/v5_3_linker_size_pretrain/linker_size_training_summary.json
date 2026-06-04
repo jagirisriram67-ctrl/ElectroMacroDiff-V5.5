@@ -1,0 +1,39 @@
+{
+  "status": "completed",
+  "device": "cuda",
+  "input_csv": "/content/EMD_V5_2_Hybrid/02_curated_data/v5_3_pretrain_fragment_linker_pairs.csv",
+  "feature_csv": "/content/EMD_V5_2_Hybrid/04_models_checkpoints/v5_3_linker_size_pretrain/linker_size_training_features.csv",
+  "model_path": "/content/EMD_V5_2_Hybrid/04_models_checkpoints/v5_3_linker_size_pretrain/linker_size_model.pt",
+  "training_log": "/content/EMD_V5_2_Hybrid/04_models_checkpoints/v5_3_linker_size_pretrain/linker_size_training_log.csv",
+  "epochs": 1000,
+  "hidden_dim": 192,
+  "learning_rate": 0.0005,
+  "init_checkpoint": "",
+  "num_rows": 52266,
+  "num_train_rows": 39252,
+  "num_val_rows": 7791,
+  "num_test_rows": 5223,
+  "labels": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "best_epoch": 994,
+  "best_val_metrics": {
+    "exact_accuracy": 0.179438,
+    "within_one_accuracy": 0.383391,
+    "mae_atoms": 2.879348
+  },
+  "test_metrics": {
+    "exact_accuracy": 0.195673,
+    "within_one_accuracy": 0.40762,
+    "mae_atoms": 2.749186
+  }
+}

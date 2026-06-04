@@ -1,0 +1,114 @@
+# ============================================================
+# ElectroMacroDiff V5.2 Hybrid — Campaign Configuration
+# ============================================================
+
+project:
+  name: "EMD_V5_2_Hybrid"
+  version: "5.2"
+  description: "Low-resource AI drug discovery pipeline for JAK2 macrocyclic/constrained inhibitors"
+  date_created: "2026-05-08"
+
+target:
+  name: "JAK2"
+  full_name: "Janus kinase 2"
+  uniprot: "O60674"
+  primary_pdb: "5AEP"
+  pocket_type: "ATP-binding"
+  organism: "Homo sapiens"
+
+seeds:
+  random_seed: 42
+  numpy_seed: 42
+  torch_seed: 42
+
+paths:
+  drive_base: "/content/drive/MyDrive/EMD_V5_2_Hybrid"
+  local_base: "."
+  raw_data: "01_raw_data"
+  curated_data: "02_curated_data"
+  features: "03_features"
+  models: "04_models_checkpoints"
+  generated: "05_generated_candidates"
+  docking: "06_docking"
+  admet: "07_admet_synthesis"
+  ranking: "08_final_ranking"
+  reports: "09_reports"
+  notebooks: "10_notebooks"
+  logs: "11_logs"
+
+data:
+  tiny_debug: true
+  tiny_debug_size: 25
+  max_train_molecules: 700
+  max_curated_molecules: 1500
+  min_curated_molecules: 300
+  mw_min: 250
+  mw_max: 900
+  ring_size_analysis_min: 8
+  ring_size_analysis_max: 24
+  macrocycle_min: 12
+  macrocycle_max: 20
+  scaffold_split: true
+  train_fraction: 0.7
+  val_fraction: 0.15
+  test_fraction: 0.15
+
+model:
+  name: "SE3FlowMatching"
+  atom_feature_dim: 64
+  hidden_dim: 128
+  num_layers: 4
+  num_heads: 4
+  max_atoms: 80
+  epochs_target: 200
+  epochs_minimum: 50
+  batch_size: 4
+  learning_rate: 0.0002
+  weight_decay: 0.00001
+  gradient_clip: 1.0
+  checkpoint_every: 10
+  validate_every: 5
+  precision: "fp32"
+  scheduler: "cosine"
+
+generation:
+  max_se3_candidates: 500
+  max_selfies_candidates: 2000
+  max_rdkit_candidates: 1000
+  min_total_filtered: 100
+  selfies_mutations_per_seed: 10
+  rdkit_substitutions_per_seed: 5
+
+docking:
+  engine_primary: "vina"
+  engine_stretch: "gnina"
+  max_molecules: 150
+  min_molecules: 50
+  grid_size: [22, 22, 22]
+  exhaustiveness: 16
+  num_modes: 9
+  energy_range: 3
+
+admet:
+  qed_threshold: 0.3
+  sa_score_threshold: 6.0
+  mw_max: 900
+  logp_max: 7.0
+  hbd_max: 5
+  hba_max: 10
+  tpsa_max: 200
+  rotatable_max: 15
+  lipinski_max_violations: 1
+
+ranking:
+  weights:
+    docking_score: 0.35
+    pose_sanity: 0.15
+    admet: 0.20
+    synthesis: 0.15
+    novelty_diversity: 0.10
+    safety_proxy: 0.05
+  top_n_final: 5
+  top_n_backup: 5
+  top_n_cards: 10
+  diversity_required: true

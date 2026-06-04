@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "generated_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\model_guided_macrocycle\\generated_v5_3_model_guided_macrocycles.csv",
+  "training_fragment_paths": [
+    "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\02_curated_data\\v5_3_pretrain_fragment_linker_pairs.csv",
+    "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\02_curated_data\\v5_3_macrocycle_fragment_linker_pairs.csv"
+  ],
+  "generated_candidates": 114,
+  "training_linker_count": 24475,
+  "linker_novelty_rows": 114,
+  "linker_novelty_measured_rows": 114,
+  "linker_novel_rows": 28,
+  "linker_novelty_percent": 24.5614,
+  "linker_novelty_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\05_generated_candidates\\model_guided_macrocycle\\v5_3_model_guided_linker_novelty.csv",
+  "attempt_log_exists": false,
+  "raw_attempt_rows": 0,
+  "valid_output_rows": 0,
+  "raw_attempt_validity_percent": null,
+  "status_counts": {},
+  "benchmark_note": "Raw-attempt validity is paper-equivalent only after generation logs every attempted molecule. Linker novelty is computed from RDKit two-bond macrocycle fragmentation and exact linker SMILES matching."
+}

@@ -1,0 +1,4 @@
+branch,docking_rows,scored_rows,coverage_percent,best_score,median_score,mean_score
+v5_2_macrocycle_campaign,148,148,100.0,-9.186,-6.453,-6.2381
+kaggle_v5_5_pocket_guided,1036,1036,100.0,-12.7,-8.4,-8.372
+v5_3_model_guided_vina_gpu_2_1,114,114,100.0,-11.4,-8.3,-8.6974

@@ -1,0 +1,54 @@
+# EMD V5.2 Hybrid — .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Generated pipeline outputs (recreated by notebooks)
+00_project_registry/
+01_raw_data/
+02_curated_data/
+03_features/
+04_models_checkpoints/
+05_generated_candidates/
+06_docking/
+07_admet_synthesis/
+08_final_ranking/
+09_reports/
+10_notebooks/
+11_logs/
+
+# Test outputs
+_test_output/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Large files
+*.pt
+*.sdf
+*.pdb
+*.pdbqt
+*.zip

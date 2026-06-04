@@ -39,6 +39,7 @@ This repository is prepared as the college-review handover package. It includes:
 - generated V5.5 candidate tables and attempt logs
 - Vina-GPU docking score tables and pocket-electronic ranking outputs
 - project reports, senior-review explanation notes, architecture diagrams, and dashboard assets
+- a `versions/` archive showing how the project evolved from V5.0/V5.1 planning to V5.2, V5.3, V5.4, and the final V5.5 root implementation
 
 The files are computational research artifacts only. They are not wet-lab validation data and should not be interpreted as experimentally confirmed drug candidates.
 
@@ -78,6 +79,7 @@ interface/                Static UI dashboard
 scripts/                  Command-line pipeline stages
 src/                      Reusable Python implementation modules
 tests/                    Unit and validation tests
+versions/                 Earlier-version archive for reviewer traceability
 ```
 
 ## Key Reports

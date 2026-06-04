@@ -1,0 +1,136 @@
+{
+  "candidate_metrics": [
+    {
+      "branch": "selfies",
+      "benchmark_scope": "filtered_survivor",
+      "num_candidates": 2590,
+      "num_unique_inchikeys": 2590,
+      "validity_percent": 100.0,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 11.3514,
+      "novel_molecule_percent": 97.6062,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": null,
+      "median_mw": 407.4595,
+      "median_logp": 2.4584,
+      "median_qed": 0.4747,
+      "median_sa_score": 3.436,
+      "interpretation_note": "Filtered survivor metrics; not directly equivalent to MED raw generation metrics."
+    },
+    {
+      "branch": "rdkit",
+      "benchmark_scope": "filtered_survivor",
+      "num_candidates": 1250,
+      "num_unique_inchikeys": 1250,
+      "validity_percent": 100.0,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 0.8,
+      "novel_molecule_percent": 98.88,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": null,
+      "median_mw": 446.408,
+      "median_logp": 3.5401,
+      "median_qed": 0.4817,
+      "median_sa_score": 3.403,
+      "interpretation_note": "Filtered survivor metrics; not directly equivalent to MED raw generation metrics."
+    },
+    {
+      "branch": "macrocycle_linker",
+      "benchmark_scope": "filtered_survivor",
+      "num_candidates": 2935,
+      "num_unique_inchikeys": 2935,
+      "validity_percent": 100.0,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 100.0,
+      "novel_molecule_percent": 100.0,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": null,
+      "median_mw": 516.572,
+      "median_logp": 4.2853,
+      "median_qed": 0.3898,
+      "median_sa_score": 4.975,
+      "interpretation_note": "Filtered survivor metrics; not directly equivalent to MED raw generation metrics."
+    },
+    {
+      "branch": "v5_3_model_guided_macrocycle",
+      "benchmark_scope": "filtered_survivor",
+      "num_candidates": 114,
+      "num_unique_inchikeys": 114,
+      "validity_percent": 100.0,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 100.0,
+      "novel_molecule_percent": 100.0,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": null,
+      "median_mw": 481.132,
+      "median_logp": 3.0286,
+      "median_qed": 0.4139,
+      "median_sa_score": 4.89,
+      "interpretation_note": "Filtered survivor metrics; not directly equivalent to MED raw generation metrics."
+    },
+    {
+      "branch": "merged_with_v5_3",
+      "benchmark_scope": "filtered_survivor",
+      "num_candidates": 6888,
+      "num_unique_inchikeys": 6888,
+      "validity_percent": 100.0,
+      "uniqueness_percent": 100.0,
+      "macrocyclization_percent": 48.6789,
+      "novel_molecule_percent": 98.9111,
+      "basic_filter_pass_percent": 100.0,
+      "linker_novelty_percent": null,
+      "median_mw": 464.2615,
+      "median_logp": 3.4296,
+      "median_qed": 0.4277,
+      "median_sa_score": 4.125,
+      "interpretation_note": "Filtered survivor metrics; not directly equivalent to MED raw generation metrics."
+    }
+  ],
+  "docking_metrics": [
+    {
+      "branch": "v5_2_macrocycle_campaign",
+      "docking_rows": 148,
+      "scored_rows": 148,
+      "coverage_percent": 100.0,
+      "best_score": -9.186,
+      "median_score": -6.453,
+      "mean_score": -6.2381
+    },
+    {
+      "branch": "v5_3_model_guided_vina_gpu_2_1",
+      "docking_rows": 114,
+      "scored_rows": 114,
+      "coverage_percent": 100.0,
+      "best_score": -11.4,
+      "median_score": -8.3,
+      "mean_score": -8.6974
+    }
+  ],
+  "pose_metrics": [
+    {
+      "branch": "v5_2_macrocycle_campaign",
+      "pose_rows": 10,
+      "pose_pass_rows": 10,
+      "pose_pass_percent": 100.0
+    },
+    {
+      "branch": "v5_3_model_guided",
+      "pose_rows": 10,
+      "pose_pass_rows": 10,
+      "pose_pass_percent": 100.0
+    }
+  ],
+  "med_comparison": {
+    "branch": "v5_3_model_guided_macrocycle",
+    "reference": "MED",
+    "beats_all_comparable_metrics": false,
+    "paper_equivalent_claim_allowed": false,
+    "comparisons": {
+      "validity_percent": "exceeds",
+      "uniqueness_percent": "exceeds",
+      "macrocyclization_percent": "exceeds",
+      "linker_novelty_percent": "not_comparable"
+    },
+    "claim_note": "Linker novelty and raw-attempt validity are unavailable for the current filtered survivor CSVs; do not claim MED is beaten on the original paper benchmark yet."
+  }
+}

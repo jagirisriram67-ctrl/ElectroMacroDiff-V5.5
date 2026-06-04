@@ -1,0 +1,28 @@
+{
+  "status": "completed",
+  "generated_csv": "/kaggle/working/evidence_upgrade_run/EMD_V5_2_Hybrid/05_generated_candidates/model_guided_macrocycle/generated_v5_3_model_guided_macrocycles_kaggle_logged.csv",
+  "training_fragment_paths": [
+    "/kaggle/working/evidence_upgrade_run/EMD_V5_2_Hybrid/02_curated_data/v5_3_pretrain_fragment_linker_pairs.csv",
+    "/kaggle/working/evidence_upgrade_run/EMD_V5_2_Hybrid/02_curated_data/v5_3_macrocycle_fragment_linker_pairs.csv"
+  ],
+  "generated_candidates": 114,
+  "training_linker_count": 24475,
+  "linker_novelty_rows": 114,
+  "linker_novelty_measured_rows": 114,
+  "linker_novel_rows": 30,
+  "linker_novelty_percent": 26.3158,
+  "linker_novelty_csv": "/kaggle/working/evidence_upgrade_run/EMD_V5_2_Hybrid/05_generated_candidates/model_guided_macrocycle/v5_3_model_guided_linker_novelty_kaggle_logged.csv",
+  "attempt_log_exists": true,
+  "attempt_log_csv": "/kaggle/working/evidence_upgrade_run/EMD_V5_2_Hybrid/05_generated_candidates/model_guided_macrocycle/generated_v5_3_model_guided_macrocycles_kaggle_logged_attempt_log.csv",
+  "raw_attempt_rows": 629,
+  "valid_output_rows": 114,
+  "raw_attempt_validity_percent": 18.124,
+  "status_counts": {
+    "duplicate_or_invalid_record": 129,
+    "filtered_non_macrocycle_or_basic_filters": 140,
+    "no_valid_anchor_pair": 236,
+    "ring_closure_failed": 10,
+    "valid_output": 114
+  },
+  "benchmark_note": "Raw-attempt validity is paper-equivalent only after generation logs every attempted molecule. Linker novelty is computed from RDKit two-bond macrocycle fragmentation and exact linker SMILES matching."
+}

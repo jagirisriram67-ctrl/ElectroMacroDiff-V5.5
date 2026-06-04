@@ -41,3 +41,12 @@ env/
 !06_docking/receptor/jak2_prepared.pdbqt
 !06_docking/ligands_sdf/candidates_for_docking.sdf
 !submission_artifacts_2026-05-28/*.pptx
+
+# Version-history archive keeps earlier scientific artifacts in readable folders.
+!versions/**/*.pt
+!versions/**/*.pth
+!versions/**/*.ckpt
+!versions/**/*.pdbqt
+!versions/**/*.sdf
+!versions/**/*.pdf
+!versions/**/*.zip

@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ElectroMacroDiff V5.2 Hybrid — Master Execution Blueprint</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root {
+    --bg: #0f1117; --surface: #181a20; --surface2: #22252e;
+    --border: #2e3140; --text: #e4e6ed; --text2: #9da3b4;
+    --accent: #6c63ff; --accent2: #00d4aa; --accent3: #ff6b6b;
+    --code-bg: #1e2029;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.75; font-size: 16px;
+    max-width: 900px; margin: 0 auto; padding: 40px 28px 80px;
+  }
+  h1 {
+    font-size: 2.4rem; font-weight: 800; margin: 48px 0 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; letter-spacing: -0.02em;
+  }
+  h2 {
+    font-size: 1.55rem; font-weight: 700; color: var(--accent2);
+    margin: 44px 0 16px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+  h3 {
+    font-size: 1.2rem; font-weight: 600; color: #a8a0ff;
+    margin: 32px 0 12px;
+  }
+  p { margin: 12px 0; color: var(--text); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  hr {
+    border: none; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 36px 0;
+  }
+  blockquote {
+    margin: 16px 0; padding: 16px 20px;
+    border-left: 4px solid var(--accent);
+    background: var(--surface); border-radius: 0 8px 8px 0;
+    color: var(--text2); font-style: italic;
+  }
+  ul, ol { margin: 12px 0; padding-left: 24px; }
+  li { margin: 4px 0; }
+  pre {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px;
+    overflow-x: auto; margin: 16px 0; font-size: 0.88rem;
+  }
+  code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.88em;
+  }
+  :not(pre) > code {
+    background: var(--surface2); padding: 2px 7px;
+    border-radius: 5px; color: var(--accent2);
+  }
+  table {
+    width: 100%; border-collapse: collapse;
+    margin: 16px 0; font-size: 0.92rem;
+  }
+  th {
+    background: var(--surface2); font-weight: 600;
+    text-align: left; padding: 12px 14px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent2);
+  }
+  td {
+    padding: 10px 14px; border-bottom: 1px solid var(--border);
+  }
+  tr:hover td { background: var(--surface); }
+  /* Print styles */
+  @media print {
+    body { background: #fff; color: #111; max-width: 100%; padding: 20px; font-size: 11pt; }
+    h1 { -webkit-text-fill-color: #333; color: #333; background: none; }
+    h2 { color: #1a6b4f; }
+    h3 { color: #4a3fbf; }
+    pre { background: #f4f4f6; border-color: #ccc; }
+    th { background: #e8e8ec; color: #1a6b4f; border-bottom-color: #1a6b4f; }
+    td { border-bottom-color: #ddd; }
+    blockquote { background: #f8f8fa; border-left-color: #4a3fbf; }
+    :not(pre) > code { background: #eee; color: #1a6b4f; }
+  }
+</style>
+</head>
+<body>
+<h1 id="electromacrodiff-v52-hybrid">ElectroMacroDiff V5.2 Hybrid</h1>
+<h2 id="complete-end-to-end-master-execution-blueprint">Complete End-to-End Master Execution Blueprint</h2>
+<p>Version date: 2026-05-08</p>
+<p>This is the final realistic plan for a 5-member B.Tech second-year team with 8-10 days, Google Colab free tier, 2-3 Google accounts per person, unreliable parallel execution, and Google Drive as the persistent storage layer.</p>
+<p>The plan keeps the honest V5.2 execution strategy, but restores the research contribution: the custom SE(3) Flow Matching model is the primary candidate generator, while RDKit/SELFIES generation is the baseline and backup.</p>
+<hr />
+<h2 id="1-final-project-identity">1. Final Project Identity</h2>
+<p>Project name: ElectroMacroDiff V5.2 Hybrid</p>
+<p>Core claim:</p>
+<blockquote>
+<p>We built a low-resource, checkpointed AI drug discovery pipeline centered on a custom SE(3) flow-matching molecular generator, supported by classical RDKit/SELFIES baselines, docking-based prioritization, ADMET filtering, synthesizability estimation, and final TPP-style reporting.</p>
+</blockquote>
+<p>What the project should claim:</p>
+<ul>
+<li>custom deep learning generator was trained/tested under free Colab constraints</li>
+<li>pipeline is reproducible and resumable from Google Drive checkpoints</li>
+<li>generated molecules are computational candidates for experimental follow-up</li>
+<li>results are prioritization hypotheses, not clinical proof</li>
+</ul>
+<p>What the project must not claim:</p>
+<ul>
+<li>experimentally proven JAK2 inhibitors</li>
+<li>clinically safe drugs</li>
+<li>FDA-approved or FDA-ready molecules</li>
+<li>guaranteed synthesis</li>
+<li>true wet-lab potency</li>
+<li>true FEP accuracy unless actual FEP was performed</li>
+</ul>
+<hr />
+<h2 id="2-real-constraints">2. Real Constraints</h2>
+<p>Team:</p>
+<ul>
+<li>5 students</li>
+<li>second-year B.Tech level</li>
+<li>limited time for debugging heavy scientific software</li>
+</ul>
+<p>Time:</p>
+<ul>
+<li>ideal: 10 days</li>
+<li>compressed: 8 days</li>
+</ul>
+<p>Compute:</p>
+<ul>
+<li>Google Colab free tier</li>
+<li>T4 GPU when available</li>
+<li>CPU fallback required</li>
+<li>no assumption of stable long-running sessions</li>
+<li>no assumption of true parallel Colab execution</li>
+</ul>
+<p>Storage:</p>
+<ul>
+<li>Google Drive is mandatory</li>
+<li>every output, checkpoint, log, and plot must be saved to Drive</li>
+</ul>
+<p>Main technical risk:</p>
+<ul>
+<li>custom SE(3) model DataLoader/training may fail late unless tested early</li>
+</ul>
+<p>Main strategic fix:</p>
+<ul>
+<li>SE(3) model is primary generator</li>
+<li>RDKit/SELFIES baseline continues in parallel as safety net</li>
+</ul>
+<hr />
+<h2 id="3-final-deliverables">3. Final Deliverables</h2>
+<p>Minimum viable deliverables:</p>
+<ul>
+<li>curated JAK2 ligand dataset</li>
+<li>macrocycle/constrained-ligand analysis</li>
+<li>trained or at least debug-trained SE(3) model with checkpoints</li>
+<li>RDKit/SELFIES baseline generated molecules</li>
+<li>generated candidate CSV/SDF files</li>
+<li>docking scores for at least 50 molecules</li>
+<li>ADMET and synthesizability ranking for top candidates</li>
+<li>final ranked top 3-5 molecules</li>
+<li>TPP-style report</li>
+<li>presentation slides</li>
+<li>reproducible notebooks</li>
+<li>Google Drive artifact registry</li>
+</ul>
+<p>Ideal deliverables:</p>
+<ul>
+<li>SE(3) trained 100-200 epochs or until stable convergence</li>
+<li>at least 100 valid SE(3)-generated candidates</li>
+<li>500-2,000 baseline generated candidates</li>
+<li>100-300 merged filtered candidates</li>
+<li>50-150 docked candidates</li>
+<li>top 10 full molecule cards</li>
+<li>top 3-5 final candidates with 2D structure, 3D conformer, pose image, docking score, ADMET flags, synthesis score, and final recommendation</li>
+</ul>
+<hr />
+<h2 id="4-team-roles">4. Team Roles</h2>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Role</th>
+<th>Main Responsibility</th>
+<th>Backup Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student 1</td>
+<td>Integrator / Lead</td>
+<td>Drive registry, notebooks, final merge, report structure</td>
+<td>troubleshoot all modules</td>
+</tr>
+<tr>
+<td>Student 2</td>
+<td>Data Lead</td>
+<td>ChEMBL/BindingDB/PDB collection, curation, splits</td>
+<td>literature notes</td>
+</tr>
+<tr>
+<td>Student 3</td>
+<td>Model Lead</td>
+<td>SE(3) DataLoader, training, checkpoints, inference</td>
+<td>generation metrics</td>
+</tr>
+<tr>
+<td>Student 4</td>
+<td>Chemistry / Generation Lead</td>
+<td>RDKit, SELFIES, descriptors, filters, SDF generation</td>
+<td>SE(3) output cleanup</td>
+</tr>
+<tr>
+<td>Student 5</td>
+<td>Docking / Evaluation Lead</td>
+<td>receptor prep, docking, ADMET, synthesis, final ranking</td>
+<td>pose visualization</td>
+</tr>
+</tbody>
+</table>
+<p>Daily rule:</p>
+<ul>
+<li>every member writes a short daily log</li>
+<li>every important file goes to Drive before sleeping</li>
+<li>no final result is allowed to exist only in Colab runtime</li>
+</ul>
+<hr />
+<h2 id="5-ai-tool-usage-strategy">5. AI Tool Usage Strategy</h2>
+<p>Use AI tools as force multipliers, not as unsupervised truth sources.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Best Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Codex / ChatGPT</td>
+<td>code, debugging, notebook generation, pipeline organization</td>
+</tr>
+<tr>
+<td>Gemini</td>
+<td>literature summaries, Google/Colab workflow, target biology checks</td>
+</tr>
+<tr>
+<td>Claude</td>
+<td>report writing, methods clarity, limitation wording</td>
+</tr>
+<tr>
+<td>DeepSeek / Qwen</td>
+<td>alternative code implementations, tensor-shape debugging</td>
+</tr>
+<tr>
+<td>Grok</td>
+<td>brainstorming, quick sanity checks, presentation phrases</td>
+</tr>
+<tr>
+<td>Antigravity / Codex</td>
+<td>code organization, file generation, reproducible scripts</td>
+</tr>
+</tbody>
+</table>
+<p>Rules:</p>
+<ul>
+<li>every AI-generated code cell must run on Tiny Debug Set first</li>
+<li>never paste unknown code directly into the main run</li>
+<li>save prompts and useful answers in <code>11_logs/ai_assistance_notes.md</code></li>
+<li>AI tools can help write code; saved artifacts prove the project</li>
+</ul>
+<hr />
+<h2 id="6-google-drive-project-structure">6. Google Drive Project Structure</h2>
+<p>Create this exact folder:</p>
+<div class="code"><pre><span></span><code>EMD_V5_2_Hybrid/
+  00_project_registry/
+  01_raw_data/
+    chembl/
+    bindingdb/
+    pubchem/
+    pdb/
+    literature/
+  02_curated_data/
+  03_features/
+    ligand_graphs/
+    conformers/
+    splits/
+  04_models_checkpoints/
+    se3_flow/
+    baseline_models/
+  05_generated_candidates/
+    se3/
+    selfies/
+    rdkit/
+    merged/
+  06_docking/
+    receptor/
+    ligands_pdbqt/
+    poses/
+    scores/
+    images/
+  07_admet_synthesis/
+  08_final_ranking/
+  09_reports/
+  10_notebooks/
+  11_logs/
+</code></pre></div>
+
+<p>Every notebook begins with:</p>
+<div class="code"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;/content/drive&quot;</span><span class="p">)</span>
+
+<span class="n">BASE</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/EMD_V5_2_Hybrid&quot;</span>
+</code></pre></div>
+
+<hr />
+<h2 id="7-required-notebooks">7. Required Notebooks</h2>
+<div class="code"><pre><span></span><code>10_notebooks/
+  00_environment_and_drive_check.ipynb
+  01_data_collection_and_curation.ipynb
+  02_ligand_features_and_splits.ipynb
+  03_se3_dataloader_training.ipynb
+  04_candidate_generation_hybrid.ipynb
+  05_docking_and_pose_filtering.ipynb
+  06_admet_synthesis_safety.ipynb
+  07_final_ranking_and_tpp.ipynb
+</code></pre></div>
+
+<p>Every notebook must contain:</p>
+<ul>
+<li>install cell</li>
+<li>Drive mount cell</li>
+<li>config cell</li>
+<li>Tiny Debug mode</li>
+<li>resume/progress cell</li>
+<li>main execution cell</li>
+<li>output validation cell</li>
+<li>summary cell</li>
+</ul>
+<hr />
+<h2 id="8-colab-requirements">8. Colab Requirements</h2>
+<p>The Colab package list is saved separately:</p>
+<ul>
+<li><code>requirements_v5_2_hybrid_colab.txt</code></li>
+</ul>
+<p>Core install cell:</p>
+<div class="code"><pre><span></span><code><span class="err">!</span><span class="n">pip</span> <span class="o">-</span><span class="n">q</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="s2">&quot;/content/drive/MyDrive/EMD_V5_2_Hybrid/requirements_v5_2_hybrid_colab.txt&quot;</span>
+</code></pre></div>
+
+<p>If installing from local workspace first, upload/copy the requirements file into:</p>
+<div class="code"><pre><span></span><code>EMD_V5_2_Hybrid/00_project_registry/requirements_v5_2_hybrid_colab.txt
+</code></pre></div>
+
+<p>Main packages:</p>
+<ul>
+<li>RDKit</li>
+<li>SELFIES</li>
+<li>ChEMBL webresource client</li>
+<li>Biopython</li>
+<li>PyTorch</li>
+<li>e3nn</li>
+<li>torchdiffeq</li>
+<li>Vina/Meeko where possible</li>
+<li>matplotlib/seaborn/py3Dmol</li>
+<li>python-docx/WeasyPrint for reporting</li>
+</ul>
+<p>Optional stretch packages:</p>
+<ul>
+<li>GNINA binary</li>
+<li>DiffDock from GitHub</li>
+<li>AiZynthFinder</li>
+<li>torch-geometric</li>
+</ul>
+<p>Fallback principle:</p>
+<ul>
+<li>if a package takes more than 2 hours to install/debug, move to fallback and protect the pipeline</li>
+</ul>
+<hr />
+<h2 id="9-dataset-plan">9. Dataset Plan</h2>
+<h3 id="91-primary-datasets">9.1 Primary Datasets</h3>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Role</th>
+<th>Required Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChEMBL 36</td>
+<td>primary JAK2 bioactivity data</td>
+<td>curated ligand/activity table</td>
+</tr>
+<tr>
+<td>BindingDB</td>
+<td>additional binding/activity records</td>
+<td>merged activity backup</td>
+</tr>
+<tr>
+<td>RCSB PDB</td>
+<td>JAK2 protein structures</td>
+<td>receptor PDB/mmCIF files</td>
+</tr>
+<tr>
+<td>PubChem</td>
+<td>backup molecule metadata and activity notes</td>
+<td>optional metadata table</td>
+</tr>
+</tbody>
+</table>
+<p>As of the latest checked official ChEMBL download documentation, ChEMBL 36 is the current release listed for July 2025. Use ChEMBL 36 where possible; use the ChEMBL API if downloading the full database is too slow.</p>
+<h3 id="92-protein-structures">9.2 Protein Structures</h3>
+<p>Primary receptor:</p>
+<ul>
+<li>JAK2 crystal structure, recommended starting structure: PDB 5AEP</li>
+</ul>
+<p>Backup/optional:</p>
+<ul>
+<li>additional JAK2 kinase domain structures from RCSB</li>
+<li>JAK1/JAK3/TYK2/FLT3 structures for selectivity if time allows</li>
+</ul>
+<p>Pocket:</p>
+<ul>
+<li>ATP-binding pocket or co-crystallized ligand pocket</li>
+<li>grid centered around reference ligand or active-site residues</li>
+</ul>
+<h3 id="93-traininggeneration-sets">9.3 Training/Generation Sets</h3>
+<table>
+<thead>
+<tr>
+<th>Set</th>
+<th style="text-align: right;">Target Size</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tiny Debug Set</td>
+<td style="text-align: right;">20-30 molecules</td>
+<td>test every notebook quickly</td>
+</tr>
+<tr>
+<td>SE(3) Sprint Train Set</td>
+<td style="text-align: right;">100-700 molecules</td>
+<td>train custom model</td>
+</tr>
+<tr>
+<td>Main Curated Set</td>
+<td style="text-align: right;">300-1,500 molecules</td>
+<td>descriptors, baselines, ranking</td>
+</tr>
+<tr>
+<td>Baseline Generation Seeds</td>
+<td style="text-align: right;">50-200 potent/scaffold-diverse molecules</td>
+<td>RDKit/SELFIES generation</td>
+</tr>
+<tr>
+<td>Docking Set</td>
+<td style="text-align: right;">50-150 molecules</td>
+<td>realistic docking workload</td>
+</tr>
+<tr>
+<td>Final Evaluation Set</td>
+<td style="text-align: right;">top 10-20 molecules</td>
+<td>ADMET/synthesis/full cards</td>
+</tr>
+</tbody>
+</table>
+<p>If true macrocyclic JAK2 ligands are too few:</p>
+<ul>
+<li>include constrained JAK2 ligands</li>
+<li>include potent JAK2 ligands with macrocycle-like linker potential</li>
+<li>clearly label this as "macrocycle/constrained inhibitor generation"</li>
+</ul>
+<hr />
+<h2 id="10-data-curation-rules">10. Data Curation Rules</h2>
+<p>Keep activity records when:</p>
+<ul>
+<li>target is JAK2 or clearly maps to human JAK2</li>
+<li>activity type is IC50, Ki, Kd, or inhibition with usable context</li>
+<li>units can be converted to nM or a comparable value</li>
+<li>SMILES is present and RDKit-sanitizable</li>
+<li>assay confidence is acceptable</li>
+</ul>
+<p>Preferred fields:</p>
+<div class="code"><pre><span></span><code>source
+source_compound_id
+chembl_id
+bindingdb_id
+pubchem_cid
+canonical_smiles
+standard_type
+standard_relation
+standard_value
+standard_units
+standard_value_nM
+p_activity
+target_name
+target_id
+assay_id
+assay_description
+confidence_score
+doi_or_reference
+</code></pre></div>
+
+<p>Deduplication:</p>
+<ul>
+<li>canonicalize SMILES</li>
+<li>compute InChIKey</li>
+<li>group by InChIKey</li>
+<li>retain median potency or best-confidence potency</li>
+<li>keep source provenance</li>
+</ul>
+<p>Macrocycle/constrained labels:</p>
+<div class="code"><pre><span></span><code>max_ring_size
+has_macrocycle_12_20
+has_large_ring_8_11
+num_rings
+num_rotatable_bonds
+murcko_scaffold
+</code></pre></div>
+
+<p>Recommended filters:</p>
+<ul>
+<li>molecular weight: 250-900 for broad macrocycle/constrained search</li>
+<li>ring size: 8-24 for analysis, 12-20 for strict macrocycle flag</li>
+<li>remove salts/mixtures</li>
+<li>remove invalid valence structures</li>
+<li>flag but do not immediately remove PAINS until final filtering</li>
+</ul>
+<hr />
+<h2 id="11-file-schemas">11. File Schemas</h2>
+<h3 id="111-curated-ligands">11.1 Curated Ligands</h3>
+<p>File:</p>
+<div class="code"><pre><span></span><code>02_curated_data/jak2_curated_ligands.csv
+</code></pre></div>
+
+<p>Columns:</p>
+<div class="code"><pre><span></span><code>mol_id
+source
+source_id
+canonical_smiles
+inchikey
+activity_type
+activity_value_nM
+p_activity
+target
+assay_id
+confidence_score
+max_ring_size
+has_macrocycle_12_20
+has_constrained_ring_8_11
+split
+notes
+</code></pre></div>
+
+<h3 id="112-ligand-features">11.2 Ligand Features</h3>
+<p>File:</p>
+<div class="code"><pre><span></span><code>03_features/ligand_features.csv
+</code></pre></div>
+
+<p>Columns:</p>
+<div class="code"><pre><span></span><code>mol_id
+canonical_smiles
+mw
+logp
+tpsa
+hbd
+hba
+rotatable_bonds
+qed
+num_atoms
+num_heavy_atoms
+num_rings
+max_ring_size
+formal_charge
+passes_rdkit
+passes_basic_filters
+</code></pre></div>
+
+<h3 id="113-se3-graph-dataset">11.3 SE(3) Graph Dataset</h3>
+<p>Files:</p>
+<div class="code"><pre><span></span><code>03_features/ligand_graphs/se3_graphs.pt
+03_features/ligand_graphs/se3_graph_index.csv
+</code></pre></div>
+
+<p>Each graph should contain:</p>
+<div class="code"><pre><span></span><code>atom_features: [num_atoms, atom_feature_dim]
+bond_index: [2, num_edges]
+bond_features: [num_edges, bond_feature_dim]
+coords: [num_atoms, 3]
+mol_id
+smiles
+ring_mask
+macrocycle_mask
+activity_label optional
+</code></pre></div>
+
+<p>Atom features:</p>
+<ul>
+<li>atomic number embedding/index</li>
+<li>formal charge</li>
+<li>aromatic flag</li>
+<li>hybridization</li>
+<li>degree</li>
+<li>valence</li>
+<li>ring membership</li>
+<li>macrocycle ring flag</li>
+<li>donor flag</li>
+<li>acceptor flag</li>
+<li>Gasteiger charge</li>
+<li>chirality flag</li>
+</ul>
+<p>Bond features:</p>
+<ul>
+<li>single/double/triple/aromatic</li>
+<li>conjugated flag</li>
+<li>ring bond flag</li>
+<li>stereo flag</li>
+</ul>
+<h3 id="114-generated-candidates">11.4 Generated Candidates</h3>
+<p>File:</p>
+<div class="code"><pre><span></span><code>05_generated_candidates/merged/generated_merged_filtered.csv
+</code></pre></div>
+
+<p>Columns:</p>
+<div class="code"><pre><span></span><code>candidate_id
+source_generator
+parent_mol_id
+canonical_smiles
+inchikey
+valid_rdkit
+unique_flag
+novel_flag
+mw
+logp
+tpsa
+qed
+sa_score
+max_ring_size
+has_macrocycle_12_20
+generation_notes
+</code></pre></div>
+
+<h3 id="115-docking-scores">11.5 Docking Scores</h3>
+<p>File:</p>
+<div class="code"><pre><span></span><code>06_docking/scores/docking_scores.csv
+</code></pre></div>
+
+<p>Columns:</p>
+<div class="code"><pre><span></span><code>candidate_id
+smiles
+docking_engine
+receptor_pdb
+grid_center_x
+grid_center_y
+grid_center_z
+grid_size_x
+grid_size_y
+grid_size_z
+best_score
+pose_rank
+pose_file
+pose_image
+control_or_generated
+notes
+</code></pre></div>
+
+<h3 id="116-final-ranking">11.6 Final Ranking</h3>
+<p>File:</p>
+<div class="code"><pre><span></span><code>08_final_ranking/final_ranked_candidates.csv
+</code></pre></div>
+
+<p>Columns:</p>
+<div class="code"><pre><span></span><code>rank
+candidate_id
+source_generator
+smiles
+inchikey
+docking_score
+pose_score
+qed
+sa_score
+admet_score
+safety_proxy_score
+novelty_score
+diversity_cluster
+final_weighted_score
+decision
+main_risk
+</code></pre></div>
+
+<hr />
+<h2 id="12-module-by-module-plan">12. Module-by-Module Plan</h2>
+<h3 id="m0-project-registry-and-resume-system">M0 - Project Registry and Resume System</h3>
+<p>Purpose:</p>
+<ul>
+<li>prevent Colab disconnects from destroying work</li>
+</ul>
+<p>Input:</p>
+<ul>
+<li>project base path</li>
+<li>team member list</li>
+<li>campaign config</li>
+</ul>
+<p>Output:</p>
+<div class="code"><pre><span></span><code>00_project_registry/campaign_config.yaml
+00_project_registry/run_registry.csv
+00_project_registry/progress_*.json
+00_project_registry/environment_versions.txt
+</code></pre></div>
+
+<p>Required config:</p>
+<div class="code"><pre><span></span><code><span class="nt">project_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EMD_V5_2_Hybrid</span>
+<span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JAK2</span>
+<span class="nt">primary_pdb</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5AEP</span>
+<span class="nt">random_seed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="nt">tiny_debug</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">max_train_molecules</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">700</span>
+<span class="nt">max_generated_se3</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+<span class="nt">max_generated_baseline</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2000</span>
+<span class="nt">max_docking_molecules</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">150</span>
+<span class="nt">drive_base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/content/drive/MyDrive/EMD_V5_2_Hybrid</span>
+</code></pre></div>
+
+<p>Resume rule:</p>
+<ul>
+<li>every long loop writes <code>progress_*.json</code></li>
+<li>every model run writes latest and best checkpoint</li>
+<li>every generated batch is appended to disk</li>
+</ul>
+<p>Generic progress pattern:</p>
+<div class="code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_progress</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;last_completed_index&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">save_progress</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">progress</span><span class="p">):</span>
+    <span class="n">progress</span><span class="p">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">progress</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Success gate:</p>
+<ul>
+<li>disconnect and reconnect test works on Tiny Debug Set</li>
+</ul>
+<hr />
+<h3 id="m1-data-collection-and-curation">M1 - Data Collection and Curation</h3>
+<p>Purpose:</p>
+<ul>
+<li>build the training and screening dataset</li>
+</ul>
+<p>Inputs:</p>
+<ul>
+<li>ChEMBL 36 API/download</li>
+<li>BindingDB export</li>
+<li>RCSB PDB JAK2 structures</li>
+<li>optional PubChem metadata</li>
+</ul>
+<p>Core JAK2 search terms:</p>
+<div class="code"><pre><span></span><code>JAK2
+Janus kinase 2
+Tyrosine-protein kinase JAK2
+CHEMBL target records mapped to human JAK2
+</code></pre></div>
+
+<p>Process:</p>
+<ol>
+<li>Query target records.</li>
+<li>Pull activities for IC50/Ki/Kd.</li>
+<li>Convert units to nM.</li>
+<li>Convert to pActivity.</li>
+<li>Canonicalize SMILES.</li>
+<li>Remove duplicates.</li>
+<li>Compute ring labels.</li>
+<li>Split into train/val/test by scaffold where possible.</li>
+</ol>
+<p>Outputs:</p>
+<div class="code"><pre><span></span><code>01_raw_data/chembl/jak2_activities_raw.csv
+01_raw_data/bindingdb/jak2_bindingdb_raw.tsv
+01_raw_data/pdb/5AEP.pdb
+02_curated_data/jak2_curated_ligands.csv
+02_curated_data/jak2_macrocycle_constrained.csv
+02_curated_data/jak2_train_val_test_split.csv
+</code></pre></div>
+
+<p>Success gate:</p>
+<ul>
+<li>at least 300 usable JAK2/constrained ligands if possible</li>
+<li>at least 20-30 Tiny Debug molecules</li>
+<li>receptor PDB file downloaded</li>
+</ul>
+<p>Fallback:</p>
+<ul>
+<li>if macrocycles are too sparse, include constrained and potent JAK2 inhibitors and state the scope honestly</li>
+</ul>
+<hr />
+<h3 id="m2-ligand-features-conformers-and-se3-dataset">M2 - Ligand Features, Conformers, and SE(3) Dataset</h3>
+<p>Purpose:</p>
+<ul>
+<li>prepare both classical descriptors and model tensors</li>
+</ul>
+<p>Inputs:</p>
+<div class="code"><pre><span></span><code>02_curated_data/jak2_curated_ligands.csv
+</code></pre></div>
+
+<p>Process:</p>
+<ol>
+<li>RDKit sanitization.</li>
+<li>Salt stripping/standardization.</li>
+<li>Descriptor calculation.</li>
+<li>Macrocycle/ring analysis.</li>
+<li>Gasteiger charge calculation.</li>
+<li>3D conformer generation.</li>
+<li>MMFF/UFF minimization.</li>
+<li>Graph tensor creation.</li>
+</ol>
+<p>Descriptors:</p>
+<ul>
+<li>MW</li>
+<li>logP</li>
+<li>TPSA</li>
+<li>HBD</li>
+<li>HBA</li>
+<li>rotatable bonds</li>
+<li>QED</li>
+<li>ring count</li>
+<li>max ring size</li>
+<li>formal charge</li>
+</ul>
+<p>Outputs:</p>
+<div class="code"><pre><span></span><code>03_features/ligand_features.csv
+03_features/conformers/curated_conformers.sdf
+03_features/ligand_graphs/se3_graphs.pt
+03_features/ligand_graphs/se3_graph_index.csv
+03_features/splits/train_ids.txt
+03_features/splits/val_ids.txt
+03_features/splits/test_ids.txt
+</code></pre></div>
+
+<p>Success gate:</p>
+<ul>
+<li>more than 90% of curated molecules pass RDKit sanitization</li>
+<li>at least 100 graph tensors available for model debug/training</li>
+</ul>
+<p>Fallback:</p>
+<ul>
+<li>if conformer generation fails for many macrocycles, reduce conformers per molecule and use UFF fallback</li>
+</ul>
+<hr />
+<h3 id="m3-custom-se3-flow-matching-model">M3 - Custom SE(3) Flow Matching Model</h3>
+<p>Purpose:</p>
+<ul>
+<li>preserve the deep learning innovation</li>
+</ul>
+<p>Inputs:</p>
+<div class="code"><pre><span></span><code>03_features/ligand_graphs/se3_graphs.pt
+03_features/splits/train_ids.txt
+03_features/splits/val_ids.txt
+</code></pre></div>
+
+<p>Model role:</p>
+<ul>
+<li>learn a 3D molecular generation or coordinate-flow process over ligand graphs/conformers</li>
+<li>use electronic/atom/bond features as conditioning</li>
+<li>generate candidate structures or reconstruct/generate coordinate proposals</li>
+</ul>
+<p>Recommended architecture contract:</p>
+<div class="code"><pre><span></span><code>Input:
+  atom_features [B, N, F_atom]
+  coords_t [B, N, 3]
+  bond_index / adjacency
+  bond_features
+  time_t [B]
+  mask [B, N]
+
+Output:
+  velocity/noise/displacement [B, N, 3]
+  optional atom logits or validity heads
+
+Loss:
+  flow matching MSE or denoising MSE
+  optional bond/geometry regularization
+</code></pre></div>
+
+<p>Training settings for Colab T4:</p>
+<div class="code"><pre><span></span><code>epochs: 100-200 target, stop earlier if unstable
+batch_size: 2-8 depending on memory
+learning_rate: 1e-4 to 3e-4
+weight_decay: 1e-5
+gradient_clip: 1.0
+precision: fp32 first, mixed precision only after stable
+checkpoint_every: 10-20 epochs
+validation_every: 5-10 epochs
+</code></pre></div>
+
+<p>Required debug tests before training:</p>
+<ul>
+<li>import model</li>
+<li>load one graph</li>
+<li>collate one batch</li>
+<li>forward pass</li>
+<li>finite loss</li>
+<li>backward pass</li>
+<li>optimizer step</li>
+<li>save checkpoint</li>
+<li>reload checkpoint</li>
+<li>inference on one sample</li>
+</ul>
+<p>Checkpoint format:</p>
+<div class="code"><pre><span></span><code><span class="n">checkpoint</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;epoch&quot;</span><span class="p">:</span> <span class="n">epoch</span><span class="p">,</span>
+    <span class="s2">&quot;global_step&quot;</span><span class="p">:</span> <span class="n">global_step</span><span class="p">,</span>
+    <span class="s2">&quot;model_state_dict&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+    <span class="s2">&quot;optimizer_state_dict&quot;</span><span class="p">:</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+    <span class="s2">&quot;scheduler_state_dict&quot;</span><span class="p">:</span> <span class="n">scheduler</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span> <span class="k">if</span> <span class="n">scheduler</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;train_loss&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">train_loss</span><span class="p">),</span>
+    <span class="s2">&quot;val_loss&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">val_loss</span><span class="p">),</span>
+    <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">config</span><span class="p">,</span>
+    <span class="s2">&quot;random_seed&quot;</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Outputs:</p>
+<div class="code"><pre><span></span><code>04_models_checkpoints/se3_flow/se3_latest_checkpoint.pt
+04_models_checkpoints/se3_flow/se3_best_checkpoint.pt
+04_models_checkpoints/se3_flow/se3_epoch_XXXX.pt
+04_models_checkpoints/se3_flow/training_log.csv
+04_models_checkpoints/se3_flow/training_curve.png
+</code></pre></div>
+
+<p>Success gate:</p>
+<ul>
+<li>at minimum: one successful train step and checkpoint reload</li>
+<li>good: 100 epochs completed</li>
+<li>ideal: stable validation curve and valid generated molecules</li>
+</ul>
+<p>Hard go/no-go rule:</p>
+<ul>
+<li>if M3 cannot complete one optimizer step by end of Day 3, freeze SE(3) as architecture demo and use RDKit/SELFIES as main molecule source</li>
+</ul>
+<hr />
+<h3 id="m4-hybrid-candidate-generation">M4 - Hybrid Candidate Generation</h3>
+<p>Purpose:</p>
+<ul>
+<li>generate candidates from both custom model and baseline methods</li>
+</ul>
+<p>Inputs:</p>
+<div class="code"><pre><span></span><code>04_models_checkpoints/se3_flow/se3_best_checkpoint.pt
+03_features/ligand_features.csv
+02_curated_data/jak2_curated_ligands.csv
+</code></pre></div>
+
+<p>SE(3) generation:</p>
+<ol>
+<li>Load best checkpoint.</li>
+<li>Sample or perturb molecule/conformer seeds.</li>
+<li>Decode/convert outputs to valid molecular representations where applicable.</li>
+<li>Sanitize with RDKit.</li>
+<li>Save all raw and filtered results.</li>
+</ol>
+<p>Baseline generation:</p>
+<ul>
+<li>SELFIES mutation around potent known ligands</li>
+<li>RDKit substituent replacement</li>
+<li>fragment recombination</li>
+<li>ring/linker modification where chemically valid</li>
+</ul>
+<p>Filtering:</p>
+<ul>
+<li>RDKit validity</li>
+<li>uniqueness</li>
+<li>novelty versus training set</li>
+<li>ring size</li>
+<li>MW/logP/TPSA bounds</li>
+<li>QED</li>
+<li>remove obvious PAINS only at later stage unless severe</li>
+</ul>
+<p>Outputs:</p>
+<div class="code"><pre><span></span><code>05_generated_candidates/se3/generated_se3_raw.csv
+05_generated_candidates/se3/generated_se3_filtered.csv
+05_generated_candidates/se3/generated_se3_filtered.sdf
+05_generated_candidates/selfies/generated_selfies_filtered.csv
+05_generated_candidates/rdkit/generated_rdkit_filtered.csv
+05_generated_candidates/merged/generated_merged_filtered.csv
+05_generated_candidates/merged/generation_comparison_metrics.csv
+</code></pre></div>
+
+<p>Generation metrics:</p>
+<ul>
+<li>number attempted</li>
+<li>number valid</li>
+<li>validity percentage</li>
+<li>uniqueness</li>
+<li>novelty</li>
+<li>max ring size distribution</li>
+<li>QED distribution</li>
+<li>SA score distribution</li>
+<li>generator source representation in top candidates</li>
+</ul>
+<p>Success gate:</p>
+<ul>
+<li>at least 100 filtered candidates total</li>
+<li>at least some SE(3)-origin candidates included if possible</li>
+</ul>
+<hr />
+<h3 id="m5-docking-and-pose-filtering">M5 - Docking and Pose Filtering</h3>
+<p>Purpose:</p>
+<ul>
+<li>prioritize candidates by approximate binding pose/score against JAK2</li>
+</ul>
+<p>Inputs:</p>
+<div class="code"><pre><span></span><code>05_generated_candidates/merged/generated_merged_filtered.csv
+01_raw_data/pdb/5AEP.pdb
+</code></pre></div>
+
+<p>Recommended docking hierarchy:</p>
+<ol>
+<li>AutoDock Vina: most practical fallback</li>
+<li>GNINA: better if binary works</li>
+<li>DiffDock: stretch if setup succeeds quickly</li>
+</ol>
+<p>Controls:</p>
+<ul>
+<li>dock at least 3-5 known JAK2 ligands first</li>
+<li>include known ligands in score table as controls</li>
+</ul>
+<p>Receptor preparation:</p>
+<ul>
+<li>remove waters unless required</li>
+<li>keep relevant cofactor/ions only if justified</li>
+<li>add hydrogens</li>
+<li>assign charges where tool requires</li>
+<li>define grid around co-crystallized ligand/pocket</li>
+</ul>
+<p>Candidate preparation:</p>
+<ul>
+<li>convert SMILES/SDF to 3D</li>
+<li>minimize</li>
+<li>convert to docking format if needed</li>
+</ul>
+<p>Outputs:</p>
+<div class="code"><pre><span></span><code>06_docking/receptor/jak2_prepared.pdbqt
+06_docking/ligands_pdbqt/
+06_docking/poses/
+06_docking/scores/docking_scores.csv
+06_docking/images/top_pose_*.png
+</code></pre></div>
+
+<p>Success gate:</p>
+<ul>
+<li>50 candidates docked minimum</li>
+<li>top 10 poses visually inspected</li>
+</ul>
+<p>Fallback:</p>
+<ul>
+<li>if docking fails, reduce to top 30 candidates and use simpler Vina settings</li>
+</ul>
+<hr />
+<h3 id="m6-admet-safety-proxy-and-synthesizability">M6 - ADMET, Safety Proxy, and Synthesizability</h3>
+<p>Purpose:</p>
+<ul>
+<li>remove candidates that look impossible, toxic, or un-drug-like</li>
+</ul>
+<p>Inputs:</p>
+<div class="code"><pre><span></span><code>06_docking/scores/docking_scores.csv
+05_generated_candidates/merged/generated_merged_filtered.csv
+</code></pre></div>
+
+<p>Computed filters:</p>
+<ul>
+<li>QED</li>
+<li>SA score</li>
+<li>Lipinski rules</li>
+<li>Veber rules</li>
+<li>PAINS</li>
+<li>Brenk alerts if available</li>
+<li>MW/logP/TPSA/HBD/HBA/rotatable bonds</li>
+</ul>
+<p>SLC19A3 proxy:</p>
+<ul>
+<li>do not claim true SLC19A3 safety</li>
+<li>use literature note + similarity/off-target proxy if available</li>
+<li>flag candidates that resemble known problematic chemotypes if identified</li>
+</ul>
+<p>Synthesizability:</p>
+<ul>
+<li>SA score for all top candidates</li>
+<li>AiZynthFinder for top 5-10 only if installation succeeds quickly</li>
+<li>otherwise provide preliminary route plausibility notes</li>
+</ul>
+<p>Outputs:</p>
+<div class="code"><pre><span></span><code>07_admet_synthesis/admet_scores.csv
+07_admet_synthesis/filter_flags.csv
+07_admet_synthesis/safety_proxy_notes.csv
+07_admet_synthesis/synthesis_scores.csv
+07_admet_synthesis/aizynth_routes/ optional
+</code></pre></div>
+
+<p>Success gate:</p>
+<ul>
+<li>top 10 candidates fully scored</li>
+</ul>
+<hr />
+<h3 id="m7-consensus-ranking">M7 - Consensus Ranking</h3>
+<p>Purpose:</p>
+<ul>
+<li>combine generation, docking, chemistry, safety, and synthesis into final ranked candidates</li>
+</ul>
+<p>Inputs:</p>
+<div class="code"><pre><span></span><code>05_generated_candidates/merged/generation_comparison_metrics.csv
+06_docking/scores/docking_scores.csv
+07_admet_synthesis/admet_scores.csv
+07_admet_synthesis/synthesis_scores.csv
+</code></pre></div>
+
+<p>Default weights:</p>
+<div class="code"><pre><span></span><code>docking score: 35%
+pose sanity: 15%
+ADMET/drug-likeness: 20%
+synthesizability: 15%
+novelty/diversity: 10%
+safety proxy: 5%
+</code></pre></div>
+
+<p>Rules:</p>
+<ul>
+<li>do not select all final molecules from the same scaffold</li>
+<li>include at least one SE(3)-generated molecule in final discussion if scientifically defensible</li>
+<li>if SE(3) molecules score poorly, say so honestly and present it as early-stage model learning</li>
+</ul>
+<p>Outputs:</p>
+<div class="code"><pre><span></span><code>08_final_ranking/final_ranked_candidates.csv
+08_final_ranking/top10_molecule_cards.xlsx
+08_final_ranking/final_top5.sdf
+</code></pre></div>
+
+<p>Success gate:</p>
+<ul>
+<li>3-5 final proposed molecules</li>
+<li>5-10 backup molecules</li>
+</ul>
+<hr />
+<h3 id="m8-tpp-and-final-report">M8 - TPP and Final Report</h3>
+<p>Purpose:</p>
+<ul>
+<li>package work into a defensible academic/research submission</li>
+</ul>
+<p>Inputs:</p>
+<div class="code"><pre><span></span><code>08_final_ranking/final_ranked_candidates.csv
+06_docking/images/
+07_admet_synthesis/
+04_models_checkpoints/se3_flow/training_curve.png
+</code></pre></div>
+
+<p>Final report sections:</p>
+<ol>
+<li>Abstract</li>
+<li>Problem statement</li>
+<li>Why JAK2 and macrocyclic/constrained inhibitors</li>
+<li>Dataset sources and curation</li>
+<li>Custom SE(3) Flow Matching model</li>
+<li>Baseline RDKit/SELFIES generation</li>
+<li>Docking protocol</li>
+<li>ADMET/safety/synthesis protocol</li>
+<li>Results</li>
+<li>SE(3) vs baseline comparison</li>
+<li>Final top molecules</li>
+<li>Limitations</li>
+<li>Future work</li>
+</ol>
+<p>TPP molecule card fields:</p>
+<ul>
+<li>candidate ID</li>
+<li>SMILES</li>
+<li>2D structure</li>
+<li>3D pose image</li>
+<li>generator source</li>
+<li>docking score</li>
+<li>QED</li>
+<li>SA score</li>
+<li>ADMET flags</li>
+<li>safety proxy notes</li>
+<li>synthesis notes</li>
+<li>final decision</li>
+</ul>
+<p>Outputs:</p>
+<div class="code"><pre><span></span><code>09_reports/EMD_V5_2_Hybrid_Final_Report.pdf
+09_reports/EMD_V5_2_Hybrid_TPP.pdf
+09_reports/EMD_V5_2_Hybrid_Presentation.pptx
+09_reports/EMD_V5_2_Hybrid_Audit_Package.zip
+</code></pre></div>
+
+<hr />
+<h2 id="13-10-day-execution-schedule">13. 10-Day Execution Schedule</h2>
+<h3 id="day-1-setup-and-environment">Day 1 - Setup and Environment</h3>
+<p>Goals:</p>
+<ul>
+<li>create Drive folder</li>
+<li>upload requirements</li>
+<li>create notebooks</li>
+<li>run environment check</li>
+<li>run Tiny Debug path with 5-20 molecules</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li><code>environment_versions.txt</code></li>
+<li><code>campaign_config.yaml</code></li>
+<li>Tiny Debug folder populated</li>
+</ul>
+<p>Owner:</p>
+<ul>
+<li>Student 1, all assist</li>
+</ul>
+<h3 id="day-2-data-collection">Day 2 - Data Collection</h3>
+<p>Goals:</p>
+<ul>
+<li>collect JAK2 ligands from ChEMBL/BindingDB</li>
+<li>download PDB 5AEP</li>
+<li>create raw and curated CSV</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li><code>jak2_curated_ligands.csv</code></li>
+<li><code>5AEP.pdb</code></li>
+</ul>
+<p>Owner:</p>
+<ul>
+<li>Student 2</li>
+</ul>
+<h3 id="day-3-features-and-se3-dataloader">Day 3 - Features and SE(3) DataLoader</h3>
+<p>Goals:</p>
+<ul>
+<li>compute descriptors</li>
+<li>build graph tensors</li>
+<li>fix DataLoader</li>
+<li>complete one SE(3) train step</li>
+<li>save/reload checkpoint</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li><code>ligand_features.csv</code></li>
+<li><code>se3_graphs.pt</code></li>
+<li><code>se3_dataloader_test_passed.json</code></li>
+<li><code>se3_latest_checkpoint.pt</code></li>
+</ul>
+<p>Owner:</p>
+<ul>
+<li>Student 3 + Student 4</li>
+</ul>
+<h3 id="day-4-se3-training-and-baseline-generation">Day 4 - SE(3) Training and Baseline Generation</h3>
+<p>Goals:</p>
+<ul>
+<li>train SE(3) for 100-200 epochs if stable</li>
+<li>save checkpoints every 10-20 epochs</li>
+<li>generate SELFIES/RDKit baseline candidates</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li><code>se3_best_checkpoint.pt</code></li>
+<li><code>training_curve.png</code></li>
+<li><code>generated_selfies_filtered.csv</code></li>
+<li><code>generated_rdkit_filtered.csv</code></li>
+</ul>
+<p>Owner:</p>
+<ul>
+<li>Student 3 and Student 4</li>
+</ul>
+<h3 id="day-5-se3-inference-and-candidate-merge">Day 5 - SE(3) Inference and Candidate Merge</h3>
+<p>Goals:</p>
+<ul>
+<li>generate SE(3) candidates</li>
+<li>sanitize/filter candidates</li>
+<li>merge SE(3), SELFIES, RDKit</li>
+<li>compute generation metrics</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li><code>generated_se3_filtered.csv</code></li>
+<li><code>generated_merged_filtered.csv</code></li>
+<li><code>generation_comparison_metrics.csv</code></li>
+</ul>
+<p>Owner:</p>
+<ul>
+<li>Student 3 + Student 4</li>
+</ul>
+<h3 id="day-6-docking-setup-and-controls">Day 6 - Docking Setup and Controls</h3>
+<p>Goals:</p>
+<ul>
+<li>prepare JAK2 receptor</li>
+<li>prepare known ligands and generated ligands</li>
+<li>dock known control ligands</li>
+<li>dock first candidate batch</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li><code>jak2_prepared.pdbqt</code></li>
+<li>control docking scores</li>
+<li>first candidate poses</li>
+</ul>
+<p>Owner:</p>
+<ul>
+<li>Student 5</li>
+</ul>
+<h3 id="day-7-main-docking">Day 7 - Main Docking</h3>
+<p>Goals:</p>
+<ul>
+<li>dock 50-150 candidates</li>
+<li>save poses</li>
+<li>generate top pose images</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li><code>docking_scores.csv</code></li>
+<li><code>top_pose_*.png</code></li>
+</ul>
+<p>Owner:</p>
+<ul>
+<li>Student 5</li>
+</ul>
+<h3 id="day-8-admet-safety-synthesis">Day 8 - ADMET, Safety, Synthesis</h3>
+<p>Goals:</p>
+<ul>
+<li>compute ADMET descriptors</li>
+<li>run PAINS/Brenk checks</li>
+<li>compute SA/QED</li>
+<li>attempt AiZynthFinder for top 5-10 if feasible</li>
+<li>write SLC19A3 proxy notes</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li><code>admet_scores.csv</code></li>
+<li><code>synthesis_scores.csv</code></li>
+<li><code>safety_proxy_notes.csv</code></li>
+</ul>
+<p>Owner:</p>
+<ul>
+<li>Student 5 + Student 1</li>
+</ul>
+<h3 id="day-9-ranking-and-report-draft">Day 9 - Ranking and Report Draft</h3>
+<p>Goals:</p>
+<ul>
+<li>final weighted ranking</li>
+<li>top 10 molecule cards</li>
+<li>SE(3) vs baseline comparison</li>
+<li>draft report and TPP</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li><code>final_ranked_candidates.csv</code></li>
+<li>draft report</li>
+<li>draft TPP</li>
+</ul>
+<p>Owner:</p>
+<ul>
+<li>Student 1, all assist</li>
+</ul>
+<h3 id="day-10-verification-and-presentation">Day 10 - Verification and Presentation</h3>
+<p>Goals:</p>
+<ul>
+<li>rerun Tiny Debug pipeline</li>
+<li>verify all Drive links/files</li>
+<li>polish report/slides</li>
+<li>rehearse explanation</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li>final PDF report</li>
+<li>TPP PDF</li>
+<li>presentation</li>
+<li>audit package</li>
+</ul>
+<p>Owner:</p>
+<ul>
+<li>all</li>
+</ul>
+<hr />
+<h2 id="14-8-day-compressed-schedule">14. 8-Day Compressed Schedule</h2>
+<p>If only 8 days are available:</p>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>setup + data collection start</td>
+</tr>
+<tr>
+<td>2</td>
+<td>curation + PDB + features</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SE(3) DataLoader + one train step + baseline generation</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SE(3) training/inference + merge candidates</td>
+</tr>
+<tr>
+<td>5</td>
+<td>receptor prep + control docking + first candidate docking</td>
+</tr>
+<tr>
+<td>6</td>
+<td>main docking + ADMET/synthesis filters</td>
+</tr>
+<tr>
+<td>7</td>
+<td>final ranking + report/TPP draft</td>
+</tr>
+<tr>
+<td>8</td>
+<td>verification + slides + final package</td>
+</tr>
+</tbody>
+</table>
+<p>Compressed-mode sacrifice:</p>
+<ul>
+<li>skip DiffDock/GNINA if setup is slow</li>
+<li>use Vina</li>
+<li>use SA score instead of full AiZynthFinder if needed</li>
+<li>train SE(3) for fewer epochs but preserve the model story with checkpoints and curves</li>
+</ul>
+<hr />
+<h2 id="15-gono-go-gates">15. Go/No-Go Gates</h2>
+<table>
+<thead>
+<tr>
+<th>Deadline</th>
+<th>Gate</th>
+<th>If Pass</th>
+<th>If Fail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>End Day 1</td>
+<td>Drive + environment works</td>
+<td>continue</td>
+<td>fix before anything else</td>
+</tr>
+<tr>
+<td>End Day 2</td>
+<td>curated data exists</td>
+<td>continue</td>
+<td>reduce data ambition</td>
+</tr>
+<tr>
+<td>End Day 3</td>
+<td>SE(3) one train step works</td>
+<td>train model</td>
+<td>freeze as demo, use baseline candidates</td>
+</tr>
+<tr>
+<td>End Day 5</td>
+<td>merged candidates exist</td>
+<td>dock</td>
+<td>use known ligands + baseline candidates</td>
+</tr>
+<tr>
+<td>End Day 6</td>
+<td>docking controls work</td>
+<td>main docking</td>
+<td>simplify receptor/docking</td>
+</tr>
+<tr>
+<td>End Day 8</td>
+<td>top 10 scored</td>
+<td>report</td>
+<td>rank with available evidence</td>
+</tr>
+<tr>
+<td>End Day 10</td>
+<td>final package complete</td>
+<td>submit</td>
+<td>submit minimum viable package</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="16-risk-register">16. Risk Register</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Probability</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Colab disconnects</td>
+<td>high</td>
+<td>high</td>
+<td>Drive checkpoint every batch/epoch</td>
+</tr>
+<tr>
+<td>SE(3) DataLoader shape bugs</td>
+<td>high</td>
+<td>high</td>
+<td>Day 3 dedicated debug day</td>
+</tr>
+<tr>
+<td>Too few macrocyclic JAK2 ligands</td>
+<td>medium</td>
+<td>high</td>
+<td>include constrained ligands and be honest</td>
+</tr>
+<tr>
+<td>Docking install failure</td>
+<td>medium</td>
+<td>high</td>
+<td>Vina fallback</td>
+</tr>
+<tr>
+<td>GNINA/DiffDock too heavy</td>
+<td>high</td>
+<td>medium</td>
+<td>stretch only</td>
+</tr>
+<tr>
+<td>AiZynthFinder too heavy</td>
+<td>high</td>
+<td>medium</td>
+<td>SA score + route notes fallback</td>
+</tr>
+<tr>
+<td>Generated molecules invalid</td>
+<td>medium</td>
+<td>high</td>
+<td>SELFIES/RDKit backup</td>
+</tr>
+<tr>
+<td>Reviewer asks about novelty</td>
+<td>high</td>
+<td>high</td>
+<td>show SE(3) architecture, training curve, comparison</td>
+</tr>
+<tr>
+<td>Reviewer asks about proof</td>
+<td>high</td>
+<td>medium</td>
+<td>state computational hypothesis limits clearly</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="17-evaluation-metrics">17. Evaluation Metrics</h2>
+<h3 id="generation-metrics">Generation Metrics</h3>
+<ul>
+<li>validity percentage</li>
+<li>uniqueness percentage</li>
+<li>novelty percentage</li>
+<li>macrocycle/constrained ring retention</li>
+<li>mean/max ring size</li>
+<li>descriptor distributions</li>
+<li>number selected for docking</li>
+<li>number in final top 10</li>
+</ul>
+<h3 id="se3-training-metrics">SE(3) Training Metrics</h3>
+<ul>
+<li>training loss</li>
+<li>validation loss</li>
+<li>gradient stability</li>
+<li>checkpoint count</li>
+<li>inference success count</li>
+<li>generated validity</li>
+</ul>
+<h3 id="docking-metrics">Docking Metrics</h3>
+<ul>
+<li>docking success rate</li>
+<li>best score</li>
+<li>pose rank</li>
+<li>control ligand score comparison</li>
+<li>pose visual sanity</li>
+</ul>
+<h3 id="admetsynthesis-metrics">ADMET/Synthesis Metrics</h3>
+<ul>
+<li>QED</li>
+<li>SA score</li>
+<li>Lipinski violations</li>
+<li>Veber violations</li>
+<li>PAINS/Brenk flags</li>
+<li>safety proxy notes</li>
+<li>route found or not found if AiZynthFinder works</li>
+</ul>
+<hr />
+<h2 id="18-final-ranking-formula">18. Final Ranking Formula</h2>
+<p>Default:</p>
+<div class="code"><pre><span></span><code>final_score =
+  0.35 * docking_score_norm
++ 0.15 * pose_sanity_norm
++ 0.20 * admet_norm
++ 0.15 * synthesis_norm
++ 0.10 * novelty_diversity_norm
++ 0.05 * safety_proxy_norm
+</code></pre></div>
+
+<p>Selection rules:</p>
+<ul>
+<li>choose top 3-5 final candidates</li>
+<li>keep 5 backups</li>
+<li>do not choose duplicates or near-identical scaffolds</li>
+<li>do not hide baseline results</li>
+<li>compare SE(3) and baseline honestly</li>
+</ul>
+<hr />
+<h2 id="19-what-to-say-in-the-final-presentation">19. What To Say In The Final Presentation</h2>
+<p>Strong wording:</p>
+<blockquote>
+<p>ElectroMacroDiff V5.2 Hybrid demonstrates that a student team can build a low-resource, reproducible AI drug discovery workflow by combining a custom SE(3) flow-matching molecular generator with classical cheminformatics baselines, docking, ADMET filtering, and TPP-style reporting.</p>
+</blockquote>
+<p>When asked about deep learning:</p>
+<blockquote>
+<p>The deep learning core is our SE(3) flow-matching generator. It uses 3D molecular/electronic graph features and was trained under free Colab constraints. RDKit and SELFIES were included as baselines and fallbacks, not as replacements.</p>
+</blockquote>
+<p>When asked about limitations:</p>
+<blockquote>
+<p>The outputs are computationally prioritized candidates. They require synthesis, biochemical assays, and safety testing before any biological claim can be made.</p>
+</blockquote>
+<hr />
+<h2 id="20-immediate-day-1-checklist">20. Immediate Day 1 Checklist</h2>
+<p>Do this first:</p>
+<ol>
+<li>Create Google Drive folder <code>EMD_V5_2_Hybrid</code>.</li>
+<li>Create all subfolders.</li>
+<li>Upload <code>requirements_v5_2_hybrid_colab.txt</code>.</li>
+<li>Create <code>00_environment_and_drive_check.ipynb</code>.</li>
+<li>Test RDKit import.</li>
+<li>Test PyTorch GPU availability.</li>
+<li>Test loading one SMILES and computing descriptors.</li>
+<li>Test saving a CSV to Drive.</li>
+<li>Test reading it back.</li>
+<li>Write first daily log.</li>
+</ol>
+<p>Only after that, start data collection.</p>
+<hr />
+<h2 id="21-source-notes">21. Source Notes</h2>
+<p>Use official or primary sources where possible:</p>
+<ul>
+<li>ChEMBL downloads and release documentation</li>
+<li>ChEMBL official Python webresource client</li>
+<li>BindingDB official data/download pages</li>
+<li>RCSB PDB and RCSB Data API</li>
+<li>RDKit official documentation</li>
+<li>SELFIES official documentation/paper</li>
+<li>AutoDock Vina documentation</li>
+<li>GNINA GitHub/papers if used</li>
+<li>DiffDock GitHub/paper if used</li>
+<li>AiZynthFinder paper/GitHub if used</li>
+</ul>
+<p>All final reports should cite the exact tools and data versions actually used.</p>
+</body>
+</html>

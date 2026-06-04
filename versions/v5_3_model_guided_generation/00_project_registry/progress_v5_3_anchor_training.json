@@ -1,0 +1,8 @@
+{
+  "best_epoch": 35,
+  "best_val_f1": 0.20868,
+  "stage": "V5_3_anchor_training",
+  "status": "completed",
+  "test_f1": 0.206532,
+  "updated_at": "2026-05-09T10:04:03Z"
+}

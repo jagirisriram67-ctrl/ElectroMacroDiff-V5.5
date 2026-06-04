@@ -1,0 +1,17 @@
+{
+  "best_pocket_electronic_fit_score": 0.853507,
+  "docking_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\v5_5_pocket_guided\\scores\\docking_scores_full_vina_gpu_2_1.csv",
+  "median_pocket_electronic_fit_score": 0.794665,
+  "note": "Pocket/electronic fit is a proxy from PDBQT partial charges and interactions, not quantum electron density.",
+  "output_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\v5_5_pocket_guided\\scores\\pocket_electronic_fit_scores.csv",
+  "output_ranking_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\08_final_ranking\\v5_5_pocket_guided_pocket_electronic_ranked_candidates.csv",
+  "pose_dir": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\v5_5_pocket_guided\\poses",
+  "profile_json": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\v5_5_pocket_guided\\scores\\jak2_pocket_electronic_profile.json",
+  "ranking_csv": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\08_final_ranking\\v5_5_pocket_guided_ranked_candidates.csv",
+  "receptor": "C:\\Users\\srira\\Desktop\\new_plan\\EMD_V5_2_Hybrid\\06_docking\\receptor\\jak2_prepared.pdbqt",
+  "scored_candidates": 1036,
+  "stage": "V5_5_pocket_electronic_fit",
+  "status": "completed",
+  "top_candidate_by_pocket_fit": "CAND_2815980031",
+  "updated_at": "2026-05-16T07:26:31Z"
+}

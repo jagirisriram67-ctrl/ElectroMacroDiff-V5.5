@@ -1,0 +1,6 @@
+branch,benchmark_scope,num_candidates,num_unique_inchikeys,validity_percent,uniqueness_percent,macrocyclization_percent,novel_molecule_percent,basic_filter_pass_percent,linker_novelty_percent,median_mw,median_logp,median_qed,median_sa_score,interpretation_note
+selfies,filtered_survivor,2590,2590,100.0,100.0,11.3514,97.6062,100.0,,407.4595,2.4584,0.4747,3.436,Filtered survivor metrics; not directly equivalent to MED raw generation metrics.
+rdkit,filtered_survivor,1250,1250,100.0,100.0,0.8,98.88,100.0,,446.408,3.5401,0.4817,3.403,Filtered survivor metrics; not directly equivalent to MED raw generation metrics.
+macrocycle_linker,filtered_survivor,2935,2935,100.0,100.0,100.0,100.0,100.0,,516.572,4.2853,0.3898,4.975,Filtered survivor metrics; not directly equivalent to MED raw generation metrics.
+v5_3_model_guided_macrocycle,filtered_survivor,114,114,100.0,100.0,100.0,100.0,100.0,,481.132,3.0286,0.4139,4.89,Filtered survivor metrics; not directly equivalent to MED raw generation metrics.
+merged_with_v5_3,filtered_survivor,6888,6888,100.0,100.0,48.6789,98.9111,100.0,,464.2615,3.4296,0.4277,4.125,Filtered survivor metrics; not directly equivalent to MED raw generation metrics.
