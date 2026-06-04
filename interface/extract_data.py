@@ -1,6 +1,6 @@
 """Extract only real project outputs into interface/data.js.
 
-The dashboard is a handover artifact.  It must not invent benchmark values,
+The dashboard is a project artifact.  It must not invent benchmark values,
 candidate rows, docking scores, or claims.  Missing values are exported as null
 and shown as "not available" by the interface.
 """
@@ -298,7 +298,7 @@ def load_protein_pdb() -> str:
 
 def validation_summary() -> dict:
     validation = load_json(base_path() / "00_project_registry" / "validation_report.json")
-    verification = load_json(base_path() / "00_project_registry" / "final_handover_verification.json")
+    verification = load_json(base_path() / "00_project_registry" / "final_project_verification.json")
     validation_root = validation.get("summary", validation)
     return {
         "total": validation_root.get("total"),

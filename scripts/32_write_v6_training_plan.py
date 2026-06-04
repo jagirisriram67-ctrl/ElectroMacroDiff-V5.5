@@ -1,6 +1,6 @@
 """Write a V6 sequential Kaggle training plan from local evidence.
 
-The output is a handover-ready Markdown plan that uses the current V5.5 metrics
+The output is a project-ready Markdown plan that uses the current V5.5 metrics
 and the V6 premium dataset manifest.  It is deliberately conservative: training
 claims are marked pending until real V6 checkpoints and benchmark outputs exist.
 """

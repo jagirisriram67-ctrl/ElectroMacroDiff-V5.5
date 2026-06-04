@@ -40,7 +40,6 @@ This repository contains the complete ElectroMacroDiff V5.5 computational resear
 - Vina-GPU docking score tables and pocket-electronic ranking outputs
 - project reports, model/data provenance notes, architecture diagrams, and dashboard assets
 - a `versions/` archive showing how the project evolved from V5.0/V5.1 planning to V5.2, V5.3, V5.4, and the final V5.5 root implementation
-- an `explanation for review/` bundle collecting Markdown explanations and visual assets for project discussions, presentations, and evaluation
 
 The files are computational research artifacts only. They are not wet-lab validation data and should not be interpreted as experimentally confirmed drug candidates.
 
@@ -81,8 +80,7 @@ https://jagirisriram67-ctrl.github.io/ElectroMacroDiff-V5.5/
 09_reports/               Reports, candidate cards, and decision packages
 10_notebooks/             Colab/Kaggle workflow notebooks and templates
 11_logs/                  Daily logs and AI assistance notes
-docs/                     Handover reports, methods, plans, and boundaries
-explanation for review/   Consolidated explanation Markdown files and visual assets
+docs/                     Project reports, methods, plans, and boundaries
 interface/                Static UI dashboard
 scripts/                  Command-line pipeline stages
 src/                      Reusable Python implementation modules
@@ -92,8 +90,8 @@ versions/                 Earlier-version archive for project traceability
 
 ## Key Reports
 
-- `docs/v5_5_final_handover_report_2026-05-16.md`
-- `docs/PROJECT_COMPLETION_HANDOVER_V5_5.md`
+- `docs/v5_5_final_project_report_2026-05-16.md`
+- `docs/PROJECT_COMPLETION_SUMMARY_V5_5.md`
 - `docs/V5_5_GENERATION_RESULTS.md`
 - `docs/V5_5_GPU_DOCKING_RESULTS.md`
 - `docs/SCIENTIFIC_BOUNDARIES.md`

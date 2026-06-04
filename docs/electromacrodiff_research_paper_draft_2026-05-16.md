@@ -36,7 +36,7 @@ Candidates were scored using molecular property and ADMET/synthesis proxy metric
 
 ### 2.6 Interactive Review
 
-The handover dashboard embeds real project data and provides an interactive 3D protein-ligand viewer. It displays the real JAK2 receptor, real exported docked pose texts, candidate contact residues, optional grid box, transparent ligand and pocket surfaces, and atom or bond labels. The viewer is designed for inspection and communication; it does not create new chemical structures.
+The project dashboard embeds real project data and provides an interactive 3D protein-ligand viewer. It displays the real JAK2 receptor, real exported docked pose texts, candidate contact residues, optional grid box, transparent ligand and pocket surfaces, and atom or bond labels. The viewer is designed for inspection and communication; it does not create new chemical structures.
 
 ## 3. Results
 
@@ -90,7 +90,7 @@ The pipeline has not been experimentally validated. Docking scores are approxima
 
 ## 6. Conclusion
 
-ElectroMacroDiff V5.5 is a complete low-resource computational discovery workflow for JAK2 macrocycle candidate prioritization. It produces a large ranked candidate set, preserves raw attempt evidence, performs GPU docking, integrates pocket-electronic scoring, and provides a real-data 3D dashboard for protein-ligand inspection. The project is ready for team evaluation as a computational pipeline and handover artifact. The next scientific step is V6: residue-level protein-conditioned generation using learned interaction encoders and richer protein-ligand datasets.
+ElectroMacroDiff V5.5 is a complete low-resource computational discovery workflow for JAK2 macrocycle candidate prioritization. It produces a large ranked candidate set, preserves raw attempt evidence, performs GPU docking, integrates pocket-electronic scoring, and provides a real-data 3D dashboard for protein-ligand inspection. The project is ready for team evaluation as a computational pipeline and project artifact. The next scientific step is V6: residue-level protein-conditioned generation using learned interaction encoders and richer protein-ligand datasets.
 
 ## References
 

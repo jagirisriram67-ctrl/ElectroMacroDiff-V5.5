@@ -27,8 +27,7 @@ FOLDER_PURPOSES = {
     "09_reports": ("Reports and decision packages", "Benchmark reports, candidate cards, molecule images, and decision packages."),
     "10_notebooks": ("Notebook workflows", "Notebook-style execution material for Colab/Kaggle or stepwise reproduction."),
     "11_logs": ("Work logs", "Daily implementation/progress notes and AI assistance logs."),
-    "docs": ("Technical documentation", "Handover reports, methods, architecture explanations, project explanation answers, and claim boundaries."),
-    "explanation for review": ("Explanation bundle", "Consolidated Markdown explanations and visual assets for project discussions, presentations, and evaluation."),
+    "docs": ("Technical documentation", "Reports, methods, architecture explanations, project explanation answers, and claim boundaries."),
     "interface": ("Interactive dashboard", "Static HTML/CSS/JS dashboard and real exported data for visual inspection and 3D interaction."),
     "scripts": ("Executable pipeline stages", "Command-line scripts for data, features, training, generation, docking, scoring, reports, and validation."),
     "src": ("Reusable Python package", "Core implementation modules imported by scripts and tests."),
@@ -49,7 +48,7 @@ SCRIPT_PURPOSES = {
     "06_prepare_docking_inputs.py": "turns candidates into SDF docking inputs and grid metadata",
     "06_prepare_pdbqt.py": "prepares receptor/ligand PDBQT files for docking",
     "06_prepare_vina_gpu_ligands.py": "sanitizes ligand PDBQT files for Vina-GPU compatibility",
-    "06_pose_sanity.py": "checks docked pose sanity and produces review artifacts",
+    "06_pose_sanity.py": "checks docked pose sanity and produces inspection artifacts",
     "07_rank_candidates.py": "combines generation, docking, ADMET, and pose evidence into ranked tables",
     "08_validate_project.py": "runs the final project validation checklist",
     "09_build_reports.py": "builds reports and candidate summaries",
@@ -187,9 +186,9 @@ def explain(path: str) -> tuple[str, str]:
     cid = candidate_id(path)
 
     exact = {
-        "README.md": ("Main project overview with V5.5 metrics, dashboard link, folder map, and handover status.", "Start here when explaining the whole project."),
+        "README.md": ("Main project overview with V5.5 metrics, dashboard link, folder map, and project status.", "Start here when explaining the whole project."),
         "REPOSITORY_FILE_GUIDE.md": ("This repository guide and complete tracked-file inventory.", "Use it as speaking notes for explaining the repository."),
-        ".gitignore": ("Rules keeping cache/heavy local-only files out of Git while allowing required handover artifacts.", "Explains why some huge generated files are compressed or excluded."),
+        ".gitignore": ("Rules keeping cache/heavy local-only files out of Git while allowing required runtime artifacts.", "Explains why some huge generated files are compressed or excluded."),
         ".gitattributes": ("Line-ending and binary-file rules for code, chemistry files, checkpoints, reports, and archives.", "Protects binary artifacts and keeps text readable across Windows/Linux."),
         "LICENSE": ("Repository license file.", "Defines reuse permissions for the package."),
     }
@@ -206,7 +205,7 @@ def explain(path: str) -> tuple[str, str]:
         if lower.endswith(".png"):
             return (f"Image/pose/molecule visual for candidate `{cid}`.", "Use in reports, slides, or project discussion.")
         if lower.endswith(".md"):
-            return (f"Candidate card describing candidate `{cid}`.", "Use for individual molecule review.")
+            return (f"Candidate card describing candidate `{cid}`.", "Use for individual molecule inspection.")
         if "vina.log" in lower:
             return (f"Docking log for candidate `{cid}`.", "Use when explaining how the Vina result was produced or parsed.")
 
@@ -315,8 +314,8 @@ def explain(path: str) -> tuple[str, str]:
         if lower.endswith(".sdf"):
             return ("Ligand SDF docking input.", "Intermediate chemistry structure before PDBQT docking format.")
         if lower.endswith(".pdbqt"):
-            return ("PDBQT ligand/receptor/pose file.", "Used by AutoDock/Vina-GPU and 3D pose review.")
-        return ("Docking-stage artifact.", "Supports receptor preparation, docking, parsing, or pose review.")
+            return ("PDBQT ligand/receptor/pose file.", "Used by AutoDock/Vina-GPU and 3D pose inspection.")
+        return ("Docking-stage artifact.", "Supports receptor preparation, docking, parsing, or pose inspection.")
 
     if path.startswith("07_admet_synthesis/"):
         if "flags" in name:
@@ -339,16 +338,16 @@ def explain(path: str) -> tuple[str, str]:
             return ("Decision-package file for top candidates and V5.3 GPU docking results.", "Explains how candidates were selected.")
         if "molecule_images" in path or lower.endswith((".png", ".jpg", ".jpeg")):
             return ("Molecule image or report visual.", "Use directly in PPT/DOC/dashboard.")
-        return ("Project report or supporting report asset.", "Use for final handover or written explanation.")
+        return ("Project report or supporting report asset.", "Use for final project package or written explanation.")
 
     if path.startswith("docs/"):
-        return ("Technical/handover documentation file.", "Answers project reader questions about methods, claims, data provenance, models, or workflow.")
+        return ("Technical/project summary documentation file.", "Answers project reader questions about methods, claims, data provenance, models, or workflow.")
 
     if path.startswith("interface/"):
         if name == "data.js":
             return ("Real exported project data consumed by the dashboard.", "Dashboard should show this data only, not fake values.")
         if name == "app.js":
-            return ("Dashboard interactivity, charts, filtering, and 3D viewer logic.", "Use to explain/modify browser review experience.")
+            return ("Dashboard interactivity, charts, filtering, and 3D viewer logic.", "Use to explain/modify browser inspection experience.")
         if name == "index.html":
             return ("Dashboard page structure.", "Open this to run the interactive project UI.")
         if name == "styles.css":
@@ -358,7 +357,7 @@ def explain(path: str) -> tuple[str, str]:
         return ("Dashboard support asset.", "Part of the static UI package.")
 
     if path.startswith("submission_artifacts_2026-05-28/"):
-        return ("Submission-ready document, slide, diagram, or workflow explanation asset.", "Use directly for college review and presentation material.")
+        return ("Submission-ready document, slide, diagram, or workflow explanation asset.", "Use directly for project presentation and presentation material.")
 
     if path.startswith("10_notebooks/"):
         return ("Notebook or notebook helper for stepwise execution.", "Use for Colab/Kaggle-style reproduction.")
@@ -425,7 +424,7 @@ def main() -> None:
         "",
         "This document maps the GitHub repository for collaborators, project readers, and future contributors. It explains what each folder is for, why it exists, how it fits into the project flow, and what every tracked file represents.",
         "",
-        "> Scope note: this is a computational drug-discovery handover package. The files prove code, model training evidence, generated molecules, docking outputs, ADMET proxy scores, pocket-electronic scoring, rankings, reports, and dashboard assets. They do not prove wet-lab activity or clinical safety.",
+        "> Scope note: this is a computational drug-discovery project package. The files prove code, model training evidence, generated molecules, docking outputs, ADMET proxy scores, pocket-electronic scoring, rankings, reports, and dashboard assets. They do not prove wet-lab activity or clinical safety.",
         "",
         "## Verification Snapshot",
         "",
@@ -474,7 +473,7 @@ def main() -> None:
         "",
         "| Project question | Where to look |",
         "|---|---|",
-        "| What is the final project? | `README.md`, `docs/PROJECT_COMPLETION_HANDOVER_V5_5.md`, `docs/v5_5_final_handover_report_2026-05-16.md` |",
+        "| What is the final project? | `README.md`, `docs/PROJECT_COMPLETION_SUMMARY_V5_5.md`, `docs/v5_5_final_project_report_2026-05-16.md` |",
         "| What models were used? | `docs/V5_5_MODEL_DATASET_PROVENANCE_FAQ.md`, `04_models_checkpoints/`, `src/emd_v5_2_hybrid/` |",
         "| Where are generated molecules? | `05_generated_candidates/v5_5_pocket_guided/` and earlier branches in `versions/v5_3_model_guided_generation/` |",
         "| Where are docking results? | `06_docking/v5_5_pocket_guided/scores/` and `08_final_ranking/` |",
@@ -508,7 +507,7 @@ def main() -> None:
         "",
         "## Final Speaking Summary",
         "",
-        "Explain the repository like this: the root folder is the completed V5.5 system; the numbered data/model/output folders show the live computational pipeline; `interface/` shows the real dashboard; `docs/`, `submission_artifacts_2026-05-28/`, and `explanation for review/` contain explanation material; and `versions/` preserves how the project evolved from earlier planning and V5.2/V5.3/V5.4 stages into the final V5.5 system.",
+        "Explain the repository like this: the root folder is the completed V5.5 system; the numbered data/model/output folders show the live computational pipeline; `interface/` shows the real dashboard; `docs/` and `submission_artifacts_2026-05-28/` contain explanation material; and `versions/` preserves how the project evolved from earlier planning and V5.2/V5.3/V5.4 stages into the final V5.5 system.",
         "",
     ]
 

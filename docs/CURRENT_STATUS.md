@@ -2,7 +2,7 @@
 
 Last local verification: 2026-05-14.
 
-Final handover status: finalized as a computational architecture and candidate-prioritization package. Further benchmark-scale training is deferred because the available free Colab T4 runtime is not long or stable enough for reliable anchor GNN, linker, SE(3), regeneration, docking, and reranking cycles.
+Final project status: finalized as a computational architecture and candidate-prioritization package. Further benchmark-scale training is deferred because the available free Colab T4 runtime is not long or stable enough for reliable anchor GNN, linker, SE(3), regeneration, docking, and reranking cycles.
 
 ## Completed
 
@@ -44,7 +44,7 @@ Final handover status: finalized as a computational architecture and candidate-p
 - Benchmark comparison logic now blocks a MED-beaten claim unless raw-attempt validity and linker novelty are both measured and exceed the paper reference.
 - Current validation report: `54 / 54` checks pass.
 - Latest unit tests: `18 / 18` pass.
-- Final handover document added at `docs/FINAL_PROJECT_HANDOVER.md`.
+- Final project summary document added at `docs/FINAL_PROJECT_SUMMARY.md`.
 - Python bytecode and test cache directories were removed; source code, models, reports, docking artifacts, and scores were preserved for reproducibility.
 
 ## Current Top V5.3 GPU Candidates
@@ -65,7 +65,7 @@ Final handover status: finalized as a computational architecture and candidate-p
 ## Key Updated Files
 
 - `docs/EMD_V5_3_Project_Architecture_Flow.md`
-- `docs/FINAL_PROJECT_HANDOVER.md`
+- `docs/FINAL_PROJECT_SUMMARY.md`
 - `docs/V5_3_BENCHMARK_GAP_CLOSING_COLAB_STEPS.md`
 - `docs/V5_4_POCKET_ELECTRONIC_GUIDANCE_PLAN.md`
 - `docs/SCIENTIFIC_BOUNDARIES.md`
@@ -90,14 +90,14 @@ Final handover status: finalized as a computational architecture and candidate-p
 - Do not claim experimental potency, safety, or clinical readiness; these are computational prioritization results only.
 - Visually inspect the top five docked poses in PyMOL or ChimeraX.
 - Re-dock or rescore the top ten with an independent seed/config or a second docking engine.
-- Review protonation, tautomer, and charge states for the top five.
+- Check protonation, tautomer, and charge states for the top five.
 - Extend the new interaction-aware reranking into generation feedback, so future anchor/linker choices are biased by pocket/electronic fit rather than only filtered after docking.
 - Add true quantum-electronic/ESP rescoring for the top 10 only, using xTB or DFT-lite if Colab runtime allows.
 - Add parent-potency-aware seed weighting for future generation cycles.
 - Rerun V5.3 generation with the new attempt logger, then remeasure raw-attempt validity and linker novelty.
 - Improve linker novelty substantially; the current measured value is `24.5614%`, while MED reports `82.81%`.
 
-These are future-resource tasks, not blockers for the current handover.
+These are future-resource tasks, not blockers for the current project package.
 
 ## Verified Commands
 

@@ -339,7 +339,7 @@ def build_ppt(data: dict, images: dict[str, Path]) -> Path:
     add_bullets(s, [
         "JAK2 inhibitors require balancing potency, selectivity, ADMET feasibility, and binding-pocket fit.",
         "Macrocycles can improve conformational control, but valid ring closure and linker novelty are difficult.",
-        "ElectroMacroDiff V5.5 connects generation, docking, pocket-electronic scoring, and 3D review into one auditable pipeline.",
+        "ElectroMacroDiff V5.5 connects generation, docking, pocket-electronic scoring, and 3D inspection into one auditable pipeline.",
     ], 0.75, 1.45, 5.8, 4.8, 15)
     add_bullets(s, [
         "Project aim: generate and prioritize pocket-fitted JAK2 macrocycle candidates.",
@@ -353,14 +353,14 @@ def build_ppt(data: dict, images: dict[str, Path]) -> Path:
     rows = [
         ["Functional", "Curate JAK2 ligands, generate macrocycles, dock, rescore, rank, export dashboard."],
         ["Non-functional", "Low-resource runnable workflow; explicit logs; no fake metrics; clear limitations."],
-        ["End-user benefit", "Reviewers can inspect top candidates, metrics, pose evidence, and project maturity."],
+        ["End-user benefit", "Project readers can inspect top candidates, metrics, pose evidence, and project maturity."],
         ["Acceptance", "All outputs must trace to project CSV/JSON/PDB/PDBQT artifacts."],
     ]
     add_table(s, ["Need", "Implementation in EMD V5.5"], rows, 0.75, 1.45, 11.8, 3.4, 12)
     add_slide_number(s, slide_no); slide_no += 1
 
     s = prs.slides.add_slide(layouts[6])
-    add_title(s, "Design", "Evidence chain from curated ligands to protein-ligand 3D review")
+    add_title(s, "Design", "Evidence chain from curated ligands to protein-ligand 3D inspection")
     s.shapes.add_picture(str(images["pipeline"]), PptInches(0.75), PptInches(1.28), width=PptInches(11.8))
     add_slide_number(s, slide_no); slide_no += 1
 
@@ -410,7 +410,7 @@ def build_ppt(data: dict, images: dict[str, Path]) -> Path:
     add_slide_number(s, slide_no); slide_no += 1
 
     s = prs.slides.add_slide(layouts[2])
-    add_title(s, "3D Dashboard", "Real receptor and pose files are now directly reviewable")
+    add_title(s, "3D Dashboard", "Real receptor and pose files are directly inspectable")
     add_bullets(s, [
         "Viewer embeds real JAK2 receptor PDB and 1,036 real docked pose texts.",
         "Candidate list supports direct click-to-open with rank, Vina, pocket fit, contact count, and pose status.",
@@ -441,7 +441,7 @@ def build_ppt(data: dict, images: dict[str, Path]) -> Path:
     rows = [
         ["Learning", "End-to-end evidence matters more than isolated generator scores."],
         ["Learning", "Raw-attempt logging prevents false benchmark claims."],
-        ["Learning", "3D review makes candidate evidence understandable to non-coding reviewers."],
+        ["Learning", "3D inspection makes candidate evidence understandable to non-coding project readers."],
         ["V6", "Train residue-level interaction encoder using PDBbind/PLINDER/BioLiP-style contact data."],
         ["V6", "Condition anchor and linker generation on aligned pocket poses, not only global pocket features."],
     ]

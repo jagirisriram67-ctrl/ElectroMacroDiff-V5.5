@@ -1,11 +1,11 @@
-# ElectroMacroDiff V5.5 Project Completion Handover
+# ElectroMacroDiff V5.5 Project Completion Project package
 
 ## Completion Status
 
 The project folder is ready for team/coordinator evaluation as a computational
-handover package.
+project package.
 
-This handover uses real outputs currently present in the project folder only.
+This project package uses real outputs currently present in the project folder only.
 No experimental potency, synthesis success, clinical safety, or full
 protein-conditioned diffusion claim is made.
 
@@ -71,7 +71,7 @@ Dashboard features:
 - `06_docking/v5_5_pocket_guided/scores/v5_5_docking_and_pocket_summary.json`
 - `08_final_ranking/v5_5_pocket_guided_pocket_electronic_ranked_candidates.csv`
 - `09_reports/v5_3_benchmark/EMD_V5_3_Benchmark_Report.md`
-- `00_project_registry/final_handover_verification.json`
+- `00_project_registry/final_project_verification.json`
 
 ## Honest Claim
 

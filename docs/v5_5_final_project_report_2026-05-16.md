@@ -1,10 +1,10 @@
-# ElectroMacroDiff V5.5 Final Handover Report
+# ElectroMacroDiff V5.5 Final Project package Report
 
 Date: 2026-05-16
 
 ## Executive Summary
 
-ElectroMacroDiff V5.5 is a JAK2-focused macrocycle generation, docking, ADMET proxy scoring, pocket-electronic rescoring, and interactive 3D review pipeline. The project is now suitable for handover as a computational discovery package with transparent metrics and reproducible local outputs.
+ElectroMacroDiff V5.5 is a JAK2-focused macrocycle generation, docking, ADMET proxy scoring, pocket-electronic rescoring, and interactive 3D review pipeline. The project is now suitable for project package as a computational discovery package with transparent metrics and reproducible local outputs.
 
 The strongest result is not a claim of experimental activity. The strongest result is a complete evidence chain: generated candidates, real Vina-GPU docking outputs, ranked pocket-electronic scores, ADMET/synthesis proxy tables, validation checks, and an interactive 3D protein-ligand dashboard based only on project artifacts.
 
@@ -113,7 +113,7 @@ The viewer does not generate or infer new molecular structures. It displays only
 
 ## Acceptance Status
 
-Accepted as a computational handover package:
+Accepted as a computational project package:
 
 - end-to-end generation and scoring artifacts exist
 - docking and pose outputs are present

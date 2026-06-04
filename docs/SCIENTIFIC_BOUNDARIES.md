@@ -8,7 +8,7 @@
 - The SE(3) generator is a low-resource research prototype.
 - RDKit/SELFIES outputs are baselines and fallbacks.
 - The pocket/electronic-fit score is a fast PDBQT partial-charge and contact-geometry proxy.
-- The final package is a validated computational architecture and candidate-prioritization handover.
+- The final package is a validated computational architecture and candidate-prioritization project package.
 
 ## Forbidden Claims
 

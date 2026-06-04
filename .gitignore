@@ -29,8 +29,8 @@ env/
 09_reports/*.pdf
 09_reports/*.pptx
 
-# Review handover: keep the compact trained/runtime artifacts needed for
-# validating the V5.5 repo without the separate large handover zip.
+# Compact runtime artifacts needed for validating the V5.5 repo without
+# committing separate large package archives.
 !03_features/ligand_graphs/se3_graphs.pt
 !04_models_checkpoints/se3_flow/se3_best_checkpoint.pt
 !04_models_checkpoints/se3_flow/se3_latest_checkpoint.pt
@@ -50,3 +50,6 @@ env/
 !versions/**/*.sdf
 !versions/**/*.pdf
 !versions/**/*.zip
+
+# Local-only explanation bundle requested for discussions and evaluation.
+explanation for review/

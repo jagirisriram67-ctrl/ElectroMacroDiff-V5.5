@@ -27,7 +27,7 @@ V5.3 status addendum:
 - V5.3 top-pose sanity checks passed for `10 / 10` inspected poses.
 - The current primary candidates are `CAND_5152217faa`, `CAND_396f994be3`, `CAND_598172bd63`, `CAND_9c6324c16c`, and `CAND_3c64f44e76`.
 - Validation currently passes `54 / 54` checks and unit tests pass `15 / 15`.
-- The next work is manual pose review, independent redocking/rescoring, protonation/tautomer review, interaction-aware reranking, and raw-attempt/linker-novelty logging for a stricter MED-style benchmark comparison.
+- The next work is manual pose inspection, independent redocking/rescoring, protonation/tautomer review, interaction-aware reranking, and raw-attempt/linker-novelty logging for a stricter MED-style benchmark comparison.
 
 This is the final realistic plan for a 5-member B.Tech second-year team with 8-10 days, Google Colab free tier, 2-3 Google accounts per person, unreliable parallel execution, and Google Drive as the persistent storage layer.
 
